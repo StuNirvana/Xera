@@ -91,12 +91,14 @@ a:active {
 const menuIcon = document.querySelector('.menu-icon');
 const panel = document.querySelector('.menu-panel');
 
-menuIcon.addEventListener('click', function () {
-  if (panel.style.display === 'flex') {
-    panel.style.display = 'none';
-  } else {
-    panel.style.display = 'flex';
-  }
+menuIcon.addEventListener('click', function() {
+    if (panel.style.display === 'flex') {
+        panel.style.display = 'none';
+        menuIcon.style.animation = 'pulse 6s ease-in-out infinite';
+    } else {
+        panel.style.display = 'flex';
+        menuIcon.style.animation = 'none';
+    }
 });
-    </script>
+</script>
 </body>
