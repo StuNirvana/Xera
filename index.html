@@ -88,9 +88,15 @@ a:active {
 
     <footer>© 2026 XERA. All designs, images and concepts are original and protected.</footer>
     <script>
-document.querySelector('.menu-icon').addEventListener('click', function() {
-    const panel = document.querySelector('.menu-panel');
-    panel.style.display = panel.style.display === 'flex' ? 'none' : 'flex';
+const menuIcon = document.querySelector('.menu-icon');
+const panel = document.querySelector('.menu-panel');
+
+menuIcon.addEventListener('click', function () {
+  if (panel.style.display === 'flex') {
+    panel.style.display = 'none';
+  } else {
+    panel.style.display = 'flex';
+  }
 });
     </script>
 </body>
