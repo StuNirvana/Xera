@@ -42,10 +42,27 @@ a:active {
         color: #777;
         font-family: Arial, sans-serif;
     }
+        .menu-icon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    cursor: pointer;
+    opacity: 0.6;
+    animation: pulse 3s ease-in-out infinite;
+    z-index: 1000;
+}
+
+@keyframes pulse {
+    0%   { opacity: 0.4; }
+    50%  { opacity: 1; }
+    100% { opacity: 0.4; }
+}
 </style>
 
 </head>
 <body>
+    <img src="Menuicon.jpg" class="menu-icon" alt="Menu">
     <a href="event-horizon.html">
   <img src="xera-logo.jpg" alt="XERA Watches Logo">
 </a>
