@@ -53,7 +53,22 @@ a:active {
     animation: pulse 5s ease-in-out infinite;
     z-index: 9999;
 }
+.menu-panel {
+    position: fixed;
+    top: 120px;
+    right: 20px;
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 9998;
+}
 
+.menu-panel a {
+    color: white;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+}
 @keyframes pulse {
     0%   { opacity: 0.6; }
     50%  { opacity: 1; }
@@ -64,8 +79,18 @@ a:active {
 </head>
 <body>
     <img src="Menuicon.jpg" class="menu-icon" alt="Menu">
+    <div class="menu-panel">
+    <a href="event-horizon.html">EVENT HORIZON</a>
+    <a href="element.html">ELEMENT</a>
+    </div>
 
         <img src="xera-logo.jpg" alt="XERA Watches Logo">
 
     <footer>© 2026 XERA. All designs, images and concepts are original and protected.</footer>
+    <script>
+document.querySelector('.menu-icon').addEventListener('click', function() {
+    const panel = document.querySelector('.menu-panel');
+    panel.style.display = panel.style.display === 'flex' ? 'none' : 'flex';
+});
+    </script>
 </body>
