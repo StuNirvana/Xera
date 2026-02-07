@@ -98,9 +98,21 @@ a:active {
 
     <footer>© 2026 XERA. All designs, images and concepts are original and protected.</footer>
     <script>
-  document.querySelector('.menu-trigger').addEventListener('click', function() {
-    const panel = document.querySelector('.menu-panel');
-    panel.classList.toggle('open');
+  const trigger = document.querySelector('.menu-trigger');
+const panel = document.querySelector('.menu-panel');
+
+trigger.addEventListener('click', function() {
+
+    if (panel.classList.contains('open')) {
+        panel.classList.remove('open');
+    } else {
+        panel.style.opacity = '0';
+        panel.classList.add('open');
+        setTimeout(() => {
+            panel.style.opacity = '1';
+        }, 50);
+    }
+
 });
     </script>
 </body>
