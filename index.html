@@ -27,7 +27,7 @@ body {
     font-size: 16px;
     letter-spacing: 2px;
     cursor: pointer;
-    z-index: 5000;
+    z-index: 6000;
 }
 
 .menu-panel {
@@ -36,7 +36,7 @@ body {
     right: 20px;
     display: none;
     text-align: right;
-    z-index: 5000;
+    z-index: 6000;
 }
 
 .menu-panel a {
@@ -50,6 +50,16 @@ body {
 
 .menu-panel.open {
     display: block;
+}
+
+/* RED JOIN LAUNCH */
+
+.launch-link {
+    color: #9b0000;
+}
+
+.launch-link:hover {
+    color: #ff2a2a;
 }
 
 /* ---------- SPLASH ---------- */
@@ -105,7 +115,7 @@ footer {
     font-size: 11px;
     color: rgba(255,255,255,0.5);
     letter-spacing: 1px;
-    z-index: 6000;
+    z-index: 7000;
 }
 
 /* ---------- ANIMATIONS ---------- */
@@ -128,13 +138,18 @@ footer {
 <div class="menu-trigger">MENU</div>
 
 <div class="menu-panel">
-    <a href="event-horizon.html">EVENT HORIZON</a>
+    <a href="specifications.html">SPECIFICATIONS</a>
+    <a href="story.html">STORY</a>
+    <a href="contact.html">CONTACT</a>
+    <a href="launch.html" class="launch-link">JOIN LAUNCH</a>
 </div>
 
+<!-- SPLASH SCREEN -->
 <div id="splash">
     <img src="xera-logo.jpg" alt="XERA Logo">
 </div>
 
+<!-- MAIN CONTENT -->
 <div id="main">
     <h1 class="title">EVENT HORIZON</h1>
     <img class="watch-image" src="xera-event-horizon.jpg" alt="Event Horizon Watch">
@@ -146,7 +161,7 @@ footer {
 
 <script>
 
-/* ---------- MENU ---------- */
+/* MENU TOGGLE */
 
 const trigger = document.querySelector('.menu-trigger');
 const panel = document.querySelector('.menu-panel');
