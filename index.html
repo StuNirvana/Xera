@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +17,19 @@ body {
 }
 
 /* =========================
+   BRAND (TOP RIGHT)
+========================= */
+
+.xera-brand {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10000;
+    letter-spacing: 3px;
+    font-size: 14px;
+}
+
+/* =========================
    MENU TRIGGER
 ========================= */
 
@@ -28,6 +42,10 @@ body {
     letter-spacing: 3px;
     font-size: 14px;
     animation: xeraPulse 2s infinite;
+}
+
+.xera-menu-trigger.active {
+    animation: none;
 }
 
 /* =========================
@@ -110,7 +128,7 @@ body {
 }
 
 .xera-main h1 {
-    font-size: 26px; /* 25% smaller */
+    font-size: 26px;
     letter-spacing: 7px;
     margin-bottom: 55px;
 }
@@ -148,9 +166,11 @@ body {
 
 <body>
 
-<div class="xera-menu-trigger">MENU</div>
+<div class="xera-brand">XERA</div>
 
-<div class="xera-menu-panel">
+<div class="xera-menu-trigger" id="menuTrigger">MENU</div>
+
+<div class="xera-menu-panel" id="menuPanel">
     <a href="specifications.html">SPECIFICATIONS</a>
     <a href="story.html">STORY</a>
     <a href="contact.html">CONTACT</a>
@@ -171,16 +191,17 @@ body {
 </div>
 
 <script>
-const menuTrigger = document.querySelector('.xera-menu-trigger');
-const menuPanel = document.querySelector('.xera-menu-panel');
+const menuTrigger = document.getElementById('menuTrigger');
+const menuPanel = document.getElementById('menuPanel');
 const logoScreen = document.getElementById('xeraLogo');
 const mainContent = document.getElementById('xeraMain');
 
 menuTrigger.addEventListener('click', function() {
     menuPanel.classList.toggle('open');
+    menuTrigger.classList.toggle('active');
 });
 
-/* Fade logo after 6 seconds instead of 10 */
+/* Fade logo after 6 seconds */
 setTimeout(function() {
     logoScreen.classList.add('fade-out');
     mainContent.classList.add('show');
