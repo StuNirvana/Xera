@@ -10,169 +10,173 @@
 body {
     margin: 0;
     background: #000;
-    color: white;
-    font-family: Helvetica, Arial, sans-serif;
+    color: #fff;
+    font-family: Arial, sans-serif;
     overflow-x: hidden;
 }
 
-/* MENU BUTTON */
-.menu-trigger {
+/* =========================
+   MENU TRIGGER
+========================= */
+
+.xera-menu-trigger {
     position: fixed;
-    top: 25px;
-    right: 25px;
-    font-size: 18px;
-    letter-spacing: 3px;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
     cursor: pointer;
-    z-index: 1000;
-    animation: pulse 2.5s infinite;
-}
-
-@keyframes pulse {
-    0% { opacity: 0.6; }
-    50% { opacity: 1; }
-    100% { opacity: 0.6; }
-}
-
-/* MENU PANEL */
-.menu-panel {
-    position: fixed;
-    top: 80px;
-    right: 25px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    text-align: right;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    z-index: 999;
-}
-
-.menu-panel.open {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.menu-panel a {
-    color: white;
-    text-decoration: none;
     letter-spacing: 3px;
-    font-size: 16px;
+    font-size: 14px;
+    animation: xeraPulse 2s infinite;
 }
 
-.menu-panel a:hover {
-    opacity: 0.7;
-}
+/* =========================
+   MENU PANEL
+========================= */
 
-/* JOIN LAUNCH RED */
-.join-launch {
-    color: red;
-}
-
-/* LOGO SPLASH */
-.logo-screen {
+.xera-menu-panel {
     position: fixed;
-    inset: 0;
+    top: 70px;
+    right: 20px;
+    text-align: right;
+    display: none;
+    z-index: 9999;
+}
+
+.xera-menu-panel a {
+    display: block;
+    text-decoration: none;
+    margin: 12px 0;
+    font-size: 16px;
+    letter-spacing: 4px;
+    color: #bbb;
+    transition: color 0.3s ease;
+}
+
+.xera-menu-panel a:hover {
+    color: #fff;
+}
+
+.xera-menu-panel a.join-launch {
+    color: #cc0000 !important;
+}
+
+.xera-menu-panel.open {
+    display: block;
+}
+
+/* =========================
+   LOGO SCREEN
+========================= */
+
+.xera-logo-screen {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: black;
-    z-index: 500;
-    opacity: 1;
+    background: #000;
     transition: opacity 2s ease;
+    z-index: 1;
 }
 
-.logo-screen.fade-out {
+.xera-logo-screen.fade-out {
     opacity: 0;
     pointer-events: none;
 }
 
-.logo-screen img {
-    max-width: 70%;
-}
+/* =========================
+   MAIN CONTENT
+========================= */
 
-/* MAIN CONTENT */
-.main-content {
+.xera-main {
     opacity: 0;
     transition: opacity 2s ease;
     text-align: center;
     padding-top: 120px;
 }
 
-.main-content.visible {
+.xera-main.show {
     opacity: 1;
 }
 
-.title {
-    font-size: 56px;
-    letter-spacing: 9px;
-    font-weight: 300;
-    margin-bottom: 80px;
+.xera-main h1 {
+    font-size: 38px;
+    letter-spacing: 10px;
+    margin-bottom: 60px;
 }
 
-.watch-image {
-    max-width: 90%;
+.xera-main img {
+    max-width: 92%;
     height: auto;
 }
 
-/* FOOTER */
-footer {
+/* =========================
+   FOOTER
+========================= */
+
+.xera-footer {
     position: fixed;
-    bottom: 15px;
+    bottom: 10px;
     width: 100%;
     text-align: center;
-    font-size: 12px;
-    letter-spacing: 2px;
+    font-size: 11px;
     color: #777;
+    z-index: 10000;
+}
+
+/* =========================
+   PULSE ANIMATION
+========================= */
+
+@keyframes xeraPulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- MENU -->
-<div class="menu-trigger">MENU</div>
+<div class="xera-menu-trigger">MENU</div>
 
-<div class="menu-panel">
+<div class="xera-menu-panel">
     <a href="specifications.html">SPECIFICATIONS</a>
     <a href="story.html">STORY</a>
     <a href="contact.html">CONTACT</a>
     <a href="join-launch.html" class="join-launch">JOIN LAUNCH</a>
 </div>
 
-<!-- LOGO SPLASH -->
-<div class="logo-screen" id="logoScreen">
+<div class="xera-logo-screen" id="xeraLogo">
     <img src="xera-logo.jpg" alt="XERA Logo">
 </div>
 
-<!-- MAIN CONTENT -->
-<div class="main-content" id="mainContent">
-    <h1 class="title">EVENT HORIZON</h1>
-    <img src="xera-event-horizon.jpg" class="watch-image" alt="Event Horizon Watch">
+<div class="xera-main" id="xeraMain">
+    <h1>EVENT HORIZON</h1>
+    <img src="xera-event-horizon.jpg" alt="Event Horizon Watch">
 </div>
 
-<!-- FOOTER -->
-<footer>
+<div class="xera-footer">
 © 2026 XERA. All designs, artwork and concepts are original and protected.
-</footer>
+</div>
 
 <script>
-const trigger = document.querySelector('.menu-trigger');
-const panel = document.querySelector('.menu-panel');
+const menuTrigger = document.querySelector('.xera-menu-trigger');
+const menuPanel = document.querySelector('.xera-menu-panel');
+const logoScreen = document.getElementById('xeraLogo');
+const mainContent = document.getElementById('xeraMain');
 
-trigger.addEventListener('click', function() {
-    panel.classList.toggle('open');
+menuTrigger.addEventListener('click', function() {
+    menuPanel.classList.toggle('open');
 });
 
-/* AUTO TRANSITION FROM LOGO TO MAIN */
+/* Fade logo after 10 seconds */
 setTimeout(function() {
-    document.getElementById('logoScreen').classList.add('fade-out');
-
-    setTimeout(function() {
-        document.getElementById('mainContent').classList.add('visible');
-    }, 1000);
-
-}, 4000);  // 4 seconds logo display (adjust if needed)
+    logoScreen.classList.add('fade-out');
+    mainContent.classList.add('show');
+}, 10000);
 </script>
 
 </body>
