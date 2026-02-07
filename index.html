@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -199,20 +198,54 @@ menuTrigger.addEventListener('click', function() {
     menuTrigger.classList.toggle('active');
 });
 
-/* INTRO LOGIC */
+/* =========================
+   INTRO LOGIC
+========================= */
 
 const urlParams = new URLSearchParams(window.location.search);
 const skipIntro = urlParams.get('skip');
 
-if (skipIntro === 'true') {
-    logoScreen.classList.add('fade-out');
-    mainContent.classList.add('show');
-} else {
+function playIntro() {
+    logoScreen.classList.remove('fade-out');
+    mainContent.classList.remove('show');
+
     setTimeout(function() {
         logoScreen.classList.add('fade-out');
         mainContent.classList.add('show');
     }, 6000);
 }
+
+function showInstant() {
+    logoScreen.classList.add('fade-out');
+    mainContent.classList.add('show');
+}
+
+if (skipIntro === 'true') {
+    showInstant();
+} else {
+    playIntro();
+}
+
+/* =========================
+   HOMEPAGE INACTIVITY RESET
+   (2 Minutes – Homepage Only)
+========================= */
+
+let inactivityTimer;
+const inactivityLimit = 2 * 60 * 1000; // 2 minutes
+
+function resetInactivityTimer() {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(function() {
+        playIntro();
+    }, inactivityLimit);
+}
+
+['click','scroll','keydown','touchstart','mousemove'].forEach(event => {
+    window.addEventListener(event, resetInactivityTimer);
+});
+
+resetInactivityTimer();
 </script>
 
 </body>
