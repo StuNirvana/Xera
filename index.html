@@ -114,14 +114,20 @@ const panel = document.querySelector('.menu-panel');
 trigger.addEventListener('click', function() {
     panel.classList.toggle('open');
 });
-        // Auto fade after 10 seconds
+    // Auto fade after 10 seconds
 setTimeout(function() {
-  const logo = document.querySelector('img');
-  logo.classList.add('fade-out');
+    const logo = document.querySelector('img');
+    logo.classList.add('fade-out');
 
-  setTimeout(function() {
-    window.location.href = "event-horizon.html";
-  }, 2000);
+    setTimeout(function() {
+        logo.style.display = 'none';
+    }, 2000);
+
+}, 10000);
+
+  
+    
+
 }, 2000);
     </script>
 </body>
