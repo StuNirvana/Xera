@@ -17,7 +17,7 @@ body {
 }
 
 /* =========================
-   BRAND (TOP RIGHT)
+   BRAND
 ========================= */
 
 .xera-brand {
@@ -27,10 +27,12 @@ body {
     z-index: 10000;
     letter-spacing: 3px;
     font-size: 14px;
+    color: #fff;
+    text-decoration: none;
 }
 
 /* =========================
-   MENU TRIGGER
+   MENU
 ========================= */
 
 .xera-menu-trigger {
@@ -47,10 +49,6 @@ body {
 .xera-menu-trigger.active {
     animation: none;
 }
-
-/* =========================
-   MENU PANEL
-========================= */
 
 .xera-menu-panel {
     position: fixed;
@@ -153,7 +151,7 @@ body {
 }
 
 /* =========================
-   PULSE ANIMATION
+   PULSE
 ========================= */
 
 @keyframes xeraPulse {
@@ -166,7 +164,7 @@ body {
 
 <body>
 
-<div class="xera-brand">XERA</div>
+<a href="index.html" class="xera-brand">XERA</a>
 
 <div class="xera-menu-trigger" id="menuTrigger">MENU</div>
 
@@ -177,11 +175,11 @@ body {
     <a href="join-launch.html" class="join-launch">JOIN LAUNCH</a>
 </div>
 
-<div class="xera-logo-screen" id="xeraLogo">
+<div class="xera-logo-screen" id="logoScreen">
     <img src="xera-logo.jpg" alt="XERA Logo">
 </div>
 
-<div class="xera-main" id="xeraMain">
+<div class="xera-main" id="mainContent">
     <h1>EVENT HORIZON</h1>
     <img src="xera-event-horizon.jpg" alt="Event Horizon Watch">
 </div>
@@ -193,19 +191,28 @@ body {
 <script>
 const menuTrigger = document.getElementById('menuTrigger');
 const menuPanel = document.getElementById('menuPanel');
-const logoScreen = document.getElementById('xeraLogo');
-const mainContent = document.getElementById('xeraMain');
+const logoScreen = document.getElementById('logoScreen');
+const mainContent = document.getElementById('mainContent');
 
 menuTrigger.addEventListener('click', function() {
     menuPanel.classList.toggle('open');
     menuTrigger.classList.toggle('active');
 });
 
-/* Fade logo after 6 seconds */
-setTimeout(function() {
+/* INTRO LOGIC */
+
+const urlParams = new URLSearchParams(window.location.search);
+const skipIntro = urlParams.get('skip');
+
+if (skipIntro === 'true') {
     logoScreen.classList.add('fade-out');
     mainContent.classList.add('show');
-}, 6000);
+} else {
+    setTimeout(function() {
+        logoScreen.classList.add('fade-out');
+        mainContent.classList.add('show');
+    }, 6000);
+}
 </script>
 
 </body>
