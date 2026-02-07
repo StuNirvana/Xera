@@ -63,7 +63,7 @@ a:active {
     z-index: 9998;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 4s ease;
+    transition: opacity 4s ease, visibility 4s ease;
     display: flex;
 }
         .menu-panel.open {
@@ -102,17 +102,7 @@ a:active {
 const panel = document.querySelector('.menu-panel');
 
 trigger.addEventListener('click', function() {
-
-    if (panel.classList.contains('open')) {
-        panel.classList.remove('open');
-    } else {
-        panel.style.opacity = '0';
-        panel.classList.add('open');
-        setTimeout(() => {
-            panel.style.opacity = '1';
-        }, 50);
-    }
-
+    panel.classList.toggle('open');
 });
     </script>
 </body>
