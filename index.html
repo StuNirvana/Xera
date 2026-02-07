@@ -36,7 +36,7 @@ body {
 
 .xera-menu-panel {
     position: fixed;
-    top: 45px; /* moved closer to MENU */
+    top: 45px;
     right: 20px;
     width: 170px;
     text-align: right;
@@ -47,8 +47,8 @@ body {
 .xera-menu-panel a {
     display: block;
     text-decoration: none;
-    margin: 6px 0; /* tighter spacing */
-    font-size: 13px; /* slightly smaller */
+    margin: 6px 0;
+    font-size: 13px;
     letter-spacing: 4px;
     color: #bbb;
     transition: color 0.3s ease;
@@ -110,9 +110,9 @@ body {
 }
 
 .xera-main h1 {
-    font-size: 34px;
-    letter-spacing: 10px;
-    margin-bottom: 50px;
+    font-size: 26px; /* 25% smaller */
+    letter-spacing: 7px;
+    margin-bottom: 55px;
 }
 
 .xera-main img {
@@ -180,10 +180,11 @@ menuTrigger.addEventListener('click', function() {
     menuPanel.classList.toggle('open');
 });
 
+/* Fade logo after 6 seconds instead of 10 */
 setTimeout(function() {
     logoScreen.classList.add('fade-out');
     mainContent.classList.add('show');
-}, 10000);
+}, 6000);
 </script>
 
 </body>
