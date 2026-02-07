@@ -62,14 +62,14 @@ a:active {
     gap: 15px;
     z-index: 9998;
     opacity: 0;
-    pointer-events: none;
+    visibility: hidden;
     transition: opacity 4s ease;
     display: flex;
 }
         .menu-panel.open {
     opacity: 1;
-    pointer-events: auto;
-        }
+    visibility: visible;
+}
 
 .menu-panel a {
     color: white;
