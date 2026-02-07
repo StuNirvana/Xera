@@ -118,6 +118,26 @@ body {
 }
 
 /* =========================
+   BACK (BOTTOM LEFT)
+========================= */
+
+.xera-back {
+    position: fixed;
+    bottom: 40px;
+    left: 20px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #777;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    z-index: 10000;
+}
+
+.xera-back:hover {
+    color: #fff;
+}
+
+/* =========================
    FOOTER
 ========================= */
 
@@ -180,6 +200,8 @@ body {
 
 </div>
 
+<a href="index.html?skip=true" class="xera-back">← BACK</a>
+
 <div class="xera-footer">
 © 2026 XERA. All designs, artwork and concepts are original and protected.
 </div>
@@ -193,7 +215,7 @@ menuTrigger.addEventListener('click', function() {
     menuTrigger.classList.toggle('active');
 });
 
-/* TYPEWRITER EFFECT */
+/* TYPEWRITER */
 
 const lines = document.querySelectorAll('.story-line');
 let lineIndex = 0;
