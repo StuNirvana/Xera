@@ -1,1 +1,233 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XERA – Story</title>
+
+<style>
+body {
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* =========================
+   BRAND (TOP LEFT)
+========================= */
+
+.xera-brand {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10000;
+    letter-spacing: 3px;
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* =========================
+   MENU
+========================= */
+
+.xera-menu-trigger {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    cursor: pointer;
+    letter-spacing: 3px;
+    font-size: 14px;
+    animation: xeraPulse 2s infinite;
+}
+
+.xera-menu-trigger.active {
+    animation: none;
+}
+
+.xera-menu-panel {
+    position: fixed;
+    top: 45px;
+    right: 20px;
+    width: 170px;
+    text-align: right;
+    display: none;
+    z-index: 9999;
+}
+
+.xera-menu-panel a {
+    display: block;
+    text-decoration: none;
+    margin: 6px 0;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: #bbb;
+    transition: color 0.3s ease;
+}
+
+.xera-menu-panel a:hover {
+    color: #fff;
+}
+
+.xera-menu-panel a.join-launch {
+    color: #cc0000 !important;
+}
+
+.xera-menu-panel a.current {
+    color: #555;
+    pointer-events: none;
+    cursor: default;
+}
+
+.xera-menu-panel.open {
+    display: block;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.xera-main {
+    text-align: center;
+    padding-top: 160px;
+    max-width: 750px;
+    margin: auto;
+}
+
+.xera-main h1 {
+    font-size: 26px;
+    letter-spacing: 7px;
+    margin-bottom: 60px;
+}
+
+.story-line {
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin: 16px 0;
+    min-height: 24px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.story-line.visible {
+    opacity: 1;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.xera-footer {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 11px;
+    color: #777;
+    z-index: 10000;
+}
+
+/* =========================
+   PULSE
+========================= */
+
+@keyframes xeraPulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+</style>
+</head>
+
+<body>
+
+<a href="index.html" class="xera-brand">XERA</a>
+
+<div class="xera-menu-trigger" id="menuTrigger">MENU</div>
+
+<div class="xera-menu-panel" id="menuPanel">
+    <a href="specifications.html">SPECIFICATIONS</a>
+    <a href="story.html" class="current">STORY</a>
+    <a href="contact.html">CONTACT</a>
+    <a href="join-launch.html" class="join-launch">JOIN LAUNCH</a>
+</div>
+
+<div class="xera-main">
+    <h1>STORY</h1>
+
+    <!-- ==========================================
+         EDIT STORY BELOW ONLY
+         You may change text inside data-text=""
+         Do NOT remove quotation marks.
+         Do NOT remove div structure.
+         ========================================== -->
+
+    <div class="story-line" data-text="XERA was built on a simple idea."></div>
+    <div class="story-line" data-text="Remove everything that does not matter."></div>
+    <div class="story-line" data-text="Keep only what remains when the noise disappears."></div>
+    <div class="story-line" data-text="A watch does not need decoration to command attention."></div>
+    <div class="story-line" data-text="It needs presence."></div>
+    <div class="story-line" data-text="Event Horizon represents the edge of control."></div>
+    <div class="story-line" data-text="Where light fades, and clarity begins."></div>
+
+    <!-- ==========================================
+         END OF EDITABLE STORY AREA
+         ========================================== -->
+
+</div>
+
+<div class="xera-footer">
+© 2026 XERA. All designs, artwork and concepts are original and protected.
+</div>
+
+<script>
+const menuTrigger = document.getElementById('menuTrigger');
+const menuPanel = document.getElementById('menuPanel');
+
+menuTrigger.addEventListener('click', function() {
+    menuPanel.classList.toggle('open');
+    menuTrigger.classList.toggle('active');
+});
+
+/* TYPEWRITER EFFECT */
+
+const lines = document.querySelectorAll('.story-line');
+let lineIndex = 0;
+
+function typeLine(element, text, callback) {
+    element.classList.add('visible');
+    let i = 0;
+    function typing() {
+        if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(typing, 55);
+        } else {
+            setTimeout(callback, 500);
+        }
+    }
+    typing();
+}
+
+function startTyping() {
+    if (lineIndex < lines.length) {
+        const line = lines[lineIndex];
+        const text = line.getAttribute('data-text');
+        typeLine(line, text, function() {
+            lineIndex++;
+            startTyping();
+        });
+    }
+}
+
+window.addEventListener('load', function() {
+    setTimeout(startTyping, 800);
+});
+</script>
+
+</body>
+</html>
