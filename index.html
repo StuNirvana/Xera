@@ -36,8 +36,9 @@ body {
 
 .xera-menu-panel {
     position: fixed;
-    top: 70px;
+    top: 60px;
     right: 20px;
+    width: 180px;
     text-align: right;
     display: none;
     z-index: 9999;
@@ -46,8 +47,8 @@ body {
 .xera-menu-panel a {
     display: block;
     text-decoration: none;
-    margin: 12px 0;
-    font-size: 16px;
+    margin: 8px 0;
+    font-size: 14px;
     letter-spacing: 4px;
     color: #bbb;
     transition: color 0.3s ease;
@@ -81,6 +82,13 @@ body {
     z-index: 1;
 }
 
+.xera-logo-screen img {
+    max-width: 80%;
+    max-height: 60vh;
+    height: auto;
+    object-fit: contain;
+}
+
 .xera-logo-screen.fade-out {
     opacity: 0;
     pointer-events: none;
@@ -94,7 +102,7 @@ body {
     opacity: 0;
     transition: opacity 2s ease;
     text-align: center;
-    padding-top: 120px;
+    padding-top: 140px;
 }
 
 .xera-main.show {
@@ -102,9 +110,9 @@ body {
 }
 
 .xera-main h1 {
-    font-size: 38px;
+    font-size: 34px;
     letter-spacing: 10px;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
 }
 
 .xera-main img {
