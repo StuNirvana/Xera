@@ -16,36 +16,18 @@ body {
 }
 
 /* =========================
-   BRAND BLOCK (TOP LEFT)
+   BRAND (TOP LEFT)
 ========================= */
 
-.xera-brand-block {
+.xera-brand {
     position: fixed;
     top: 20px;
     left: 20px;
     z-index: 10000;
-    display: flex;
-    flex-direction: column;
-}
-
-.xera-brand {
     letter-spacing: 3px;
     font-size: 14px;
     color: #fff;
     text-decoration: none;
-}
-
-.xera-back {
-    margin-top: 6px;
-    font-size: 11px;
-    letter-spacing: 3px;
-    color: #777;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.xera-back:hover {
-    color: #fff;
 }
 
 /* =========================
@@ -95,7 +77,6 @@ body {
     color: #cc0000 !important;
 }
 
-/* Current page highlight */
 .xera-menu-panel a.current {
     color: #555;
     pointer-events: none;
@@ -123,8 +104,6 @@ body {
     margin-bottom: 60px;
 }
 
-/* SPEC LINES */
-
 .spec-line {
     font-size: 16px;
     letter-spacing: 3px;
@@ -136,6 +115,26 @@ body {
 
 .spec-line.visible {
     opacity: 1;
+}
+
+/* =========================
+   BACK (BOTTOM LEFT)
+========================= */
+
+.xera-back {
+    position: fixed;
+    bottom: 40px;
+    left: 20px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #777;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    z-index: 10000;
+}
+
+.xera-back:hover {
+    color: #fff;
 }
 
 /* =========================
@@ -153,7 +152,7 @@ body {
 }
 
 /* =========================
-   PULSE ANIMATION
+   PULSE
 ========================= */
 
 @keyframes xeraPulse {
@@ -166,13 +165,8 @@ body {
 
 <body>
 
-<!-- BRAND + BACK -->
-<div class="xera-brand-block">
-    <a href="index.html" class="xera-brand">XERA</a>
-    <a href="index.html" class="xera-back">← BACK</a>
-</div>
+<a href="index.html" class="xera-brand">XERA</a>
 
-<!-- MENU -->
 <div class="xera-menu-trigger" id="menuTrigger">MENU</div>
 
 <div class="xera-menu-panel" id="menuPanel">
@@ -182,7 +176,6 @@ body {
     <a href="join-launch.html" class="join-launch">JOIN LAUNCH</a>
 </div>
 
-<!-- MAIN CONTENT -->
 <div class="xera-main">
     <h1>SPECIFICATIONS</h1>
 
@@ -195,7 +188,8 @@ body {
     <div class="spec-line" data-text="Dial: Ultra Matte Void Black"></div>
 </div>
 
-<!-- FOOTER -->
+<a href="index.html" class="xera-back">← BACK</a>
+
 <div class="xera-footer">
 © 2026 XERA. All designs, artwork and concepts are original and protected.
 </div>
@@ -209,7 +203,7 @@ menuTrigger.addEventListener('click', function() {
     menuTrigger.classList.toggle('active');
 });
 
-/* TYPEWRITER EFFECT */
+/* TYPEWRITER */
 
 const lines = document.querySelectorAll('.spec-line');
 let lineIndex = 0;
@@ -221,9 +215,9 @@ function typeLine(element, text, callback) {
         if (i < text.length) {
             element.textContent += text.charAt(i);
             i++;
-            setTimeout(typing, 70); /* Slower typing */
+            setTimeout(typing, 55); /* Slightly faster */
         } else {
-            setTimeout(callback, 600); /* Pause between lines */
+            setTimeout(callback, 500);
         }
     }
     typing();
