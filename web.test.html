@@ -157,7 +157,7 @@ body {
 }
 
 /* =========================
-   LOGO BOOKEND (Fade in once on scroll)
+   LOGO BOOKEND (Luxury Fade)
 ========================= */
 .logo-bookend {
     text-align: center;
@@ -168,8 +168,8 @@ body {
     width: 55%;
     max-width: 220px;
     height: auto;
-    opacity: 0;                 /* start hidden */
-    transition: opacity 8s ease; /* slow fade */
+    opacity: 0;
+    transition: opacity 12s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* =========================
@@ -242,6 +242,7 @@ footer {
 </footer>
 
 <script>
+
 /* MENU TOGGLE */
 const trigger = document.getElementById('menuTrigger');
 const panel = document.getElementById('menuPanel');
@@ -251,20 +252,13 @@ trigger.addEventListener('click', function() {
     trigger.classList.toggle('active');
 });
 
-/* INTRO SKIP LOGIC */
+/* INTRO */
 const logoScreen = document.getElementById("logoScreen");
-const params = new URLSearchParams(window.location.search);
-const skipIntro = params.get("skip") === "true";
+setTimeout(function() {
+    logoScreen.classList.add("fade-out");
+}, 6000);
 
-if (skipIntro) {
-    logoScreen.style.display = "none";
-} else {
-    setTimeout(function() {
-        logoScreen.classList.add("fade-out");
-    }, 6000);
-}
-
-/* DAY / NIGHT CYCLE (2s hold + 5s fade) */
+/* DAY / NIGHT */
 const nightImage = document.getElementById("nightImage");
 let showingNight = false;
 
@@ -275,43 +269,27 @@ function switchImage() {
 }
 setInterval(switchImage, 7000);
 
-/* BOOKEND LOGO: guaranteed fade-in once when scrolled near it */
+/* BOOKEND FADE ON SCROLL (once per visit) */
 const bookendLogo = document.getElementById("bookendLogo");
 const bookendTrigger = document.getElementById("bookendTrigger");
-let bookendRevealed = false;
-
-function revealBookend() {
-    if (bookendRevealed) return;
-    bookendRevealed = true;
-
-    /* Force animation reliably on mobile:
-       - ensure opacity is at 0
-       - then change to 1 on the next paint frame(s)
-    */
-    bookendLogo.style.opacity = "0";
-    requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-            bookendLogo.style.opacity = "1";
-        });
-    });
-
-    window.removeEventListener("scroll", checkBookend);
-}
+let revealed = false;
 
 function checkBookend() {
-    if (bookendRevealed) return;
+    if (revealed) return;
+
     const rect = bookendTrigger.getBoundingClientRect();
-    const triggerPoint = window.innerHeight * 0.85; // start fade when it's near view
+    const triggerPoint = window.innerHeight * 0.85;
+
     if (rect.top < triggerPoint) {
-        revealBookend();
+        revealed = true;
+        bookendLogo.style.opacity = "1";
+        window.removeEventListener("scroll", checkBookend);
     }
 }
 
-/* Start checking after load (and also immediately, in case you're already scrolled) */
 window.addEventListener("scroll", checkBookend, { passive: true });
-window.addEventListener("load", () => {
-    checkBookend();
-});
+window.addEventListener("load", checkBookend);
+
 </script>
 
 </body>
