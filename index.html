@@ -16,7 +16,7 @@ body {
 }
 
 /* =========================
-   BRAND
+   BRAND (Top Left)
 ========================= */
 
 .xera-brand {
@@ -31,7 +31,7 @@ body {
 }
 
 /* =========================
-   MENU
+   MENU (Top Right)
 ========================= */
 
 .xera-menu-trigger {
@@ -82,11 +82,11 @@ body {
 }
 
 /* =========================
-   LOGO SCREEN
+   LOGO INTRO
 ========================= */
 
-.xera-logo-screen {
-    position: fixed;
+.logo-screen {
+    position: absolute;
     width: 100%;
     height: 100vh;
     display: flex;
@@ -97,56 +97,75 @@ body {
     z-index: 1;
 }
 
-.xera-logo-screen img {
-    max-width: 80%;
-    max-height: 60vh;
-    height: auto;
-    object-fit: contain;
-}
-
-.xera-logo-screen.fade-out {
+.logo-screen.fade-out {
     opacity: 0;
-    pointer-events: none;
 }
 
 /* =========================
-   MAIN CONTENT
+   HERO SECTION
 ========================= */
 
-.xera-main {
+.main-content {
     opacity: 0;
     transition: opacity 2s ease;
     text-align: center;
-    padding-top: 140px;
+    padding-top: 100px;
 }
 
-.xera-main.show {
+.main-content.show {
     opacity: 1;
 }
 
-.xera-main h1 {
-    font-size: 26px;
-    letter-spacing: 7px;
-    margin-bottom: 55px;
+.main-content h1 {
+    font-size: 32px; /* 25% smaller */
+    letter-spacing: 8px;
+    margin-bottom: 30px;
 }
 
-.xera-main img {
-    max-width: 92%;
+.main-content img {
+    max-width: 85%;
     height: auto;
+}
+
+/* =========================
+   DAY / NIGHT SECTION
+========================= */
+
+.day-night-section {
+    margin: 120px auto 120px auto;
+    width: 92%;               /* slightly larger than hero */
+    max-width: 900px;
+    position: relative;
+}
+
+.day-night-section img {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 5s ease-in-out;
+}
+
+.day-night-section img.active {
+    opacity: 1;
+}
+
+/* Maintain aspect ratio */
+.day-night-wrapper {
+    position: relative;
+    padding-top: 100%;
 }
 
 /* =========================
    FOOTER
 ========================= */
 
-.xera-footer {
-    position: fixed;
-    bottom: 10px;
-    width: 100%;
+footer {
     text-align: center;
-    font-size: 11px;
+    font-size: 12px;
     color: #777;
-    z-index: 10000;
+    padding: 40px 0 20px 0;
 }
 
 /* =========================
@@ -174,78 +193,58 @@ body {
     <a href="join-launch.html" class="join-launch">JOIN LAUNCH</a>
 </div>
 
-<div class="xera-logo-screen" id="logoScreen">
+<!-- LOGO INTRO -->
+<div class="logo-screen" id="logoScreen">
     <img src="xera-logo.jpg" alt="XERA Logo">
 </div>
 
-<div class="xera-main" id="mainContent">
+<!-- HERO -->
+<div class="main-content" id="mainContent">
     <h1>EVENT HORIZON</h1>
     <img src="xera-event-horizon.jpg" alt="Event Horizon Watch">
 </div>
 
-<div class="xera-footer">
-© 2026 XERA. All designs, artwork and concepts are original and protected.
+<!-- DAY / NIGHT SECTION -->
+<div class="day-night-section">
+    <div class="day-night-wrapper">
+        <img src="watch-day.jpg" class="active">
+        <img src="watch-night.jpg">
+    </div>
 </div>
 
+<footer>
+© 2026 XERA. All designs, artwork and concepts are original and protected.
+</footer>
+
 <script>
-const menuTrigger = document.getElementById('menuTrigger');
-const menuPanel = document.getElementById('menuPanel');
-const logoScreen = document.getElementById('logoScreen');
-const mainContent = document.getElementById('mainContent');
+const trigger = document.getElementById('menuTrigger');
+const panel = document.getElementById('menuPanel');
+const logo = document.getElementById('logoScreen');
+const content = document.getElementById('mainContent');
 
-menuTrigger.addEventListener('click', function() {
-    menuPanel.classList.toggle('open');
-    menuTrigger.classList.toggle('active');
+trigger.addEventListener('click', function() {
+    panel.classList.toggle('open');
+    trigger.classList.toggle('active');
 });
 
-/* =========================
-   INTRO LOGIC
-========================= */
+/* Intro Fade */
+setTimeout(function() {
+    logo.classList.add('fade-out');
+    content.classList.add('show');
+}, 6000);
 
-const urlParams = new URLSearchParams(window.location.search);
-const skipIntro = urlParams.get('skip');
+/* DAY / NIGHT AUTO CYCLE */
+const images = document.querySelectorAll('.day-night-section img');
+let current = 0;
 
-function playIntro() {
-    logoScreen.classList.remove('fade-out');
-    mainContent.classList.remove('show');
-
-    setTimeout(function() {
-        logoScreen.classList.add('fade-out');
-        mainContent.classList.add('show');
-    }, 6000);
+function switchImage() {
+    images[current].classList.remove('active');
+    current = (current + 1) % images.length;
+    images[current].classList.add('active');
 }
 
-function showInstant() {
-    logoScreen.classList.add('fade-out');
-    mainContent.classList.add('show');
-}
-
-if (skipIntro === 'true') {
-    showInstant();
-} else {
-    playIntro();
-}
-
-/* =========================
-   HOMEPAGE INACTIVITY RESET
-   (2 Minutes – Homepage Only)
-========================= */
-
-let inactivityTimer;
-const inactivityLimit = 2 * 60 * 1000; // 2 minutes
-
-function resetInactivityTimer() {
-    clearTimeout(inactivityTimer);
-    inactivityTimer = setTimeout(function() {
-        playIntro();
-    }, inactivityLimit);
-}
-
-['click','scroll','keydown','touchstart','mousemove'].forEach(event => {
-    window.addEventListener(event, resetInactivityTimer);
-});
-
-resetInactivityTimer();
+/* 2s hold + 5s fade */
+setInterval(switchImage, 7000);
 </script>
 
 </body>
