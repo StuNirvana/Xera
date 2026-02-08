@@ -15,6 +15,7 @@ body {
   align-items: center;
   height: 100vh;
   overflow: hidden;
+  font-family: Arial, sans-serif;
 }
 
 .image-container {
@@ -29,7 +30,7 @@ body {
   top: 0;
   left: 0;
   opacity: 0;
-  transition: opacity 2s ease-in-out;
+  transition: opacity 4s ease-in-out; /* 4 second fade */
 }
 
 .image-container img.active {
@@ -55,8 +56,8 @@ function switchImage() {
   images[current].classList.add('active');
 }
 
-// 7 seconds visible + 2 second fade
-setInterval(switchImage, 9000);
+// 3 seconds static + 4 seconds fade = 7 second total rhythm
+setInterval(switchImage, 7000);
 </script>
 
 </body>
