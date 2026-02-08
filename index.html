@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,64 +12,81 @@ body {
     background: #000;
     color: #fff;
     font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Give the page breathing room so fixed footer never overlaps content */
+.page-padding {
+    padding-bottom: 90px; /* space for fixed footer */
 }
 
 /* =========================
-   HEADER
+   BRAND (Top Left)
 ========================= */
-
-.header {
+.xera-brand {
     position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    box-sizing: border-box;
-    z-index: 1000;
-}
-
-.header a {
-    color: #fff;
-    text-decoration: none;
+    top: 20px;
+    left: 20px;
+    z-index: 10001;
     letter-spacing: 3px;
     font-size: 14px;
+    color: #fff;
+    text-decoration: none;
 }
 
 /* =========================
-   MENU PANEL
+   MENU (Top Right)
 ========================= */
-
-.menu-panel {
+.xera-menu-trigger {
     position: fixed;
-    top: 60px;
+    top: 20px;
     right: 20px;
-    text-align: right;
-    display: none;
-    z-index: 1000;
+    z-index: 10001;
+    cursor: pointer;
+    letter-spacing: 3px;
+    font-size: 14px;
+    animation: xeraPulse 2s infinite;
 }
 
-.menu-panel a {
+.xera-menu-trigger.active {
+    animation: none;
+}
+
+.xera-menu-panel {
+    position: fixed;
+    top: 45px;
+    right: 20px;
+    width: 170px;
+    text-align: right;
+    display: none;
+    z-index: 10001;
+}
+
+.xera-menu-panel a {
     display: block;
-    margin: 8px 0;
+    text-decoration: none;
+    margin: 6px 0;
     font-size: 13px;
     letter-spacing: 4px;
     color: #bbb;
-    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-.menu-panel a:hover {
+.xera-menu-panel a:hover {
     color: #fff;
 }
 
-.menu-panel .join-launch {
-    color: #cc0000;
+.xera-menu-panel a.join-launch {
+    color: #cc0000 !important;
+}
+
+.xera-menu-panel.open {
+    display: block;
 }
 
 /* =========================
    LOGO INTRO
 ========================= */
-
 .logo-screen {
     position: fixed;
     width: 100%;
@@ -80,12 +96,13 @@ body {
     justify-content: center;
     align-items: center;
     transition: opacity 2s ease;
-    z-index: 2000;
+    z-index: 10000;
 }
 
 .logo-screen img {
     max-width: 320px;
     width: 80%;
+    height: auto;
 }
 
 .logo-screen.fade-out {
@@ -96,7 +113,6 @@ body {
 /* =========================
    HERO
 ========================= */
-
 .hero {
     text-align: center;
     padding-top: 140px;
@@ -110,14 +126,14 @@ body {
 
 .hero img {
     max-width: 85%;
+    height: auto;
 }
 
 /* =========================
    DAY / NIGHT SECTION
 ========================= */
-
 .day-night-section {
-    margin: 140px auto;
+    margin: 140px auto 140px auto;
     width: 92%;
     max-width: 900px;
     position: relative;
@@ -141,27 +157,38 @@ body {
 }
 
 /* =========================
-   FOOTER
+   FIXED FOOTER (Always Visible)
 ========================= */
-
 footer {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
     text-align: center;
     font-size: 12px;
     color: #777;
-    padding: 60px 0 40px 0;
+    z-index: 10002;
+    pointer-events: none;
+}
+
+/* =========================
+   PULSE
+========================= */
+@keyframes xeraPulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<div class="header">
-    <a href="#">XERA</a>
-    <a href="#" id="menuTrigger">MENU</a>
-</div>
+<a href="index.html?skip=true" class="xera-brand">XERA</a>
 
-<div class="menu-panel" id="menuPanel">
+<div class="xera-menu-trigger" id="menuTrigger">MENU</div>
+
+<div class="xera-menu-panel" id="menuPanel">
     <a href="specifications.html">SPECIFICATIONS</a>
     <a href="story.html">STORY</a>
     <a href="contact.html">CONTACT</a>
@@ -173,16 +200,18 @@ footer {
     <img src="xera-logo.jpg" alt="XERA Logo">
 </div>
 
-<!-- HERO -->
-<div class="hero">
-    <h1>EVENT HORIZON</h1>
-    <img src="xera-event-horizon.jpg" alt="Event Horizon Watch">
-</div>
+<div class="page-padding">
+    <!-- HERO -->
+    <div class="hero" id="hero">
+        <h1>EVENT HORIZON</h1>
+        <img src="xera-event-horizon.jpg" alt="Event Horizon Watch">
+    </div>
 
-<!-- DAY / NIGHT -->
-<div class="day-night-section">
-    <img src="watch-day.jpg">
-    <img src="watch-night.jpg" class="fade" id="nightImage">
+    <!-- DAY / NIGHT -->
+    <div class="day-night-section">
+        <img src="watch-day.jpg" alt="Watch Day">
+        <img src="watch-night.jpg" class="fade" id="nightImage" alt="Watch Night">
+    </div>
 </div>
 
 <footer>
@@ -190,40 +219,40 @@ footer {
 </footer>
 
 <script>
-
 /* MENU TOGGLE */
-const menuTrigger = document.getElementById("menuTrigger");
-const menuPanel = document.getElementById("menuPanel");
+const trigger = document.getElementById('menuTrigger');
+const panel = document.getElementById('menuPanel');
 
-menuTrigger.addEventListener("click", function(e) {
-    e.preventDefault();
-    menuPanel.style.display =
-        menuPanel.style.display === "block" ? "none" : "block";
+trigger.addEventListener('click', function() {
+    panel.classList.toggle('open');
+    trigger.classList.toggle('active');
 });
 
-/* INTRO FADE */
+/* INTRO SKIP LOGIC */
 const logoScreen = document.getElementById("logoScreen");
+const params = new URLSearchParams(window.location.search);
+const skipIntro = params.get("skip") === "true";
 
-setTimeout(function() {
-    logoScreen.classList.add("fade-out");
-}, 6000);
+if (skipIntro) {
+    // Jump straight to hero state
+    logoScreen.style.display = "none";
+} else {
+    // Play intro then fade out
+    setTimeout(function() {
+        logoScreen.classList.add("fade-out");
+    }, 6000);
+}
 
-/* DAY / NIGHT CYCLE */
+/* DAY / NIGHT CYCLE (2s hold + 5s fade) */
 const nightImage = document.getElementById("nightImage");
 let showingNight = false;
 
 function switchImage() {
-    if (showingNight) {
-        nightImage.classList.remove("active");
-    } else {
-        nightImage.classList.add("active");
-    }
+    if (showingNight) nightImage.classList.remove("active");
+    else nightImage.classList.add("active");
     showingNight = !showingNight;
 }
-
-/* 2s hold + 5s fade */
 setInterval(switchImage, 7000);
-
 </script>
 
 </body>
