@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XERA – Intro Test</title>
+<title>XERA – Intro Fade Test</title>
 
 <style>
 body {
@@ -16,21 +16,29 @@ body {
     text-align: center;
 }
 
-/* LOGO SCREEN */
-.logo-screen,
-.strap-screen,
-.hero-screen {
+/* Shared full-screen panels */
+.screen {
     position: absolute;
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 0.5s ease;
+}
+
+/* Logo */
+.logo-screen {
+    transition: opacity 0.6s ease;
 }
 
 .logo-screen img {
     max-width: 300px;
+}
+
+/* Strap */
+.strap-screen {
+    opacity: 0;
+    transition: opacity 1.4s ease;  /* slower fade */
 }
 
 .strap-text {
@@ -38,8 +46,10 @@ body {
     letter-spacing: 6px;
 }
 
+/* Hero */
 .hero-screen {
     opacity: 0;
+    transition: opacity 1.2s ease;  /* smooth entrance */
 }
 
 .hero-screen h1 {
@@ -56,15 +66,17 @@ body {
 
 <body>
 
-<div class="logo-screen" id="logoScreen">
+<div class="screen logo-screen" id="logoScreen">
     <img src="xera-logo.jpg" alt="XERA Logo">
 </div>
 
-<div class="strap-screen" id="strapScreen" style="opacity:0;">
-    <div class="strap-text" id="strapText"></div>
+<div class="screen strap-screen" id="strapScreen">
+    <div class="strap-text">
+        WELCOME TO THE SINGULARITY
+    </div>
 </div>
 
-<div class="hero-screen" id="heroScreen">
+<div class="screen hero-screen" id="heroScreen">
     <div>
         <h1>EVENT HORIZON</h1>
         <img src="xera-event-horizon.jpg">
@@ -75,44 +87,28 @@ body {
 
 const logo = document.getElementById("logoScreen");
 const strap = document.getElementById("strapScreen");
-const strapText = document.getElementById("strapText");
 const hero = document.getElementById("heroScreen");
 
-const STRAP_LINE = "WELCOME TO THE SINGULARITY";
-
-let i = 0;
-
-/* 0–2 seconds: Logo visible */
+/* 1.5s – Fade logo */
 setTimeout(() => {
     logo.style.opacity = "0";
-}, 2000);
+}, 1500);
 
-/* 2.5 seconds: Show strap screen */
+/* 2s – Show strap */
 setTimeout(() => {
     logo.style.display = "none";
     strap.style.opacity = "1";
-    typeStrap();
-}, 2500);
+}, 2000);
 
-/* Typing effect (fast) */
-function typeStrap() {
-    if (i < STRAP_LINE.length) {
-        strapText.textContent += STRAP_LINE.charAt(i);
-        i++;
-        setTimeout(typeStrap, 40);  // fast typing
-    }
-}
-
-/* 4 seconds: Fade strap out */
+/* 5.5s – Fade strap slowly */
 setTimeout(() => {
     strap.style.opacity = "0";
-}, 4000);
+}, 5500);
 
-/* 4.5 seconds: Show hero */
+/* 6s – Begin hero fade slightly overlapping */
 setTimeout(() => {
-    strap.style.display = "none";
     hero.style.opacity = "1";
-}, 4500);
+}, 6000);
 
 </script>
 
