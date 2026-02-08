@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,73 +13,58 @@ body {
     background: #000;
     color: #fff;
     font-family: Arial, sans-serif;
-    overflow-x: hidden;
 }
 
 /* =========================
-   BRAND (Top Left)
+   HEADER
 ========================= */
 
-.xera-brand {
+.header {
     position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 10001;
-    letter-spacing: 3px;
-    font-size: 14px;
+    top: 0;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+.header a {
     color: #fff;
     text-decoration: none;
+    letter-spacing: 3px;
+    font-size: 14px;
 }
 
 /* =========================
-   MENU (Top Right)
+   MENU PANEL
 ========================= */
 
-.xera-menu-trigger {
+.menu-panel {
     position: fixed;
-    top: 20px;
+    top: 60px;
     right: 20px;
-    z-index: 10001;
-    cursor: pointer;
-    letter-spacing: 3px;
-    font-size: 14px;
-    animation: xeraPulse 2s infinite;
-}
-
-.xera-menu-trigger.active {
-    animation: none;
-}
-
-.xera-menu-panel {
-    position: fixed;
-    top: 45px;
-    right: 20px;
-    width: 170px;
     text-align: right;
     display: none;
-    z-index: 10001;
+    z-index: 1000;
 }
 
-.xera-menu-panel a {
+.menu-panel a {
     display: block;
-    text-decoration: none;
-    margin: 6px 0;
+    margin: 8px 0;
     font-size: 13px;
     letter-spacing: 4px;
     color: #bbb;
-    transition: color 0.3s ease;
+    text-decoration: none;
 }
 
-.xera-menu-panel a:hover {
+.menu-panel a:hover {
     color: #fff;
 }
 
-.xera-menu-panel a.join-launch {
-    color: #cc0000 !important;
-}
-
-.xera-menu-panel.open {
-    display: block;
+.menu-panel .join-launch {
+    color: #cc0000;
 }
 
 /* =========================
@@ -89,12 +75,12 @@ body {
     position: fixed;
     width: 100%;
     height: 100vh;
+    background: #000;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #000;
     transition: opacity 2s ease;
-    z-index: 10000;
+    z-index: 2000;
 }
 
 .logo-screen img {
@@ -108,29 +94,22 @@ body {
 }
 
 /* =========================
-   HERO SECTION
+   HERO
 ========================= */
 
-.main-content {
-    opacity: 0;
-    transition: opacity 2s ease;
+.hero {
     text-align: center;
     padding-top: 140px;
 }
 
-.main-content.show {
-    opacity: 1;
-}
-
-.main-content h1 {
+.hero h1 {
     font-size: 32px;
     letter-spacing: 8px;
     margin-bottom: 30px;
 }
 
-.main-content img {
+.hero img {
     max-width: 85%;
-    height: auto;
 }
 
 /* =========================
@@ -138,19 +117,18 @@ body {
 ========================= */
 
 .day-night-section {
-    margin: 140px auto 120px auto;
-    width: 92%; /* slightly larger than hero */
+    margin: 140px auto;
+    width: 92%;
     max-width: 900px;
     position: relative;
 }
 
-.day-night-wrapper {
-    position: relative;
-    padding-top: 100%; /* keeps square ratio */
-}
-
 .day-night-section img {
     width: 100%;
+    display: block;
+}
+
+.day-night-section img.fade {
     position: absolute;
     top: 0;
     left: 0;
@@ -158,7 +136,7 @@ body {
     transition: opacity 5s ease-in-out;
 }
 
-.day-night-section img.active {
+.day-night-section img.fade.active {
     opacity: 1;
 }
 
@@ -170,28 +148,20 @@ footer {
     text-align: center;
     font-size: 12px;
     color: #777;
-    padding: 40px 0 20px 0;
-}
-
-/* =========================
-   PULSE ANIMATION
-========================= */
-
-@keyframes xeraPulse {
-    0% { opacity: 0.5; }
-    50% { opacity: 1; }
-    100% { opacity: 0.5; }
+    padding: 60px 0 40px 0;
 }
 </style>
 </head>
 
 <body>
 
-<a href="index.html" class="xera-brand">XERA</a>
+<!-- HEADER -->
+<div class="header">
+    <a href="#">XERA</a>
+    <a href="#" id="menuTrigger">MENU</a>
+</div>
 
-<div class="xera-menu-trigger" id="menuTrigger">MENU</div>
-
-<div class="xera-menu-panel" id="menuPanel">
+<div class="menu-panel" id="menuPanel">
     <a href="specifications.html">SPECIFICATIONS</a>
     <a href="story.html">STORY</a>
     <a href="contact.html">CONTACT</a>
@@ -203,18 +173,16 @@ footer {
     <img src="xera-logo.jpg" alt="XERA Logo">
 </div>
 
-<!-- HERO SECTION -->
-<div class="main-content" id="mainContent">
+<!-- HERO -->
+<div class="hero">
     <h1>EVENT HORIZON</h1>
     <img src="xera-event-horizon.jpg" alt="Event Horizon Watch">
 </div>
 
-<!-- DAY / NIGHT SECTION -->
+<!-- DAY / NIGHT -->
 <div class="day-night-section">
-    <div class="day-night-wrapper">
-        <img src="watch-day.jpg" class="active">
-        <img src="watch-night.jpg">
-    </div>
+    <img src="watch-day.jpg">
+    <img src="watch-night.jpg" class="fade" id="nightImage">
 </div>
 
 <footer>
@@ -222,35 +190,40 @@ footer {
 </footer>
 
 <script>
-const trigger = document.getElementById('menuTrigger');
-const panel = document.getElementById('menuPanel');
-const logo = document.getElementById('logoScreen');
-const content = document.getElementById('mainContent');
 
 /* MENU TOGGLE */
-trigger.addEventListener('click', function() {
-    panel.classList.toggle('open');
-    trigger.classList.toggle('active');
+const menuTrigger = document.getElementById("menuTrigger");
+const menuPanel = document.getElementById("menuPanel");
+
+menuTrigger.addEventListener("click", function(e) {
+    e.preventDefault();
+    menuPanel.style.display =
+        menuPanel.style.display === "block" ? "none" : "block";
 });
 
 /* INTRO FADE */
+const logoScreen = document.getElementById("logoScreen");
+
 setTimeout(function() {
-    logo.classList.add('fade-out');
-    content.classList.add('show');
+    logoScreen.classList.add("fade-out");
 }, 6000);
 
-/* DAY / NIGHT AUTO CYCLE */
-const images = document.querySelectorAll('.day-night-section img');
-let current = 0;
+/* DAY / NIGHT CYCLE */
+const nightImage = document.getElementById("nightImage");
+let showingNight = false;
 
 function switchImage() {
-    images[current].classList.remove('active');
-    current = (current + 1) % images.length;
-    images[current].classList.add('active');
+    if (showingNight) {
+        nightImage.classList.remove("active");
+    } else {
+        nightImage.classList.add("active");
+    }
+    showingNight = !showingNight;
 }
 
-/* 2 seconds hold + 5 seconds fade */
+/* 2s hold + 5s fade */
 setInterval(switchImage, 7000);
+
 </script>
 
 </body>
