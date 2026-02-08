@@ -16,14 +16,13 @@ body {
 }
 
 /* =========================
-   BRAND
+   BRAND (Top Left)
 ========================= */
-
 .xera-brand {
     position: fixed;
     top: 20px;
     left: 20px;
-    z-index: 10000;
+    z-index: 10001;
     letter-spacing: 3px;
     font-size: 14px;
     color: #fff;
@@ -33,12 +32,11 @@ body {
 /* =========================
    MENU
 ========================= */
-
 .xera-menu-trigger {
     position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 10000;
+    z-index: 10001;
     cursor: pointer;
     letter-spacing: 3px;
     font-size: 14px;
@@ -56,10 +54,11 @@ body {
     width: 170px;
     text-align: right;
     display: none;
-    z-index: 9999;
+    z-index: 10001;
 }
 
-.xera-menu-panel a {
+.xera-menu-panel a,
+.xera-menu-panel span {
     display: block;
     text-decoration: none;
     margin: 6px 0;
@@ -73,14 +72,13 @@ body {
     color: #fff;
 }
 
-.xera-menu-panel a.join-launch {
-    color: #cc0000 !important;
+.xera-menu-panel .current {
+    color: #555;
+    cursor: default;
 }
 
-.xera-menu-panel a.current {
-    color: #555;
-    pointer-events: none;
-    cursor: default;
+.xera-menu-panel a.join-launch {
+    color: #cc0000 !important;
 }
 
 .xera-menu-panel.open {
@@ -88,73 +86,81 @@ body {
 }
 
 /* =========================
-   MAIN CONTENT
+   PAGE CONTENT
 ========================= */
-
-.xera-main {
+.page-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 120px 20px 120px 20px;
+    box-sizing: border-box;
     text-align: center;
-    padding-top: 160px;
-    max-width: 700px;
-    margin: auto;
 }
 
-.xera-main h1 {
-    font-size: 26px;
-    letter-spacing: 7px;
-    margin-bottom: 60px;
+.page-title {
+    font-size: 32px;
+    letter-spacing: 8px;
+    margin-bottom: 40px;
 }
 
-.contact-line {
+.typed-block {
+    text-align: left;
+    max-width: 760px;
+    margin: 0 auto;
+    color: #bbb;
     font-size: 15px;
-    letter-spacing: 2px;
-    margin: 16px 0;
-    min-height: 24px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    letter-spacing: 0.4px;
+    line-height: 1.75;
+    white-space: pre-wrap;
 }
 
-.contact-line.visible {
-    opacity: 1;
+/* Email styling */
+.typed-block a {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid #333;
+    padding-bottom: 2px;
+}
+
+.typed-block a:hover {
+    border-bottom-color: #777;
 }
 
 /* =========================
-   BACK
+   BACK BUTTON
 ========================= */
-
-.xera-back {
+.back-btn {
     position: fixed;
-    bottom: 40px;
+    bottom: 44px;
     left: 20px;
-    font-size: 11px;
+    z-index: 10002;
+    font-size: 12px;
     letter-spacing: 3px;
     color: #777;
     text-decoration: none;
-    transition: color 0.3s ease;
-    z-index: 10000;
 }
 
-.xera-back:hover {
-    color: #fff;
+.back-btn:hover {
+    color: #bbb;
 }
 
 /* =========================
    FOOTER
 ========================= */
-
-.xera-footer {
+footer {
     position: fixed;
     bottom: 10px;
+    left: 0;
     width: 100%;
     text-align: center;
-    font-size: 11px;
+    font-size: 12px;
     color: #777;
-    z-index: 10000;
+    z-index: 10002;
+    pointer-events: none;
 }
 
 /* =========================
    PULSE
 ========================= */
-
 @keyframes xeraPulse {
     0% { opacity: 0.5; }
     50% { opacity: 1; }
@@ -165,42 +171,31 @@ body {
 
 <body>
 
-<a href="index.html" class="xera-brand">XERA</a>
+<a href="index.html?skip=true" class="xera-brand">XERA</a>
 
 <div class="xera-menu-trigger" id="menuTrigger">MENU</div>
 
 <div class="xera-menu-panel" id="menuPanel">
     <a href="specifications.html">SPECIFICATIONS</a>
     <a href="story.html">STORY</a>
-    <a href="contact.html" class="current">CONTACT</a>
+    <span class="current">CONTACT</span>
     <a href="join-launch.html" class="join-launch">JOIN LAUNCH</a>
 </div>
 
-<div class="xera-main">
-    <h1>CONTACT</h1>
+<a href="index.html?skip=true" class="back-btn">BACK</a>
 
-    <!-- ==========================================
-         EDIT CONTACT TEXT BELOW ONLY
-         You may change text inside data-text=""
-         Do NOT remove quotation marks.
-         ========================================== -->
-
-    <div class="contact-line" data-text="XERA is currently in development."></div>
-    <div class="contact-line" data-text="The website will evolve as prototypes are refined."></div>
-    <div class="contact-line" data-text="Direct contact information will be published at the next stage."></div>
-    <div class="contact-line" data-text="Contact details will be updated soon."></div>
-
-    <!-- ========================================== -->
-
+<div class="page-wrap">
+    <h1 class="page-title">CONTACT</h1>
+    <div class="typed-block" id="typedOutput"></div>
 </div>
 
-<a href="index.html?skip=true" class="xera-back">← BACK</a>
-
-<div class="xera-footer">
+<footer>
 © 2026 XERA. All designs, artwork and concepts are original and protected.
-</div>
+</footer>
 
 <script>
+
+/* MENU TOGGLE */
 const menuTrigger = document.getElementById('menuTrigger');
 const menuPanel = document.getElementById('menuPanel');
 
@@ -209,40 +204,40 @@ menuTrigger.addEventListener('click', function() {
     menuTrigger.classList.toggle('active');
 });
 
-/* TYPEWRITER */
+/* =========================
+   CONTACT EMAIL
+========================= */
+const CONTACT_EMAIL = "xerawatches@outlook.com";
 
-const lines = document.querySelectorAll('.contact-line');
-let lineIndex = 0;
+const CONTACT_TEXT =
+`XERA is currently in early development.
 
-function typeLine(element, text, callback) {
-    element.classList.add('visible');
-    let i = 0;
-    function typing() {
-        if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            setTimeout(typing, 55);
-        } else {
-            setTimeout(callback, 500);
-        }
+For enquiries, collaboration or early interest, please contact:
+
+{{EMAIL}}
+
+We aim to respond within 48 hours.`;
+
+/* =========================
+   Typing Effect
+========================= */
+const output = document.getElementById("typedOutput");
+const emailHtml = `<a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>`;
+const finalText = CONTACT_TEXT.replace("{{EMAIL}}", emailHtml);
+
+let i = 0;
+const speed = 12;
+
+function typeNext() {
+    if (i <= finalText.length) {
+        output.innerHTML = finalText.slice(0, i);
+        i++;
+        setTimeout(typeNext, speed);
     }
-    typing();
 }
 
-function startTyping() {
-    if (lineIndex < lines.length) {
-        const line = lines[lineIndex];
-        const text = line.getAttribute('data-text');
-        typeLine(line, text, function() {
-            lineIndex++;
-            startTyping();
-        });
-    }
-}
+typeNext();
 
-window.addEventListener('load', function() {
-    setTimeout(startTyping, 800);
-});
 </script>
 
 </body>
