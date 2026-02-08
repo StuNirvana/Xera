@@ -1,1 +1,63 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XERA – Day / Night Test</title>
+
+<style>
+body {
+  margin: 0;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.image-container {
+  position: relative;
+  width: 90%;
+  max-width: 700px;
+}
+
+.image-container img {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+.image-container img.active {
+  opacity: 1;
+}
+</style>
+</head>
+
+<body>
+
+<div class="image-container">
+  <img src="watch-day.jpg" class="active" id="dayImage">
+  <img src="watch-night.jpg" id="nightImage">
+</div>
+
+<script>
+const images = document.querySelectorAll('.image-container img');
+let current = 0;
+
+function switchImage() {
+  images[current].classList.remove('active');
+  current = (current + 1) % images.length;
+  images[current].classList.add('active');
+}
+
+// 7 seconds visible + 2 second fade
+setInterval(switchImage, 9000);
+</script>
+
+</body>
+</html>
