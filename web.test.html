@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XERA – Web Test</title>
+<title>XERA – Intro Test</title>
 
 <style>
 body {
@@ -12,259 +12,107 @@ body {
     background: #000;
     color: #fff;
     font-family: Arial, sans-serif;
-    overflow-x: hidden;
+    overflow: hidden;
+    text-align: center;
 }
 
-.page-padding {
-    padding-bottom: 160px;
-}
-
-/* BRAND */
-.xera-brand {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 10001;
-    letter-spacing: 3px;
-    font-size: 14px;
-    color: #fff;
-    text-decoration: none;
-}
-
-/* MENU */
-.xera-menu-trigger {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 10001;
-    cursor: pointer;
-    letter-spacing: 3px;
-    font-size: 14px;
-    animation: xeraPulse 2s infinite;
-}
-
-.xera-menu-trigger.active {
-    animation: none;
-}
-
-.xera-menu-panel {
-    position: fixed;
-    top: 45px;
-    right: 20px;
-    width: 170px;
-    text-align: right;
-    display: none;
-    z-index: 10001;
-}
-
-.xera-menu-panel a {
-    display: block;
-    text-decoration: none;
-    margin: 6px 0;
-    font-size: 13px;
-    letter-spacing: 4px;
-    color: #bbb;
-}
-
-.xera-menu-panel a:hover {
-    color: #fff;
-}
-
-.xera-menu-panel a.join-launch {
-    color: #cc0000 !important;
-}
-
-.xera-menu-panel.open {
-    display: block;
-}
-
-/* INTRO */
-.logo-screen {
-    position: fixed;
+/* LOGO SCREEN */
+.logo-screen,
+.strap-screen,
+.hero-screen {
+    position: absolute;
     width: 100%;
     height: 100vh;
-    background: #000;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 2s ease;
-    z-index: 10000;
+    transition: opacity 0.5s ease;
 }
 
 .logo-screen img {
-    max-width: 320px;
-    width: 80%;
+    max-width: 300px;
 }
 
-.logo-screen.fade-out {
+.strap-text {
+    font-size: 22px;
+    letter-spacing: 6px;
+}
+
+.hero-screen {
     opacity: 0;
-    pointer-events: none;
 }
 
-/* HERO */
-.hero {
-    text-align: center;
-    padding-top: 140px;
-}
-
-.hero h1 {
+.hero-screen h1 {
     font-size: 32px;
     letter-spacing: 8px;
     margin-bottom: 30px;
 }
 
-.hero img {
+.hero-screen img {
     max-width: 85%;
-}
-
-/* DAY/NIGHT */
-.day-night-section {
-    margin: 140px auto 120px auto;
-    width: 92%;
-    max-width: 900px;
-    position: relative;
-}
-
-.day-night-section img {
-    width: 100%;
-    display: block;
-}
-
-.day-night-section img.fade {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 5s ease-in-out;
-}
-
-.day-night-section img.fade.active {
-    opacity: 1;
-}
-
-/* BOOKEND LOGO */
-.logo-bookend {
-    text-align: center;
-    margin: 120px 0 40px 0;
-}
-
-.logo-bookend img {
-    width: 55%;
-    max-width: 220px;
-    opacity: 0;
-    transition: opacity 18s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* FOOTER */
-footer {
-    position: fixed;
-    bottom: 10px;
-    width: 100%;
-    text-align: center;
-    font-size: 12px;
-    color: #777;
-    pointer-events: none;
-}
-
-/* PULSE */
-@keyframes xeraPulse {
-    0% { opacity: 0.5; }
-    50% { opacity: 1; }
-    100% { opacity: 0.5; }
 }
 </style>
 </head>
 
 <body>
 
-<a href="#" class="xera-brand">XERA</a>
-
-<div class="xera-menu-trigger" id="menuTrigger">MENU</div>
-
-<div class="xera-menu-panel" id="menuPanel">
-    <a href="#">SPECIFICATIONS</a>
-    <a href="#">STORY</a>
-    <a href="#">CONTACT</a>
-    <a href="#" class="join-launch">JOIN LAUNCH</a>
-</div>
-
 <div class="logo-screen" id="logoScreen">
-    <img src="xera-logo.jpg">
+    <img src="xera-logo.jpg" alt="XERA Logo">
 </div>
 
-<div class="page-padding">
-
-<div class="hero">
-    <h1>EVENT HORIZON</h1>
-    <img src="xera-event-horizon.jpg">
+<div class="strap-screen" id="strapScreen" style="opacity:0;">
+    <div class="strap-text" id="strapText"></div>
 </div>
 
-<div class="day-night-section">
-    <img src="watch-day.jpg">
-    <img src="watch-night.jpg" class="fade" id="nightImage">
+<div class="hero-screen" id="heroScreen">
+    <div>
+        <h1>EVENT HORIZON</h1>
+        <img src="xera-event-horizon.jpg">
+    </div>
 </div>
-
-<div class="logo-bookend" id="bookendTrigger">
-    <img src="xera-logo.jpg" id="bookendLogo">
-</div>
-
-</div>
-
-<footer>
-© 2026 XERA. All designs, artwork and concepts are original and protected.
-</footer>
 
 <script>
 
-/* MENU */
-const trigger = document.getElementById('menuTrigger');
-const panel = document.getElementById('menuPanel');
+const logo = document.getElementById("logoScreen");
+const strap = document.getElementById("strapScreen");
+const strapText = document.getElementById("strapText");
+const hero = document.getElementById("heroScreen");
 
-trigger.addEventListener('click', function() {
-    panel.classList.toggle('open');
-    trigger.classList.toggle('active');
-});
+const STRAP_LINE = "WELCOME TO THE SINGULARITY";
 
-/* INTRO */
-setTimeout(function() {
-    document.getElementById("logoScreen").classList.add("fade-out");
-}, 6000);
+let i = 0;
 
-/* DAY/NIGHT */
-const nightImage = document.getElementById("nightImage");
-let showingNight = false;
+/* 0–2 seconds: Logo visible */
+setTimeout(() => {
+    logo.style.opacity = "0";
+}, 2000);
 
-function switchImage() {
-    if (showingNight) nightImage.classList.remove("active");
-    else nightImage.classList.add("active");
-    showingNight = !showingNight;
-}
-setInterval(switchImage, 7000);
+/* 2.5 seconds: Show strap screen */
+setTimeout(() => {
+    logo.style.display = "none";
+    strap.style.opacity = "1";
+    typeStrap();
+}, 2500);
 
-/* BOOKEND LOGO WITH 3 SECOND DELAY */
-const bookendLogo = document.getElementById("bookendLogo");
-let revealed = false;
-
-function checkFade() {
-    if (revealed) return;
-
-    const rect = bookendLogo.getBoundingClientRect();
-    const triggerPoint = window.innerHeight * 1.1;
-
-    if (rect.top < triggerPoint) {
-        revealed = true;
-
-        // delay 3 seconds before fade starts
-        setTimeout(() => {
-            bookendLogo.style.opacity = "1";
-        }, 3000);
-
-        window.removeEventListener("scroll", checkFade);
+/* Typing effect (fast) */
+function typeStrap() {
+    if (i < STRAP_LINE.length) {
+        strapText.textContent += STRAP_LINE.charAt(i);
+        i++;
+        setTimeout(typeStrap, 40);  // fast typing
     }
 }
 
-window.addEventListener("scroll", checkFade, { passive: true });
-window.addEventListener("load", checkFade);
+/* 4 seconds: Fade strap out */
+setTimeout(() => {
+    strap.style.opacity = "0";
+}, 4000);
+
+/* 4.5 seconds: Show hero */
+setTimeout(() => {
+    strap.style.display = "none";
+    hero.style.opacity = "1";
+}, 4500);
 
 </script>
 
