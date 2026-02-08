@@ -38,11 +38,11 @@ body {
 /* Strap */
 .strap-screen {
     opacity: 0;
-    transition: opacity 1.6s ease; /* slower fade */
+    transition: opacity 2.6s ease; /* slower fade */
 }
 
 .strap-text {
-    font-size: 14px;  /* half size */
+    font-size: 14px;
     letter-spacing: 3px;
     color: #ddd;
 }
@@ -95,21 +95,21 @@ setTimeout(() => {
     logo.style.opacity = "0";
 }, 1500);
 
-/* 2s – Fade in strap slowly */
+/* 2s – Fade in strap */
 setTimeout(() => {
     logo.style.display = "none";
     strap.style.opacity = "1";
 }, 2000);
 
-/* 4s – Fade strap out (short hold, slow fade) */
+/* 4.5s – Start fade out (longer hold + slower fade) */
 setTimeout(() => {
     strap.style.opacity = "0";
-}, 4000);
+}, 4500);
 
-/* 4.8s – Begin hero fade (slight overlap) */
+/* 6.5s – Hero fade in (overlapping end of strap fade) */
 setTimeout(() => {
     hero.style.opacity = "1";
-}, 4800);
+}, 6500);
 
 </script>
 
