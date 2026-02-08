@@ -2,406 +2,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>XERA Watches</title>
 
 <style>
-    body {
-        margin: 0;
-        background: #000;
-        color: #fff;
-        font-family: Arial, sans-serif;
-        overflow-x: hidden;
-    }
 
-    /* =========================
-       HEADER: XERA + MENU
-    ========================= */
-    .xera-brand {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 10001;
-        letter-spacing: 3px;
-        font-size: 14px;
-        color: #fff;
-        text-decoration: none;
-    }
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    .xera-menu-trigger {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 10001;
-        cursor: pointer;
-        letter-spacing: 3px;
-        font-size: 14px;
-        animation: xeraPulse 2s infinite;
-        user-select: none;
-    }
+body {
+  background: #000;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  overflow-x: hidden;
+}
 
-    .xera-menu-trigger.active {
-        animation: none;
-    }
+/* TOP NAV */
+.top-bar {
+  position: fixed;
+  top: 20px;
+  left: 30px;
+  right: 30px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1000;
+  letter-spacing: 6px;
+  font-size: 14px;
+}
 
-    .xera-menu-panel {
-        position: fixed;
-        top: 45px;
-        right: 20px;
-        width: 170px;
-        text-align: right;
-        display: none;
-        z-index: 10001;
-    }
+.top-bar a {
+  color: #fff;
+  text-decoration: none;
+}
 
-    .xera-menu-panel a {
-        display: block;
-        text-decoration: none;
-        margin: 6px 0;
-        font-size: 13px;
-        letter-spacing: 4px;
-        color: #bbb;
-        transition: color 0.3s ease;
-    }
+/* INTRO OVERLAY */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 2000;
+  animation: introTotal 7s forwards;
+}
 
-    .xera-menu-panel a:hover {
-        color: #fff;
-    }
+@keyframes introTotal {
+  0% { opacity:1; }
+  85% { opacity:1; }
+  100% { opacity:0; visibility:hidden; }
+}
 
-    .xera-menu-panel a.join-launch {
-        color: #cc0000 !important;
-    }
+/* Logo fade */
+.intro-logo {
+  width: 140px;
+  opacity: 0;
+  animation: logoFade 1.5s forwards;
+}
 
-    .xera-menu-panel.open {
-        display: block;
-    }
+@keyframes logoFade {
+  0% { opacity:0; }
+  100% { opacity:1; }
+}
 
-    @keyframes xeraPulse {
-        0% { opacity: 0.5; }
-        50% { opacity: 1; }
-        100% { opacity: 0.5; }
-    }
+/* Strap line */
+.intro-strap {
+  position: absolute;
+  font-size: 16px;
+  letter-spacing: 4px;
+  opacity: 0;
+  animation: strapFade 5.5s forwards;
+  animation-delay: 1.5s;
+}
 
-    /* =========================
-       INTRO OVERLAY (logo + strap)
-       Plays once per session
-    ========================= */
-    .intro-overlay {
-        position: fixed;
-        inset: 0;
-        background: #000;
-        z-index: 20000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        opacity: 1;
-    }
+@keyframes strapFade {
+  0% { opacity:0; }
+  20% { opacity:1; }
+  80% { opacity:1; }
+  100% { opacity:0; }
+}
 
-    .intro-screen {
-        position: absolute;
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+/* HERO */
+.hero {
+  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
 
-    .logo-screen {
-        transition: opacity 0.6s ease;
-    }
+.hero h1 {
+  letter-spacing: 10px;
+  font-size: 38px;
+  margin-bottom: 40px;
+}
 
-    .logo-screen img {
-        max-width: 300px;
-        height: auto;
-    }
+.hero img {
+  width: 75%;
+  max-width: 420px;
+}
 
-    .strap-screen {
-        opacity: 0;
-        transition: opacity 2.6s ease;
-    }
+/* DAY NIGHT SECTION */
+.day-night {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .strap-text {
-        font-size: 14px;
-        letter-spacing: 3px;
-        color: #ddd;
-        text-align: center;
-        padding: 0 20px;
-        box-sizing: border-box;
-    }
+.day-night img {
+  position: absolute;
+  width: 75%;
+  max-width: 420px;
+  opacity: 0;
+  transition: opacity 5s ease;
+}
 
-    /* =========================
-       MAIN LAYOUT
-    ========================= */
-    .page {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 140px 20px 180px 20px; /* bottom padding so footer never overlaps content */
-        box-sizing: border-box;
-        text-align: center;
-    }
+.day-night img.active {
+  opacity: 1;
+}
 
-    .hero h1 {
-        font-size: 32px;
-        letter-spacing: 8px;
-        margin: 0 0 30px 0;
-    }
+/* SEAL LOGO */
+.bottom-seal {
+  display: flex;
+  justify-content: center;
+  padding: 100px 0 60px 0;
+}
 
-    .hero img {
-        max-width: 85%;
-        height: auto;
-        display: block;
-        margin: 0 auto;
-    }
+.bottom-seal img {
+  width: 100px;
+  opacity: 0;
+  transition: opacity 8s ease;
+}
 
-    /* =========================
-       DAY/NIGHT CROSSFADE
-    ========================= */
-    .render-block {
-        margin-top: 70px;
-    }
+.bottom-seal.visible img {
+  opacity: 1;
+}
 
-    .render-stage {
-        position: relative;
-        width: 100%;
-        max-width: 900px;
-        margin: 0 auto;
-    }
+/* FOOTER */
+footer {
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+  padding: 30px 10px;
+}
 
-    .render-stage img {
-        width: 100%;
-        height: auto;
-        display: block;
-    }
-
-    .render-layer {
-        position: absolute;
-        top: 0;
-        left: 0;
-        opacity: 0;
-        transition: opacity 5s linear; /* 5s fade */
-        will-change: opacity;
-    }
-
-    .render-layer.visible {
-        opacity: 1;
-    }
-
-    /* =========================
-       BOTTOM SEAL LOGO (fade in on scroll)
-    ========================= */
-    .seal {
-        margin-top: 90px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        opacity: 0;
-        transition: opacity 8s ease;
-    }
-
-    .seal.visible {
-        opacity: 1;
-    }
-
-    .seal img {
-        max-width: 220px; /* smaller than renders */
-        height: auto;
-    }
-
-    /* =========================
-       FOOTER (always visible)
-    ========================= */
-    footer {
-        position: fixed;
-        bottom: 10px;
-        left: 0;
-        width: 100%;
-        text-align: center;
-        font-size: 12px;
-        color: #777;
-        z-index: 10002;
-        pointer-events: none;
-    }
 </style>
 </head>
-
 <body>
 
-<a href="index.html" class="xera-brand">XERA</a>
-
-<div class="xera-menu-trigger" id="menuTrigger">MENU</div>
-
-<div class="xera-menu-panel" id="menuPanel">
-    <a href="specifications.html">SPECIFICATIONS</a>
-    <a href="story.html">STORY</a>
-    <a href="contact.html">CONTACT</a>
-    <a href="join-launch.html" class="join-launch">JOIN LAUNCH</a>
+<!-- INTRO -->
+<div class="intro-overlay">
+  <img src="xera-logo.png" class="intro-logo">
+  <div class="intro-strap">XERA — welcome to the singularity</div>
 </div>
 
-<!-- INTRO OVERLAY -->
-<div class="intro-overlay" id="introOverlay">
-    <div class="intro-screen logo-screen" id="logoScreen">
-        <img src="xera-logo.jpg" alt="XERA Logo" />
-    </div>
-
-    <div class="intro-screen strap-screen" id="strapScreen">
-        <div class="strap-text">XERA — welcome to the singularity</div>
-    </div>
+<!-- TOP NAV -->
+<div class="top-bar">
+  <a href="index.html">XERA</a>
+  <a href="#">MENU</a>
 </div>
 
-<!-- MAIN PAGE -->
-<div class="page">
+<!-- HERO -->
+<section class="hero">
+  <h1>EVENT<br>HORIZON</h1>
+  <img src="watch-night.jpg" alt="Event Horizon">
+</section>
 
-    <div class="hero" id="heroSection">
-        <h1>EVENT HORIZON</h1>
-        <img src="xera-event-horizon.jpg" alt="Event Horizon Watch" />
-    </div>
+<!-- DAY NIGHT ANIMATION -->
+<section class="day-night">
+  <img src="watch-day.jpg" class="active" id="img1">
+  <img src="watch-night.jpg" id="img2">
+</section>
 
-    <!-- DAY/NIGHT AUTO-CYCLE -->
-    <div class="render-block">
-        <div class="render-stage" id="renderStage">
-            <!-- Base image sets height -->
-            <img src="watch-day.jpg" alt="Watch Render Base" />
-
-            <!-- Crossfade layers -->
-            <img class="render-layer visible" id="renderDay" src="watch-day.jpg" alt="Watch Day Render" />
-            <img class="render-layer" id="renderNight" src="watch-night.jpg" alt="Watch Night Render" />
-        </div>
-    </div>
-
-    <!-- SEAL LOGO -->
-    <div class="seal" id="sealLogo">
-        <img src="xera-logo.jpg" alt="XERA Seal Logo" />
-    </div>
-
+<!-- SEAL -->
+<div class="bottom-seal" id="seal">
+  <img src="xera-logo.png">
 </div>
 
 <footer>
-© 2026 XERA. All designs, artwork and concepts are original and protected.
+  © 2026 XERA. All designs, artwork and concepts are original and protected.
 </footer>
 
 <script>
-/* =========================
-   MENU
-========================= */
-const menuTrigger = document.getElementById('menuTrigger');
-const menuPanel = document.getElementById('menuPanel');
 
-menuTrigger.addEventListener('click', () => {
-    menuPanel.classList.toggle('open');
-    menuTrigger.classList.toggle('active');
+/* DAY NIGHT LOOP */
+const img1 = document.getElementById('img1');
+const img2 = document.getElementById('img2');
+
+setInterval(() => {
+  img1.classList.toggle('active');
+  img2.classList.toggle('active');
+}, 7000);
+
+/* SEAL FADE ON SCROLL */
+const seal = document.getElementById('seal');
+
+window.addEventListener('scroll', () => {
+  const sealTop = seal.getBoundingClientRect().top;
+  const windowHeight = window.innerHeight;
+
+  if (sealTop < windowHeight - 100) {
+    seal.classList.add('visible');
+  }
 });
 
-/* =========================
-   INTRO (once per session)
-========================= */
-const introOverlay = document.getElementById("introOverlay");
-const logoScreen = document.getElementById("logoScreen");
-const strapScreen = document.getElementById("strapScreen");
-
-const introAlreadyPlayed = sessionStorage.getItem("xeraIntroPlayed");
-
-function hideIntroInstant() {
-    introOverlay.style.display = "none";
-    document.body.style.overflow = "auto";
-}
-
-function runIntro() {
-    document.body.style.overflow = "hidden";
-
-    // Logo visible then fade
-    setTimeout(() => {
-        logoScreen.style.opacity = "0";
-    }, 1500);
-
-    // Strap fade in
-    setTimeout(() => {
-        logoScreen.style.display = "none";
-        strapScreen.style.opacity = "1";
-    }, 2000);
-
-    // Strap fade out (slow)
-    setTimeout(() => {
-        strapScreen.style.opacity = "0";
-    }, 4500);
-
-    // Fade out overlay and release scroll
-    setTimeout(() => {
-        introOverlay.style.transition = "opacity 1s ease";
-        introOverlay.style.opacity = "0";
-    }, 6500);
-
-    setTimeout(() => {
-        introOverlay.style.display = "none";
-        document.body.style.overflow = "auto";
-    }, 7500);
-
-    sessionStorage.setItem("xeraIntroPlayed", "true");
-}
-
-if (introAlreadyPlayed) {
-    hideIntroInstant();
-} else {
-    runIntro();
-}
-
-/* =========================
-   DAY/NIGHT CROSSFADE
-   2s static + 5s fade = 7s cycle
-========================= */
-const dayLayer = document.getElementById("renderDay");
-const nightLayer = document.getElementById("renderNight");
-
-let showingDay = true;
-let inTransition = false;
-
-function swapRenders() {
-    if (inTransition) return;
-    inTransition = true;
-
-    // Wait 2 seconds (static hold)
-    setTimeout(() => {
-        if (showingDay) {
-            nightLayer.classList.add("visible");
-            dayLayer.classList.remove("visible");
-        } else {
-            dayLayer.classList.add("visible");
-            nightLayer.classList.remove("visible");
-        }
-
-        showingDay = !showingDay;
-
-        // After 5 seconds fade completes
-        setTimeout(() => {
-            inTransition = false;
-        }, 5000);
-    }, 2000);
-}
-
-setInterval(swapRenders, 7000);
-
-/* =========================
-   SEAL LOGO FADE-IN ON SCROLL
-   - waits ~3s (black only) once in view
-   - then slow fades in
-========================= */
-const seal = document.getElementById("sealLogo");
-let sealTriggered = false;
-
-const sealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && !sealTriggered) {
-            sealTriggered = true;
-
-            // Delay before fade starts (black only)
-            setTimeout(() => {
-                seal.classList.add("visible");
-            }, 3000);
-        }
-    });
-}, { threshold: 0.25 });
-
-sealObserver.observe(seal);
 </script>
 
 </body>
