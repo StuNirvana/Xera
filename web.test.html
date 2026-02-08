@@ -4,66 +4,134 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XERA – Day / Night / Midnight Test</title>
+<title>XERA Test Layout</title>
 
 <style>
 body {
-  margin: 0;
-  background: #000;
-  font-family: Arial, sans-serif;
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
 }
 
-.image-container {
-  position: relative;
-  width: 90%;
-  max-width: 700px;
-  margin: 80px auto;
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    z-index: 1000;
 }
 
-.image-container img {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  transition: opacity 5s ease-in-out; /* 5 second fade */
+.header a {
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-size: 14px;
 }
 
-.image-container img.active {
-  opacity: 1;
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    text-align: center;
+    padding-top: 120px;
+}
+
+.hero h1 {
+    font-size: 32px;
+    letter-spacing: 8px;
+    margin-bottom: 30px;
+}
+
+.hero img {
+    max-width: 85%;
+}
+
+/* =========================
+   DAY / NIGHT SECTION
+========================= */
+
+.day-night-section {
+    margin: 140px auto;
+    width: 92%;
+    max-width: 900px;
+    position: relative;
+}
+
+.day-night-section img {
+    width: 100%;
+    display: block;
+}
+
+.day-night-section img.fade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 5s ease-in-out;
+}
+
+.day-night-section img.fade.active {
+    opacity: 1;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+    padding: 60px 0 40px 0;
 }
 </style>
 </head>
 
 <body>
 
-<div class="image-container">
-  <img src="watch-day.jpg" class="active">
-  <img src="watch-night.jpg">
-  <img src="watch-midnight.jpg">
+<div class="header">
+    <a href="#">XERA</a>
+    <a href="#">MENU</a>
 </div>
 
+<div class="hero">
+    <h1>EVENT HORIZON</h1>
+    <img src="xera-event-horizon.jpg" alt="Event Horizon">
+</div>
+
+<div class="day-night-section">
+    <img src="watch-day.jpg">
+    <img src="watch-night.jpg" class="fade" id="nightImage">
+</div>
+
+<footer>
+© 2026 XERA. All designs, artwork and concepts are original and protected.
+</footer>
+
 <script>
-
-const images = document.querySelectorAll('.image-container img');
-
-/*
-  Sequence:
-  Day → Night → Midnight → Night → (loop)
-*/
-
-const sequence = [0, 1, 2, 1];
-let step = 0;
+const nightImage = document.getElementById("nightImage");
+let showingNight = false;
 
 function switchImage() {
-  images.forEach(img => img.classList.remove('active'));
-  images[sequence[step]].classList.add('active');
-  step = (step + 1) % sequence.length;
+    if (showingNight) {
+        nightImage.classList.remove("active");
+    } else {
+        nightImage.classList.add("active");
+    }
+    showingNight = !showingNight;
 }
 
-// 2 seconds static + 5 seconds fade = 7 seconds total rhythm
+/* 2 seconds static + 5 seconds fade */
 setInterval(switchImage, 7000);
-
 </script>
 
 </body>
