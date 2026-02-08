@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XERA – Intro Fade Test</title>
+<title>XERA Watches</title>
 
 <style>
 body {
@@ -12,33 +12,98 @@ body {
     background: #000;
     color: #fff;
     font-family: Arial, sans-serif;
-    overflow: hidden;
-    text-align: center;
+    overflow-x: hidden;
 }
 
-/* Shared screens */
-.screen {
-    position: absolute;
+/* Prevent scroll during intro */
+body.intro-active {
+    overflow: hidden;
+}
+
+/* =========================
+   BRAND (Top Left)
+========================= */
+.xera-brand {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10001;
+    letter-spacing: 3px;
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* =========================
+   MENU
+========================= */
+.xera-menu-trigger {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10001;
+    cursor: pointer;
+    letter-spacing: 3px;
+    font-size: 14px;
+    animation: xeraPulse 2s infinite;
+}
+
+.xera-menu-trigger.active {
+    animation: none;
+}
+
+.xera-menu-panel {
+    position: fixed;
+    top: 45px;
+    right: 20px;
+    width: 170px;
+    text-align: right;
+    display: none;
+    z-index: 10001;
+}
+
+.xera-menu-panel a {
+    display: block;
+    text-decoration: none;
+    margin: 6px 0;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: #bbb;
+}
+
+.xera-menu-panel a:hover {
+    color: #fff;
+}
+
+.xera-menu-panel a.join-launch {
+    color: #cc0000 !important;
+}
+
+.xera-menu-panel.open {
+    display: block;
+}
+
+/* =========================
+   INTRO SCREENS
+========================= */
+.intro-screen {
+    position: fixed;
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-/* Logo */
-.logo-screen {
-    transition: opacity 0.6s ease;
+    background: #000;
+    z-index: 10000;
 }
 
 .logo-screen img {
     max-width: 300px;
 }
 
-/* Strap */
 .strap-screen {
     opacity: 0;
-    transition: opacity 2.6s ease; /* slower fade */
+    transition: opacity 2.6s ease;
 }
 
 .strap-text {
@@ -47,69 +112,136 @@ body {
     color: #ddd;
 }
 
-/* Hero */
-.hero-screen {
+/* =========================
+   HERO
+========================= */
+.hero {
+    text-align: center;
+    padding-top: 140px;
     opacity: 0;
     transition: opacity 1.4s ease;
 }
 
-.hero-screen h1 {
+.hero h1 {
     font-size: 32px;
     letter-spacing: 8px;
     margin-bottom: 30px;
 }
 
-.hero-screen img {
+.hero img {
     max-width: 85%;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+    z-index: 10002;
+    pointer-events: none;
+}
+
+/* =========================
+   PULSE
+========================= */
+@keyframes xeraPulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="screen logo-screen" id="logoScreen">
+<a href="index.html" class="xera-brand">XERA</a>
+
+<div class="xera-menu-trigger" id="menuTrigger">MENU</div>
+
+<div class="xera-menu-panel" id="menuPanel">
+    <a href="specifications.html">SPECIFICATIONS</a>
+    <a href="story.html">STORY</a>
+    <a href="contact.html">CONTACT</a>
+    <a href="join-launch.html" class="join-launch">JOIN LAUNCH</a>
+</div>
+
+<!-- INTRO -->
+<div class="intro-screen logo-screen" id="logoScreen">
     <img src="xera-logo.jpg" alt="XERA Logo">
 </div>
 
-<div class="screen strap-screen" id="strapScreen">
+<div class="intro-screen strap-screen" id="strapScreen">
     <div class="strap-text">
         XERA — welcome to the singularity
     </div>
 </div>
 
-<div class="screen hero-screen" id="heroScreen">
-    <div>
-        <h1>EVENT HORIZON</h1>
-        <img src="xera-event-horizon.jpg">
-    </div>
+<!-- HERO -->
+<div class="hero" id="heroSection">
+    <h1>EVENT HORIZON</h1>
+    <img src="xera-event-horizon.jpg" alt="Event Horizon Watch">
 </div>
+
+<footer>
+© 2026 XERA. All designs, artwork and concepts are original and protected.
+</footer>
 
 <script>
 
+/* MENU */
+const menuTrigger = document.getElementById('menuTrigger');
+const menuPanel = document.getElementById('menuPanel');
+
+menuTrigger.addEventListener('click', function() {
+    menuPanel.classList.toggle('open');
+    menuTrigger.classList.toggle('active');
+});
+
+/* INTRO LOGIC — plays once per session */
 const logo = document.getElementById("logoScreen");
 const strap = document.getElementById("strapScreen");
-const hero = document.getElementById("heroScreen");
+const hero = document.getElementById("heroSection");
 
-/* 1.5s – Fade logo */
-setTimeout(() => {
-    logo.style.opacity = "0";
-}, 1500);
+if (!sessionStorage.getItem("xeraIntroPlayed")) {
 
-/* 2s – Fade in strap */
-setTimeout(() => {
+    document.body.classList.add("intro-active");
+
+    /* 1.5s – fade logo */
+    setTimeout(() => {
+        logo.style.opacity = "0";
+    }, 1500);
+
+    /* 2s – show strap */
+    setTimeout(() => {
+        logo.style.display = "none";
+        strap.style.opacity = "1";
+    }, 2000);
+
+    /* 4.5s – fade strap */
+    setTimeout(() => {
+        strap.style.opacity = "0";
+    }, 4500);
+
+    /* 6.5s – reveal hero */
+    setTimeout(() => {
+        strap.style.display = "none";
+        hero.style.opacity = "1";
+        document.body.classList.remove("intro-active");
+    }, 6500);
+
+    sessionStorage.setItem("xeraIntroPlayed", "true");
+
+} else {
+
     logo.style.display = "none";
-    strap.style.opacity = "1";
-}, 2000);
-
-/* 4.5s – Start fade out (longer hold + slower fade) */
-setTimeout(() => {
-    strap.style.opacity = "0";
-}, 4500);
-
-/* 6.5s – Hero fade in (overlapping end of strap fade) */
-setTimeout(() => {
+    strap.style.display = "none";
     hero.style.opacity = "1";
-}, 6500);
+}
 
 </script>
 
