@@ -16,7 +16,7 @@ body {
     text-align: center;
 }
 
-/* Shared full-screen panels */
+/* Shared screens */
 .screen {
     position: absolute;
     width: 100%;
@@ -38,18 +38,19 @@ body {
 /* Strap */
 .strap-screen {
     opacity: 0;
-    transition: opacity 1.4s ease;  /* slower fade */
+    transition: opacity 1.6s ease; /* slower fade */
 }
 
 .strap-text {
-    font-size: 22px;
-    letter-spacing: 6px;
+    font-size: 14px;  /* half size */
+    letter-spacing: 3px;
+    color: #ddd;
 }
 
 /* Hero */
 .hero-screen {
     opacity: 0;
-    transition: opacity 1.2s ease;  /* smooth entrance */
+    transition: opacity 1.4s ease;
 }
 
 .hero-screen h1 {
@@ -72,7 +73,7 @@ body {
 
 <div class="screen strap-screen" id="strapScreen">
     <div class="strap-text">
-        WELCOME TO THE SINGULARITY
+        XERA — welcome to the singularity
     </div>
 </div>
 
@@ -94,21 +95,21 @@ setTimeout(() => {
     logo.style.opacity = "0";
 }, 1500);
 
-/* 2s – Show strap */
+/* 2s – Fade in strap slowly */
 setTimeout(() => {
     logo.style.display = "none";
     strap.style.opacity = "1";
 }, 2000);
 
-/* 5.5s – Fade strap slowly */
+/* 4s – Fade strap out (short hold, slow fade) */
 setTimeout(() => {
     strap.style.opacity = "0";
-}, 5500);
+}, 4000);
 
-/* 6s – Begin hero fade slightly overlapping */
+/* 4.8s – Begin hero fade (slight overlap) */
 setTimeout(() => {
     hero.style.opacity = "1";
-}, 6000);
+}, 4800);
 
 </script>
 
