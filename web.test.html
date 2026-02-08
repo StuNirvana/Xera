@@ -15,14 +15,11 @@ body {
     overflow-x: hidden;
 }
 
-/* Space so fixed footer never overlaps content */
 .page-padding {
-    padding-bottom: 140px;
+    padding-bottom: 160px;
 }
 
-/* =========================
-   BRAND (Top Left)
-========================= */
+/* BRAND */
 .xera-brand {
     position: fixed;
     top: 20px;
@@ -34,9 +31,7 @@ body {
     text-decoration: none;
 }
 
-/* =========================
-   MENU (Top Right)
-========================= */
+/* MENU */
 .xera-menu-trigger {
     position: fixed;
     top: 20px;
@@ -69,7 +64,6 @@ body {
     font-size: 13px;
     letter-spacing: 4px;
     color: #bbb;
-    transition: color 0.3s ease;
 }
 
 .xera-menu-panel a:hover {
@@ -84,9 +78,7 @@ body {
     display: block;
 }
 
-/* =========================
-   LOGO INTRO
-========================= */
+/* INTRO */
 .logo-screen {
     position: fixed;
     width: 100%;
@@ -102,7 +94,6 @@ body {
 .logo-screen img {
     max-width: 320px;
     width: 80%;
-    height: auto;
 }
 
 .logo-screen.fade-out {
@@ -110,9 +101,7 @@ body {
     pointer-events: none;
 }
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 .hero {
     text-align: center;
     padding-top: 140px;
@@ -126,14 +115,11 @@ body {
 
 .hero img {
     max-width: 85%;
-    height: auto;
 }
 
-/* =========================
-   DAY / NIGHT SECTION
-========================= */
+/* DAY/NIGHT */
 .day-night-section {
-    margin: 140px auto 110px auto;
+    margin: 140px auto 120px auto;
     width: 92%;
     max-width: 900px;
     position: relative;
@@ -156,40 +142,31 @@ body {
     opacity: 1;
 }
 
-/* =========================
-   LOGO BOOKEND (Luxury Fade)
-========================= */
+/* BOOKEND LOGO */
 .logo-bookend {
     text-align: center;
-    margin: 70px 0 35px 0;
+    margin: 120px 0 40px 0;
 }
 
 .logo-bookend img {
     width: 55%;
     max-width: 220px;
-    height: auto;
     opacity: 0;
-    transition: opacity 12s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity 18s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* =========================
-   FIXED FOOTER
-========================= */
+/* FOOTER */
 footer {
     position: fixed;
     bottom: 10px;
-    left: 0;
     width: 100%;
     text-align: center;
     font-size: 12px;
     color: #777;
-    z-index: 10002;
     pointer-events: none;
 }
 
-/* =========================
-   PULSE
-========================= */
+/* PULSE */
 @keyframes xeraPulse {
     0% { opacity: 0.5; }
     50% { opacity: 1; }
@@ -200,40 +177,36 @@ footer {
 
 <body>
 
-<a href="index.html?skip=true" class="xera-brand">XERA</a>
+<a href="#" class="xera-brand">XERA</a>
 
 <div class="xera-menu-trigger" id="menuTrigger">MENU</div>
 
 <div class="xera-menu-panel" id="menuPanel">
-    <a href="specifications.html">SPECIFICATIONS</a>
-    <a href="story.html">STORY</a>
-    <a href="contact.html">CONTACT</a>
-    <a href="join-launch.html" class="join-launch">JOIN LAUNCH</a>
+    <a href="#">SPECIFICATIONS</a>
+    <a href="#">STORY</a>
+    <a href="#">CONTACT</a>
+    <a href="#" class="join-launch">JOIN LAUNCH</a>
 </div>
 
-<!-- LOGO INTRO -->
 <div class="logo-screen" id="logoScreen">
-    <img src="xera-logo.jpg" alt="XERA Logo">
+    <img src="xera-logo.jpg">
 </div>
 
 <div class="page-padding">
 
-    <!-- HERO -->
-    <div class="hero">
-        <h1>EVENT HORIZON</h1>
-        <img src="xera-event-horizon.jpg" alt="Event Horizon Watch">
-    </div>
+<div class="hero">
+    <h1>EVENT HORIZON</h1>
+    <img src="xera-event-horizon.jpg">
+</div>
 
-    <!-- DAY / NIGHT -->
-    <div class="day-night-section">
-        <img src="watch-day.jpg" alt="Watch Day">
-        <img src="watch-night.jpg" class="fade" id="nightImage" alt="Watch Night">
-    </div>
+<div class="day-night-section">
+    <img src="watch-day.jpg">
+    <img src="watch-night.jpg" class="fade" id="nightImage">
+</div>
 
-    <!-- BOOKEND LOGO -->
-    <div class="logo-bookend" id="bookendTrigger">
-        <img src="xera-logo.jpg" alt="XERA Logo Bookend" id="bookendLogo">
-    </div>
+<div class="logo-bookend" id="bookendTrigger">
+    <img src="xera-logo.jpg" id="bookendLogo">
+</div>
 
 </div>
 
@@ -243,7 +216,7 @@ footer {
 
 <script>
 
-/* MENU TOGGLE */
+/* MENU */
 const trigger = document.getElementById('menuTrigger');
 const panel = document.getElementById('menuPanel');
 
@@ -253,12 +226,11 @@ trigger.addEventListener('click', function() {
 });
 
 /* INTRO */
-const logoScreen = document.getElementById("logoScreen");
 setTimeout(function() {
-    logoScreen.classList.add("fade-out");
+    document.getElementById("logoScreen").classList.add("fade-out");
 }, 6000);
 
-/* DAY / NIGHT */
+/* DAY/NIGHT */
 const nightImage = document.getElementById("nightImage");
 let showingNight = false;
 
@@ -269,26 +241,25 @@ function switchImage() {
 }
 setInterval(switchImage, 7000);
 
-/* BOOKEND FADE ON SCROLL (once per visit) */
+/* SLOW FADE BOOKEND */
 const bookendLogo = document.getElementById("bookendLogo");
-const bookendTrigger = document.getElementById("bookendTrigger");
 let revealed = false;
 
-function checkBookend() {
+function checkFade() {
     if (revealed) return;
 
-    const rect = bookendTrigger.getBoundingClientRect();
-    const triggerPoint = window.innerHeight * 0.85;
+    const rect = bookendLogo.getBoundingClientRect();
+    const triggerPoint = window.innerHeight * 1.1;  // start BEFORE fully visible
 
     if (rect.top < triggerPoint) {
         revealed = true;
         bookendLogo.style.opacity = "1";
-        window.removeEventListener("scroll", checkBookend);
+        window.removeEventListener("scroll", checkFade);
     }
 }
 
-window.addEventListener("scroll", checkBookend, { passive: true });
-window.addEventListener("load", checkBookend);
+window.addEventListener("scroll", checkFade, { passive: true });
+window.addEventListener("load", checkFade);
 
 </script>
 
