@@ -161,19 +161,15 @@ body {
 ========================= */
 .logo-bookend {
     text-align: center;
-    margin: 70px 0 35px 0; /* above fixed footer */
+    margin: 70px 0 35px 0;
 }
 
 .logo-bookend img {
     width: 55%;
     max-width: 220px;
     height: auto;
-    opacity: 0;
-    transition: opacity 8s ease; /* very slow fade */
-}
-
-.logo-bookend img.show {
-    opacity: 1;
+    opacity: 0;                 /* start hidden */
+    transition: opacity 8s ease; /* slow fade */
 }
 
 /* =========================
@@ -234,7 +230,7 @@ footer {
         <img src="watch-night.jpg" class="fade" id="nightImage" alt="Watch Night">
     </div>
 
-    <!-- BOOKEND LOGO (should fade in once when scrolled into view) -->
+    <!-- BOOKEND LOGO -->
     <div class="logo-bookend" id="bookendTrigger">
         <img src="xera-logo.jpg" alt="XERA Logo Bookend" id="bookendLogo">
     </div>
@@ -279,43 +275,43 @@ function switchImage() {
 }
 setInterval(switchImage, 7000);
 
-/* BOOKEND LOGO: Fade in once ONLY when you scroll down to it */
+/* BOOKEND LOGO: guaranteed fade-in once when scrolled near it */
 const bookendLogo = document.getElementById("bookendLogo");
 const bookendTrigger = document.getElementById("bookendTrigger");
+let bookendRevealed = false;
 
-function revealBookendOnce() {
-    bookendLogo.classList.add("show");
-}
+function revealBookend() {
+    if (bookendRevealed) return;
+    bookendRevealed = true;
 
-/* IntersectionObserver (best) + fallback (mobile-safe) */
-let revealed = false;
-
-if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-            if (!revealed && entry.isIntersecting) {
-                revealed = true;
-                revealBookendOnce();
-                obs.disconnect(); // only once per page load
-            }
+    /* Force animation reliably on mobile:
+       - ensure opacity is at 0
+       - then change to 1 on the next paint frame(s)
+    */
+    bookendLogo.style.opacity = "0";
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            bookendLogo.style.opacity = "1";
         });
-    }, {
-        threshold: 0.15,
-        rootMargin: "0px 0px -120px 0px"  // forces a real scroll before trigger
     });
 
-    observer.observe(bookendTrigger);
-} else {
-    // Fallback: simple scroll check
-    window.addEventListener("scroll", () => {
-        if (revealed) return;
-        const rect = bookendTrigger.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 120) {
-            revealed = true;
-            revealBookendOnce();
-        }
-    });
+    window.removeEventListener("scroll", checkBookend);
 }
+
+function checkBookend() {
+    if (bookendRevealed) return;
+    const rect = bookendTrigger.getBoundingClientRect();
+    const triggerPoint = window.innerHeight * 0.85; // start fade when it's near view
+    if (rect.top < triggerPoint) {
+        revealBookend();
+    }
+}
+
+/* Start checking after load (and also immediately, in case you're already scrolled) */
+window.addEventListener("scroll", checkBookend, { passive: true });
+window.addEventListener("load", () => {
+    checkBookend();
+});
 </script>
 
 </body>
