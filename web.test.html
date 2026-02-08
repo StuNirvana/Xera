@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XERA – Day / Night Test</title>
+<title>XERA – Day / Night / Midnight Test</title>
 
 <style>
 body {
@@ -40,20 +40,30 @@ body {
 <div class="image-container">
   <img src="watch-day.jpg" class="active">
   <img src="watch-night.jpg">
+  <img src="watch-midnight.jpg">
 </div>
 
 <script>
+
 const images = document.querySelectorAll('.image-container img');
-let current = 0;
+
+/*
+  Sequence:
+  Day → Night → Midnight → Night → (loop)
+*/
+
+const sequence = [0, 1, 2, 1];
+let step = 0;
 
 function switchImage() {
-  images[current].classList.remove('active');
-  current = (current + 1) % images.length;
-  images[current].classList.add('active');
+  images.forEach(img => img.classList.remove('active'));
+  images[sequence[step]].classList.add('active');
+  step = (step + 1) % sequence.length;
 }
 
-// 2 seconds static + 5 seconds fade = 7 second rhythm
+// 2 seconds static + 5 seconds fade = 7 seconds total rhythm
 setInterval(switchImage, 7000);
+
 </script>
 
 </body>
