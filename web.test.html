@@ -15,14 +15,11 @@ body {
     overflow-x: hidden;
 }
 
-/* Space so fixed footer never overlaps content */
 .page-padding {
     padding-bottom: 160px;
 }
 
-/* =========================
-   BRAND (Top Left)
-========================= */
+/* BRAND */
 .xera-brand {
     position: fixed;
     top: 20px;
@@ -34,9 +31,7 @@ body {
     text-decoration: none;
 }
 
-/* =========================
-   MENU (Top Right)
-========================= */
+/* MENU */
 .xera-menu-trigger {
     position: fixed;
     top: 20px;
@@ -84,9 +79,7 @@ body {
     display: block;
 }
 
-/* =========================
-   LOGO INTRO
-========================= */
+/* LOGO INTRO */
 .logo-screen {
     position: fixed;
     width: 100%;
@@ -110,12 +103,10 @@ body {
     pointer-events: none;
 }
 
-/* =========================
-   HERO (Hidden Until Logo Done)
-========================= */
+/* HERO */
 .hero {
     text-align: center;
-    padding-top: 140px;
+    padding-top: 110px; /* refined from 140px */
     opacity: 0;
     transition: opacity 1.4s ease;
 }
@@ -135,9 +126,7 @@ body {
     height: auto;
 }
 
-/* =========================
-   DAY / NIGHT SECTION
-========================= */
+/* DAY/NIGHT */
 .day-night-section {
     margin: 140px auto 120px auto;
     width: 92%;
@@ -162,9 +151,7 @@ body {
     opacity: 1;
 }
 
-/* =========================
-   LOGO BOOKEND
-========================= */
+/* BOOKEND LOGO */
 .logo-bookend {
     text-align: center;
     margin: 120px 0 40px 0;
@@ -178,9 +165,7 @@ body {
     transition: opacity 18s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* =========================
-   FIXED FOOTER
-========================= */
+/* FOOTER */
 footer {
     position: fixed;
     bottom: 10px;
@@ -193,9 +178,6 @@ footer {
     pointer-events: none;
 }
 
-/* =========================
-   PULSE
-========================= */
 @keyframes xeraPulse {
     0% { opacity: 0.5; }
     50% { opacity: 1; }
@@ -206,7 +188,7 @@ footer {
 
 <body>
 
-<a href="web.test.html?skip=true" class="xera-brand">XERA</a>
+<a href="index.html?skip=true" class="xera-brand">XERA</a>
 
 <div class="xera-menu-trigger" id="menuTrigger">MENU</div>
 
@@ -217,26 +199,22 @@ footer {
     <a href="join-launch.html" class="join-launch">JOIN LAUNCH</a>
 </div>
 
-<!-- LOGO INTRO -->
 <div class="logo-screen" id="logoScreen">
     <img src="xera-logo.jpg" alt="XERA Logo">
 </div>
 
 <div class="page-padding">
 
-    <!-- HERO -->
     <div class="hero" id="heroSection">
         <h1>EVENT HORIZON</h1>
         <img src="xera-event-horizon.jpg" alt="Event Horizon Watch">
     </div>
 
-    <!-- DAY / NIGHT -->
     <div class="day-night-section">
         <img src="watch-day.jpg" alt="Watch Day">
         <img src="watch-night.jpg" class="fade" id="nightImage" alt="Watch Night">
     </div>
 
-    <!-- BOOKEND LOGO -->
     <div class="logo-bookend" id="bookendTrigger">
         <img src="xera-logo.jpg" alt="XERA Logo Bookend" id="bookendLogo">
     </div>
@@ -248,8 +226,6 @@ footer {
 </footer>
 
 <script>
-
-/* MENU */
 const menuTrigger = document.getElementById('menuTrigger');
 const menuPanel = document.getElementById('menuPanel');
 
@@ -258,7 +234,6 @@ menuTrigger.addEventListener('click', function() {
     menuTrigger.classList.toggle('active');
 });
 
-/* INTRO */
 const logoScreen = document.getElementById("logoScreen");
 const hero = document.getElementById("heroSection");
 const params = new URLSearchParams(window.location.search);
@@ -270,15 +245,12 @@ if (skipIntro) {
 } else {
     setTimeout(function() {
         logoScreen.classList.add("fade-out");
-
         setTimeout(function() {
             hero.classList.add("visible");
-        }, 2000); // wait for logo fade to finish
-
-    }, 1500); // logo hold duration
+        }, 2000);
+    }, 1500);
 }
 
-/* DAY/NIGHT */
 const nightImage = document.getElementById("nightImage");
 let showingNight = false;
 
@@ -289,14 +261,12 @@ function switchImage() {
 }
 setInterval(switchImage, 7000);
 
-/* BOOKEND LOGO */
 const bookendLogo = document.getElementById("bookendLogo");
 const bookendTrigger = document.getElementById("bookendTrigger");
 let revealed = false;
 
 function checkBookendFade() {
     if (revealed) return;
-
     const rect = bookendTrigger.getBoundingClientRect();
     const triggerPoint = window.innerHeight * 1.1;
 
@@ -311,7 +281,6 @@ function checkBookendFade() {
 
 window.addEventListener("scroll", checkBookendFade, { passive: true });
 window.addEventListener("load", checkBookendFade);
-
 </script>
 
 </body>
