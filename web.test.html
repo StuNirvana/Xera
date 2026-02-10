@@ -15,14 +15,11 @@ body {
     overflow-x: hidden;
 }
 
-/* Space so fixed footer never overlaps content */
 .page-padding {
     padding-bottom: 160px;
 }
 
-/* =========================
-   BRAND (Top Left)
-========================= */
+/* BRAND */
 .xera-brand {
     position: fixed;
     top: 20px;
@@ -34,9 +31,7 @@ body {
     text-decoration: none;
 }
 
-/* =========================
-   MENU (Top Right)
-========================= */
+/* MENU */
 .xera-menu-trigger {
     position: fixed;
     top: 20px;
@@ -84,9 +79,7 @@ body {
     display: block;
 }
 
-/* =========================
-   LOGO INTRO
-========================= */
+/* LOGO INTRO */
 .logo-screen {
     position: fixed;
     width: 100%;
@@ -110,9 +103,7 @@ body {
     pointer-events: none;
 }
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 .hero {
     text-align: center;
     padding-top: 140px;
@@ -135,9 +126,21 @@ body {
     height: auto;
 }
 
-/* =========================
-   DAY / NIGHT SECTION
-========================= */
+/* SCROLL CHEVRON */
+.scroll-chevron {
+    position: fixed;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    color: #666;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+/* DAY / NIGHT */
 .day-night-section {
     margin: 140px auto 120px auto;
     width: 92%;
@@ -162,9 +165,7 @@ body {
     opacity: 1;
 }
 
-/* =========================
-   CASEBACK SECTION
-========================= */
+/* CASEBACK */
 .caseback-section {
     text-align: center;
     margin: 120px 0;
@@ -176,9 +177,7 @@ body {
     height: auto;
 }
 
-/* =========================
-   LOGO BOOKEND
-========================= */
+/* BOOKEND */
 .logo-bookend {
     text-align: center;
     margin: 120px 0 40px 0;
@@ -192,25 +191,7 @@ body {
     transition: opacity 18s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* =========================
-   SCROLL CHEVRON
-========================= */
-.scroll-cue {
-    position: fixed;
-    bottom: 70px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 18px;
-    color: #666;
-    letter-spacing: 4px;
-    opacity: 0;
-    z-index: 9999;
-    pointer-events: none;
-}
-
-/* =========================
-   FIXED FOOTER
-========================= */
+/* FOOTER */
 footer {
     position: fixed;
     bottom: 10px;
@@ -248,6 +229,8 @@ footer {
     <img src="xera-logo.jpg" alt="XERA Logo">
 </div>
 
+<div class="scroll-chevron" id="scrollChevron">⌄</div>
+
 <div class="page-padding">
 
     <div class="hero" id="heroSection">
@@ -270,8 +253,6 @@ footer {
 
 </div>
 
-<div class="scroll-cue" id="scrollCue">⌄</div>
-
 <footer>
 © 2026 XERA. All designs, artwork and concepts are original and protected.
 </footer>
@@ -281,7 +262,6 @@ footer {
 /* MENU */
 const menuTrigger = document.getElementById('menuTrigger');
 const menuPanel = document.getElementById('menuPanel');
-
 menuTrigger.addEventListener('click', function() {
     menuPanel.classList.toggle('open');
     menuTrigger.classList.toggle('active');
@@ -290,33 +270,50 @@ menuTrigger.addEventListener('click', function() {
 /* INTRO */
 const logoScreen = document.getElementById("logoScreen");
 const hero = document.getElementById("heroSection");
+const scrollChevron = document.getElementById("scrollChevron");
 const params = new URLSearchParams(window.location.search);
 const skipIntro = params.get("skip") === "true";
+
+function showChevronAfterHero() {
+    setTimeout(function() {
+        if (window.scrollY < 120) {
+            scrollChevron.style.opacity = "1";
+        }
+    }, 3000);
+}
 
 if (skipIntro) {
     logoScreen.style.display = "none";
     hero.classList.add("visible");
+    showChevronAfterHero();
 } else {
     setTimeout(function() {
         logoScreen.classList.add("fade-out");
+
         setTimeout(function() {
             hero.classList.add("visible");
-        }, 2000);
-    }, 1500);
+            showChevronAfterHero();
+        }, 2500); // 2s fade + 0.5 buffer
+
+    }, 1500); // logo hold
 }
 
 /* DAY/NIGHT */
 const nightImage = document.getElementById("nightImage");
 let showingNight = false;
-
 function switchImage() {
-    if (showingNight) nightImage.classList.remove("active");
-    else nightImage.classList.add("active");
-    showingNight = !showingNight;
+    nightImage.classList.toggle("active");
 }
 setInterval(switchImage, 7000);
 
-/* BOOKEND LOGO */
+/* CHEVRON DISAPPEAR */
+window.addEventListener("scroll", function() {
+    if (window.scrollY > 120) {
+        scrollChevron.style.opacity = "0";
+    }
+});
+
+/* BOOKEND */
 const bookendLogo = document.getElementById("bookendLogo");
 const bookendTrigger = document.getElementById("bookendTrigger");
 let revealed = false;
@@ -324,8 +321,7 @@ let revealed = false;
 function checkBookendFade() {
     if (revealed) return;
     const rect = bookendTrigger.getBoundingClientRect();
-    const triggerPoint = window.innerHeight * 1.1;
-    if (rect.top < triggerPoint) {
+    if (rect.top < window.innerHeight * 1.1) {
         revealed = true;
         setTimeout(() => {
             bookendLogo.style.opacity = "1";
@@ -334,25 +330,8 @@ function checkBookendFade() {
     }
 }
 
-window.addEventListener("scroll", checkBookendFade, { passive: true });
+window.addEventListener("scroll", checkBookendFade);
 window.addEventListener("load", checkBookendFade);
-
-/* SCROLL CUE */
-const scrollCue = document.getElementById("scrollCue");
-let cueRemoved = false;
-
-setTimeout(() => {
-    if (window.scrollY === 0) {
-        scrollCue.style.opacity = "1";
-    }
-}, 3000);
-
-window.addEventListener("scroll", function() {
-    if (!cueRemoved && window.scrollY > 80) {
-        scrollCue.remove();
-        cueRemoved = true;
-    }
-});
 
 </script>
 
