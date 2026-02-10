@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,7 +112,7 @@ body {
 }
 
 /* =========================
-   HERO (Hidden Until Logo Done)
+   HERO
 ========================= */
 .hero {
     text-align: center;
@@ -160,6 +161,20 @@ body {
 
 .day-night-section img.fade.active {
     opacity: 1;
+}
+
+/* =========================
+   CASEBACK SECTION
+========================= */
+.caseback-section {
+    text-align: center;
+    margin: 120px 0;
+}
+
+.caseback-section img {
+    width: 63%; /* 75% of hero (85% × 0.75 ≈ 63%) */
+    max-width: 700px;
+    height: auto;
 }
 
 /* =========================
@@ -236,6 +251,11 @@ footer {
         <img src="watch-night.jpg" class="fade" id="nightImage" alt="Watch Night">
     </div>
 
+    <!-- CASEBACK -->
+    <div class="caseback-section">
+        <img src="caseback-image.jpg" alt="XERA Event Horizon Caseback">
+    </div>
+
     <!-- BOOKEND LOGO -->
     <div class="logo-bookend" id="bookendTrigger">
         <img src="xera-logo.jpg" alt="XERA Logo Bookend" id="bookendLogo">
@@ -248,7 +268,6 @@ footer {
 </footer>
 
 <script>
-
 /* MENU */
 const menuTrigger = document.getElementById('menuTrigger');
 const menuPanel = document.getElementById('menuPanel');
@@ -270,11 +289,9 @@ if (skipIntro) {
 } else {
     setTimeout(function() {
         logoScreen.classList.add("fade-out");
-
         setTimeout(function() {
             hero.classList.add("visible");
         }, 2000);
-
     }, 1500);
 }
 
@@ -296,10 +313,8 @@ let revealed = false;
 
 function checkBookendFade() {
     if (revealed) return;
-
     const rect = bookendTrigger.getBoundingClientRect();
     const triggerPoint = window.innerHeight * 1.1;
-
     if (rect.top < triggerPoint) {
         revealed = true;
         setTimeout(() => {
@@ -311,7 +326,6 @@ function checkBookendFade() {
 
 window.addEventListener("scroll", checkBookendFade, { passive: true });
 window.addEventListener("load", checkBookendFade);
-
 </script>
 
 </body>
