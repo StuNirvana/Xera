@@ -171,7 +171,7 @@ body {
 }
 
 .caseback-section img {
-    width: 63%; /* 75% of hero (85% × 0.75 ≈ 63%) */
+    width: 63%;
     max-width: 700px;
     height: auto;
 }
@@ -193,6 +193,22 @@ body {
 }
 
 /* =========================
+   SCROLL CHEVRON
+========================= */
+.scroll-cue {
+    position: fixed;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    color: #666;
+    letter-spacing: 4px;
+    opacity: 0;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+/* =========================
    FIXED FOOTER
 ========================= */
 footer {
@@ -207,9 +223,6 @@ footer {
     pointer-events: none;
 }
 
-/* =========================
-   PULSE
-========================= */
 @keyframes xeraPulse {
     0% { opacity: 0.5; }
     50% { opacity: 1; }
@@ -231,42 +244,40 @@ footer {
     <a href="join-launch.html" class="join-launch">JOIN LAUNCH</a>
 </div>
 
-<!-- LOGO INTRO -->
 <div class="logo-screen" id="logoScreen">
     <img src="xera-logo.jpg" alt="XERA Logo">
 </div>
 
 <div class="page-padding">
 
-    <!-- HERO -->
     <div class="hero" id="heroSection">
         <h1>EVENT HORIZON</h1>
         <img src="xera-event-horizon.jpg" alt="Event Horizon Watch">
     </div>
 
-    <!-- DAY / NIGHT -->
     <div class="day-night-section">
         <img src="watch-day.jpg" alt="Watch Day">
         <img src="watch-night.jpg" class="fade" id="nightImage" alt="Watch Night">
     </div>
 
-    <!-- CASEBACK -->
     <div class="caseback-section">
         <img src="caseback-image.jpg" alt="XERA Event Horizon Caseback">
     </div>
 
-    <!-- BOOKEND LOGO -->
     <div class="logo-bookend" id="bookendTrigger">
         <img src="xera-logo.jpg" alt="XERA Logo Bookend" id="bookendLogo">
     </div>
 
 </div>
 
+<div class="scroll-cue" id="scrollCue">⌄</div>
+
 <footer>
 © 2026 XERA. All designs, artwork and concepts are original and protected.
 </footer>
 
 <script>
+
 /* MENU */
 const menuTrigger = document.getElementById('menuTrigger');
 const menuPanel = document.getElementById('menuPanel');
@@ -325,6 +336,24 @@ function checkBookendFade() {
 
 window.addEventListener("scroll", checkBookendFade, { passive: true });
 window.addEventListener("load", checkBookendFade);
+
+/* SCROLL CUE */
+const scrollCue = document.getElementById("scrollCue");
+let cueRemoved = false;
+
+setTimeout(() => {
+    if (window.scrollY === 0) {
+        scrollCue.style.opacity = "1";
+    }
+}, 3000);
+
+window.addEventListener("scroll", function() {
+    if (!cueRemoved && window.scrollY > 80) {
+        scrollCue.remove();
+        cueRemoved = true;
+    }
+});
+
 </script>
 
 </body>
