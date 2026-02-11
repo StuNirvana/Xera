@@ -12,31 +12,26 @@ body {
     background: #000;
     color: #fff;
     font-family: Arial, sans-serif;
-    overflow-x: hidden;
 }
 
 /* =========================
-   BRAND (TOP LEFT - FIXED)
+   TOP BAR
 ========================= */
+.xera-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px 0 20px;
+}
+
 .xera-brand {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 10000;
     letter-spacing: 3px;
     font-size: 14px;
     color: #fff;
     text-decoration: none;
 }
 
-/* =========================
-   MENU (TOP RIGHT - FIXED)
-========================= */
 .xera-menu-trigger {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 10000;
     cursor: pointer;
     letter-spacing: 3px;
     font-size: 14px;
@@ -48,13 +43,9 @@ body {
 }
 
 .xera-menu-panel {
-    position: fixed;
-    top: 45px;
-    right: 20px;
-    width: 170px;
-    text-align: right;
     display: none;
-    z-index: 9999;
+    text-align: right;
+    margin-top: 15px;
 }
 
 .xera-menu-panel a {
@@ -84,8 +75,8 @@ body {
 ========================= */
 .xera-main {
     max-width: 760px;
-    margin: 0 auto;
-    padding: 160px 40px 160px 40px;
+    margin: 120px auto;
+    padding: 0 40px;
     line-height: 1.7;
     letter-spacing: 0.5px;
     opacity: 0;
@@ -103,18 +94,15 @@ body {
 }
 
 /* =========================
-   BACK (BOTTOM LEFT - FIXED)
+   BACK LINK
 ========================= */
 .xera-back {
-    position: fixed;
-    bottom: 40px;
-    left: 20px;
+    display: block;
+    margin: 120px 40px 40px 40px;
     font-size: 11px;
     letter-spacing: 3px;
     color: #777;
     text-decoration: none;
-    transition: color 0.3s ease;
-    z-index: 10000;
 }
 
 .xera-back:hover {
@@ -122,16 +110,13 @@ body {
 }
 
 /* =========================
-   FOOTER (BOTTOM CENTRE - FIXED)
+   FOOTER
 ========================= */
 .xera-footer {
-    position: fixed;
-    bottom: 10px;
-    width: 100%;
     text-align: center;
     font-size: 11px;
     color: #777;
-    z-index: 10000;
+    padding-bottom: 40px;
 }
 
 /* =========================
@@ -147,15 +132,18 @@ body {
 
 <body>
 
-<a href="index.html" class="xera-brand">XERA</a>
+<div class="xera-topbar">
+    <a href="index.html" class="xera-brand">XERA</a>
 
-<div class="xera-menu-trigger" id="menuTrigger">MENU</div>
-
-<div class="xera-menu-panel" id="menuPanel">
-    <a href="specifications.html">SPECIFICATIONS</a>
-    <a href="story.html">STORY</a>
-    <a href="contact.html">CONTACT</a>
-    <a href="join-launch.html" class="join-launch">JOIN LAUNCH</a>
+    <div>
+        <div class="xera-menu-trigger" id="menuTrigger">MENU</div>
+        <div class="xera-menu-panel" id="menuPanel">
+            <a href="specifications.html">SPECIFICATIONS</a>
+            <a href="story.html">STORY</a>
+            <a href="contact.html">CONTACT</a>
+            <a href="join-launch.html" class="join-launch">JOIN LAUNCH</a>
+        </div>
+    </div>
 </div>
 
 <div class="xera-main" id="mainContent">
@@ -164,27 +152,23 @@ body {
 
 <p>
 Event Horizon is engineered as a daily-wear instrument.
-At its core is the VH31 smooth-sweep quartz movement — chosen for its continuous seconds motion, accuracy, shock resistance, and slimmer case profile. The result is fluid visual movement without unnecessary thickness.
+At its core is the VH31 smooth-sweep quartz movement — chosen for its continuous seconds motion, accuracy, shock resistance, and slimmer case profile.
 </p>
 
 <p>
-The case is machined from 316L stainless steel and finished in a uniform bead blast. The matte surface removes glare and visual noise, creating a restrained, cold-engineered aesthetic that allows the dial to remain the focal point.
+The case is machined from 316L stainless steel and finished in a uniform bead blast. The matte surface removes glare and visual noise, creating a restrained, cold-engineered aesthetic.
 </p>
 
 <p>
-A flat sapphire crystal sits flush above the case. Distortion-free and scratch resistant, it preserves the geometry of the luminous ring with absolute clarity.
+A flat sapphire crystal sits flush above the case.
 </p>
 
 <p>
-The strap is premium FKM rubber. Denser and more resilient than standard silicone, FKM resists UV, moisture, and temperature variation while maintaining structural integrity and comfort on the wrist.
+The strap is premium FKM rubber.
 </p>
 
 <p>
-The engraved caseback completes the construction — precise, permanent, and intentional.
-</p>
-
-<p>
-Every material and finish has been selected to support the concept without distraction.
+The engraved caseback completes the construction.
 </p>
 
 <p>
@@ -212,13 +196,13 @@ menuTrigger.addEventListener('click', function() {
     menuTrigger.classList.toggle('active');
 });
 
-/* FADE IN TEXT AFTER EXTRA DELAY */
+/* FADE IN MAIN CONTENT AFTER 2.3 SECONDS */
 const mainContent = document.getElementById("mainContent");
 
 window.addEventListener("load", function() {
     setTimeout(function() {
         mainContent.classList.add("visible");
-    }, 1800);
+    }, 2300);
 });
 
 </script>
