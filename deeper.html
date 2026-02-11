@@ -20,7 +20,7 @@ body {
 .xera-topbar {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     padding: 20px 20px 0 20px;
 }
 
@@ -75,7 +75,7 @@ body {
 ========================= */
 .xera-main {
     max-width: 760px;
-    margin: 120px auto;
+    margin: 140px auto;
     padding: 0 40px;
     line-height: 1.7;
     letter-spacing: 0.5px;
@@ -98,7 +98,7 @@ body {
 ========================= */
 .xera-back {
     display: block;
-    margin: 120px 40px 40px 40px;
+    margin: 140px 40px 40px 40px;
     font-size: 11px;
     letter-spacing: 3px;
     color: #777;
@@ -132,8 +132,9 @@ body {
 
 <body>
 
+<!-- TOP BAR -->
 <div class="xera-topbar">
-    <a href="index.html" class="xera-brand">XERA</a>
+    <a href="index.html?skip=true" class="xera-brand">XERA</a>
 
     <div>
         <div class="xera-menu-trigger" id="menuTrigger">MENU</div>
@@ -146,6 +147,7 @@ body {
     </div>
 </div>
 
+<!-- MAIN CONTENT -->
 <div class="xera-main" id="mainContent">
 
 <h1>XERA — Event Horizon</h1>
@@ -156,19 +158,23 @@ At its core is the VH31 smooth-sweep quartz movement — chosen for its continuo
 </p>
 
 <p>
-The case is machined from 316L stainless steel and finished in a uniform bead blast. The matte surface removes glare and visual noise, creating a restrained, cold-engineered aesthetic.
+The case is machined from 316L stainless steel and finished in a uniform bead blast. The matte surface removes glare and visual noise, creating a restrained, cold-engineered aesthetic that allows the dial to remain the focal point.
 </p>
 
 <p>
-A flat sapphire crystal sits flush above the case.
+A flat sapphire crystal sits flush above the case. Distortion-free and scratch resistant, it preserves the geometry of the luminous ring with absolute clarity.
 </p>
 
 <p>
-The strap is premium FKM rubber.
+The strap is premium FKM rubber. Denser and more resilient than standard silicone, FKM resists UV, moisture, and temperature variation while maintaining structural integrity and comfort on the wrist.
 </p>
 
 <p>
-The engraved caseback completes the construction.
+The engraved caseback completes the construction — precise, permanent, and intentional.
+</p>
+
+<p>
+Every material and finish has been selected to support the concept without distraction.
 </p>
 
 <p>
@@ -179,8 +185,10 @@ Built to endure.
 
 </div>
 
-<a href="index.html" class="xera-back">← BACK</a>
+<!-- BACK (ALWAYS SKIPS INTRO) -->
+<a href="index.html?skip=true" class="xera-back">← BACK</a>
 
+<!-- FOOTER -->
 <div class="xera-footer">
 © 2026 XERA. All designs, artwork and concepts are original and protected.
 </div>
