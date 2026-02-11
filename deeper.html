@@ -12,34 +12,29 @@ body {
     background: #000;
     color: #fff;
     font-family: Arial, sans-serif;
-    overflow-x: hidden;
 }
 
 /* =========================
-   BRAND (TOP LEFT)
+   HEADER ELEMENTS (SCROLL WITH PAGE)
 ========================= */
+
 .xera-brand {
-    position: fixed;
+    position: absolute;
     top: 20px;
     left: 20px;
-    z-index: 10000;
     letter-spacing: 3px;
     font-size: 14px;
     color: #fff;
     text-decoration: none;
 }
 
-/* =========================
-   MENU
-========================= */
 .xera-menu-trigger {
-    position: fixed;
+    position: absolute;
     top: 20px;
     right: 20px;
-    z-index: 10000;
-    cursor: pointer;
     letter-spacing: 3px;
     font-size: 14px;
+    cursor: pointer;
     animation: xeraPulse 2s infinite;
 }
 
@@ -48,13 +43,12 @@ body {
 }
 
 .xera-menu-panel {
-    position: fixed;
+    position: absolute;
     top: 45px;
     right: 20px;
     width: 170px;
     text-align: right;
     display: none;
-    z-index: 9999;
 }
 
 .xera-menu-panel a {
@@ -82,13 +76,14 @@ body {
 /* =========================
    MAIN CONTENT
 ========================= */
+
 .xera-main {
-    text-align: center;
-    padding-top: 160px;
-    max-width: 750px;
+    max-width: 760px;
     margin: auto;
+    padding: 160px 30px 140px 30px;
+    text-align: center;
     opacity: 0;
-    transition: opacity 2.5s ease;
+    transition: opacity 1.6s ease;
 }
 
 .xera-main.visible {
@@ -103,24 +98,24 @@ body {
 
 .xera-main p {
     font-size: 16px;
-    letter-spacing: 2.5px;
-    line-height: 1.9;
-    margin: 18px 0;
+    letter-spacing: 2px;
+    line-height: 2.2;
+    margin: 28px 0;
 }
 
 /* =========================
-   BACK
+   BACK LINK
 ========================= */
+
 .xera-back {
-    position: fixed;
-    bottom: 40px;
+    position: absolute;
+    bottom: 60px;
     left: 20px;
     font-size: 11px;
     letter-spacing: 3px;
     color: #777;
     text-decoration: none;
     transition: color 0.3s ease;
-    z-index: 10000;
 }
 
 .xera-back:hover {
@@ -130,19 +125,20 @@ body {
 /* =========================
    FOOTER
 ========================= */
+
 .xera-footer {
-    position: fixed;
-    bottom: 10px;
+    position: absolute;
+    bottom: 20px;
     width: 100%;
     text-align: center;
     font-size: 11px;
     color: #777;
-    z-index: 10000;
 }
 
 /* =========================
    PULSE
 ========================= */
+
 @keyframes xeraPulse {
     0% { opacity: 0.5; }
     50% { opacity: 1; }
@@ -153,7 +149,7 @@ body {
 
 <body>
 
-<a href="index.html" class="xera-brand">XERA</a>
+<a href="index.html?skip=true" class="xera-brand">XERA</a>
 
 <div class="xera-menu-trigger" id="menuTrigger">MENU</div>
 
@@ -166,25 +162,25 @@ body {
 
 <div class="xera-main" id="content">
 
-    <h1>XERA — Event Horizon</h1>
+<h1>XERA — Event Horizon</h1>
 
-    <p>Event Horizon is engineered as a daily-wear instrument.</p>
+<p>Event Horizon is engineered as a daily-wear instrument.</p>
 
-    <p>At its core is the VH31 smooth-sweep quartz movement — chosen for its continuous seconds motion, accuracy, shock resistance, and slimmer case profile. The result is fluid visual movement without unnecessary thickness.</p>
+<p>At its core is the VH31 smooth-sweep quartz movement — chosen for its continuous seconds motion, accuracy, shock resistance, and slimmer case profile. The result is fluid visual movement without unnecessary thickness.</p>
 
-    <p>The case is machined from 316L stainless steel and finished in a uniform bead blast. The matte surface removes glare and visual noise, creating a restrained, cold-engineered aesthetic that allows the dial to remain the focal point.</p>
+<p>The case is machined from 316L stainless steel and finished in a uniform bead blast. The matte surface removes glare and visual noise, creating a restrained, cold-engineered aesthetic that allows the dial to remain the focal point.</p>
 
-    <p>A flat sapphire crystal sits flush above the case. Distortion-free and scratch resistant, it preserves the geometry of the luminous ring with absolute clarity.</p>
+<p>A flat sapphire crystal sits flush above the case. Distortion-free and scratch resistant, it preserves the geometry of the luminous ring with absolute clarity.</p>
 
-    <p>The strap is premium FKM rubber. Denser and more resilient than standard silicone, FKM resists UV, moisture, and temperature variation while maintaining structural integrity and comfort on the wrist.</p>
+<p>The strap is premium FKM rubber. Denser and more resilient than standard silicone, FKM resists UV, moisture, and temperature variation while maintaining structural integrity and comfort on the wrist.</p>
 
-    <p>The engraved caseback completes the construction — precise, permanent, and intentional.</p>
+<p>The engraved caseback completes the construction — precise, permanent, and intentional.</p>
 
-    <p>Every material and finish has been selected to support the concept without distraction.</p>
+<p>Every material and finish has been selected to support the concept without distraction.</p>
 
-    <p><strong>Event Horizon is deliberate.<br>
-    Built to be worn daily.<br>
-    Built to endure.</strong></p>
+<p>Event Horizon is deliberate.<br>
+Built to be worn daily.<br>
+Built to endure.</p>
 
 </div>
 
@@ -197,18 +193,18 @@ body {
 <script>
 const menuTrigger = document.getElementById('menuTrigger');
 const menuPanel = document.getElementById('menuPanel');
-const content = document.getElementById('content');
 
 menuTrigger.addEventListener('click', function() {
     menuPanel.classList.toggle('open');
     menuTrigger.classList.toggle('active');
 });
 
-/* FULL CONTENT FADE IN */
-window.addEventListener('load', function() {
+/* FADE IN AFTER DELAY */
+
+window.addEventListener("load", function() {
     setTimeout(function() {
-        content.classList.add('visible');
-    }, 1800); // small delay before fade
+        document.getElementById("content").classList.add("visible");
+    }, 2200);  // 2 second delay
 });
 </script>
 
