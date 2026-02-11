@@ -15,7 +15,7 @@ body {
 }
 
 /* =========================
-   FIXED HEADER ELEMENTS
+   FIXED HEADER
 ========================= */
 
 .xera-brand {
@@ -33,9 +33,9 @@ body {
     position: fixed;
     top: 20px;
     right: 20px;
-    cursor: pointer;
     letter-spacing: 3px;
     font-size: 14px;
+    cursor: pointer;
     z-index: 1000;
     animation: xeraPulse 2s infinite;
 }
@@ -83,7 +83,7 @@ body {
 .xera-main {
     max-width: 750px;
     margin: auto;
-    padding: 180px 20px 120px 20px;
+    padding: 180px 20px 180px 20px;
     text-align: center;
     line-height: 1.9;
     letter-spacing: 2px;
@@ -101,17 +101,19 @@ body {
 }
 
 /* =========================
-   BACK + FOOTER (FLOWING)
+   FIXED FOOTER SYSTEM
 ========================= */
 
 .xera-back {
-    display: block;
-    margin-top: 80px;
+    position: fixed;
+    bottom: 40px;
+    left: 20px;
     font-size: 11px;
     letter-spacing: 3px;
     color: #777;
     text-decoration: none;
     transition: color 0.3s ease;
+    z-index: 1000;
 }
 
 .xera-back:hover {
@@ -119,9 +121,13 @@ body {
 }
 
 .xera-footer {
-    margin-top: 60px;
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
     font-size: 11px;
     color: #777;
+    z-index: 1000;
 }
 
 /* =========================
@@ -153,43 +159,26 @@ body {
 
 <p>XERA — Event Horizon</p>
 
-<p>
-Event Horizon is engineered as a daily-wear instrument.
-</p>
+<p>Event Horizon is engineered as a daily-wear instrument.</p>
 
-<p>
-At its core is the VH31 smooth-sweep quartz movement — chosen for its continuous seconds motion, accuracy, shock resistance, and slimmer case profile. The result is fluid visual movement without unnecessary thickness.
-</p>
+<p>At its core is the VH31 smooth-sweep quartz movement — chosen for its continuous seconds motion, accuracy, shock resistance, and slimmer case profile. The result is fluid visual movement without unnecessary thickness.</p>
 
-<p>
-The case is machined from 316L stainless steel and finished in a uniform bead blast. The matte surface removes glare and visual noise, creating a restrained, cold-engineered aesthetic that allows the dial to remain the focal point.
-</p>
+<p>The case is machined from 316L stainless steel and finished in a uniform bead blast. The matte surface removes glare and visual noise, creating a restrained, cold-engineered aesthetic that allows the dial to remain the focal point.</p>
 
-<p>
-A flat sapphire crystal sits flush above the case. Distortion-free and scratch resistant, it preserves the geometry of the luminous ring with absolute clarity.
-</p>
+<p>A flat sapphire crystal sits flush above the case. Distortion-free and scratch resistant, it preserves the geometry of the luminous ring with absolute clarity.</p>
 
-<p>
-The strap is premium FKM rubber. Denser and more resilient than standard silicone, FKM resists UV, moisture, and temperature variation while maintaining structural integrity and comfort on the wrist.
-</p>
+<p>The strap is premium FKM rubber. Denser and more resilient than standard silicone, FKM resists UV, moisture, and temperature variation while maintaining structural integrity and comfort on the wrist.</p>
 
-<p>
-The engraved caseback completes the construction — precise, permanent, and intentional.
-</p>
+<p>The engraved caseback completes the construction — precise, permanent, and intentional.</p>
 
-<p>
-Every material and finish has been selected to support the concept without distraction.
-Event Horizon is deliberate.
-Built to be worn daily.
-Built to endure.
-</p>
+<p>Every material and finish has been selected to support the concept without distraction. Event Horizon is deliberate. Built to be worn daily. Built to endure.</p>
+
+</div>
 
 <a href="specifications.html" class="xera-back">← BACK</a>
 
 <div class="xera-footer">
 © 2026 XERA. All designs, artwork and concepts are original and protected.
-</div>
-
 </div>
 
 <script>
@@ -203,11 +192,11 @@ menuTrigger.addEventListener('click', function() {
     menuTrigger.classList.toggle('active');
 });
 
-/* FADE IN (with extra 1 second delay) */
+/* FADE IN (with extra 1s delay) */
 window.addEventListener('load', function() {
     setTimeout(function() {
         document.getElementById('mainContent').classList.add('visible');
-    }, 1800); // 800ms original + extra 1000ms
+    }, 2300);
 });
 
 </script>
