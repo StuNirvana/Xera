@@ -15,28 +15,25 @@ body {
 }
 
 /* =========================
-   FIXED HEADER
+   HEADER (Top of Page)
 ========================= */
 
-.xera-brand {
-    position: fixed;
-    top: 20px;
-    left: 20px;
+.xera-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
     letter-spacing: 3px;
     font-size: 14px;
+}
+
+.xera-brand {
     color: #fff;
     text-decoration: none;
-    z-index: 1000;
 }
 
 .xera-menu-trigger {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    letter-spacing: 3px;
-    font-size: 14px;
     cursor: pointer;
-    z-index: 1000;
     animation: xeraPulse 2s infinite;
 }
 
@@ -45,13 +42,9 @@ body {
 }
 
 .xera-menu-panel {
-    position: fixed;
-    top: 45px;
-    right: 20px;
-    width: 170px;
-    text-align: right;
     display: none;
-    z-index: 999;
+    text-align: right;
+    margin-top: 8px;
 }
 
 .xera-menu-panel a {
@@ -81,39 +74,41 @@ body {
 ========================= */
 
 .xera-main {
-    max-width: 750px;
-    margin: auto;
-    padding: 180px 20px 180px 20px;
-    text-align: center;
-    line-height: 1.9;
-    letter-spacing: 2px;
-    font-size: 17px;
+    max-width: 720px;
+    margin: 120px auto 160px auto;
+    padding: 0 20px;
+    line-height: 1.8;
+    letter-spacing: 1px;
+    font-size: 15px;
     opacity: 0;
-    transition: opacity 1.6s ease;
+    transition: opacity 2.5s ease;
 }
 
 .xera-main.visible {
     opacity: 1;
 }
 
-.xera-main p {
+.xera-main h1 {
+    letter-spacing: 6px;
+    font-size: 24px;
     margin-bottom: 40px;
 }
 
 /* =========================
-   FIXED FOOTER SYSTEM
+   BACK + FOOTER
 ========================= */
 
+.xera-footer-wrap {
+    position: relative;
+    padding: 60px 20px 40px 20px;
+}
+
 .xera-back {
-    position: fixed;
-    bottom: 40px;
-    left: 20px;
     font-size: 11px;
     letter-spacing: 3px;
     color: #777;
     text-decoration: none;
     transition: color 0.3s ease;
-    z-index: 1000;
 }
 
 .xera-back:hover {
@@ -121,13 +116,10 @@ body {
 }
 
 .xera-footer {
-    position: fixed;
-    bottom: 10px;
-    width: 100%;
     text-align: center;
     font-size: 11px;
     color: #777;
-    z-index: 1000;
+    margin-top: 40px;
 }
 
 /* =========================
@@ -144,20 +136,22 @@ body {
 
 <body>
 
-<a href="index.html" class="xera-brand">XERA</a>
-
-<div class="xera-menu-trigger" id="menuTrigger">MENU</div>
-
-<div class="xera-menu-panel" id="menuPanel">
-    <a href="specifications.html">SPECIFICATIONS</a>
-    <a href="story.html">STORY</a>
-    <a href="contact.html">CONTACT</a>
-    <a href="join-launch.html" class="join-launch">JOIN LAUNCH</a>
+<div class="xera-header">
+    <a href="index.html" class="xera-brand">XERA</a>
+    <div>
+        <div class="xera-menu-trigger" id="menuTrigger">MENU</div>
+        <div class="xera-menu-panel" id="menuPanel">
+            <a href="specifications.html">SPECIFICATIONS</a>
+            <a href="story.html">STORY</a>
+            <a href="contact.html">CONTACT</a>
+            <a href="join-launch.html" class="join-launch">JOIN LAUNCH</a>
+        </div>
+    </div>
 </div>
 
 <div class="xera-main" id="mainContent">
 
-<p>XERA — Event Horizon</p>
+<h1>XERA — Event Horizon</h1>
 
 <p>Event Horizon is engineered as a daily-wear instrument.</p>
 
@@ -171,14 +165,19 @@ body {
 
 <p>The engraved caseback completes the construction — precise, permanent, and intentional.</p>
 
-<p>Every material and finish has been selected to support the concept without distraction. Event Horizon is deliberate. Built to be worn daily. Built to endure.</p>
+<p>Every material and finish has been selected to support the concept without distraction.</p>
+
+<p>Event Horizon is deliberate.<br>
+Built to be worn daily.<br>
+Built to endure.</p>
 
 </div>
 
-<a href="specifications.html" class="xera-back">← BACK</a>
-
-<div class="xera-footer">
-© 2026 XERA. All designs, artwork and concepts are original and protected.
+<div class="xera-footer-wrap">
+    <a href="specifications.html" class="xera-back">← BACK</a>
+    <div class="xera-footer">
+        © 2026 XERA. All designs, artwork and concepts are original and protected.
+    </div>
 </div>
 
 <script>
@@ -192,11 +191,11 @@ menuTrigger.addEventListener('click', function() {
     menuTrigger.classList.toggle('active');
 });
 
-/* FADE IN (with extra 1s delay) */
+/* FADE IN AFTER 1 SECOND */
 window.addEventListener('load', function() {
     setTimeout(function() {
         document.getElementById('mainContent').classList.add('visible');
-    }, 2300);
+    }, 1000);
 });
 
 </script>
