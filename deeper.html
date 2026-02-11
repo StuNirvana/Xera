@@ -15,26 +15,28 @@ body {
 }
 
 /* =========================
-   HEADER ELEMENTS (SCROLL WITH PAGE)
+   FIXED HEADER ELEMENTS
 ========================= */
 
 .xera-brand {
-    position: absolute;
+    position: fixed;
     top: 20px;
     left: 20px;
     letter-spacing: 3px;
     font-size: 14px;
     color: #fff;
     text-decoration: none;
+    z-index: 1000;
 }
 
 .xera-menu-trigger {
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
+    cursor: pointer;
     letter-spacing: 3px;
     font-size: 14px;
-    cursor: pointer;
+    z-index: 1000;
     animation: xeraPulse 2s infinite;
 }
 
@@ -43,12 +45,13 @@ body {
 }
 
 .xera-menu-panel {
-    position: absolute;
+    position: fixed;
     top: 45px;
     right: 20px;
     width: 170px;
     text-align: right;
     display: none;
+    z-index: 999;
 }
 
 .xera-menu-panel a {
@@ -78,10 +81,13 @@ body {
 ========================= */
 
 .xera-main {
-    max-width: 760px;
+    max-width: 750px;
     margin: auto;
-    padding: 160px 30px 140px 30px;
+    padding: 180px 20px 120px 20px;
     text-align: center;
+    line-height: 1.9;
+    letter-spacing: 2px;
+    font-size: 17px;
     opacity: 0;
     transition: opacity 1.6s ease;
 }
@@ -90,27 +96,17 @@ body {
     opacity: 1;
 }
 
-.xera-main h1 {
-    font-size: 26px;
-    letter-spacing: 7px;
-    margin-bottom: 60px;
-}
-
 .xera-main p {
-    font-size: 16px;
-    letter-spacing: 2px;
-    line-height: 2.2;
-    margin: 28px 0;
+    margin-bottom: 40px;
 }
 
 /* =========================
-   BACK LINK
+   BACK + FOOTER (FLOWING)
 ========================= */
 
 .xera-back {
-    position: absolute;
-    bottom: 60px;
-    left: 20px;
+    display: block;
+    margin-top: 80px;
     font-size: 11px;
     letter-spacing: 3px;
     color: #777;
@@ -122,15 +118,8 @@ body {
     color: #fff;
 }
 
-/* =========================
-   FOOTER
-========================= */
-
 .xera-footer {
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-    text-align: center;
+    margin-top: 60px;
     font-size: 11px;
     color: #777;
 }
@@ -149,7 +138,7 @@ body {
 
 <body>
 
-<a href="index.html?skip=true" class="xera-brand">XERA</a>
+<a href="index.html" class="xera-brand">XERA</a>
 
 <div class="xera-menu-trigger" id="menuTrigger">MENU</div>
 
@@ -160,29 +149,40 @@ body {
     <a href="join-launch.html" class="join-launch">JOIN LAUNCH</a>
 </div>
 
-<div class="xera-main" id="content">
+<div class="xera-main" id="mainContent">
 
-<h1>XERA — Event Horizon</h1>
+<p>XERA — Event Horizon</p>
 
-<p>Event Horizon is engineered as a daily-wear instrument.</p>
+<p>
+Event Horizon is engineered as a daily-wear instrument.
+</p>
 
-<p>At its core is the VH31 smooth-sweep quartz movement — chosen for its continuous seconds motion, accuracy, shock resistance, and slimmer case profile. The result is fluid visual movement without unnecessary thickness.</p>
+<p>
+At its core is the VH31 smooth-sweep quartz movement — chosen for its continuous seconds motion, accuracy, shock resistance, and slimmer case profile. The result is fluid visual movement without unnecessary thickness.
+</p>
 
-<p>The case is machined from 316L stainless steel and finished in a uniform bead blast. The matte surface removes glare and visual noise, creating a restrained, cold-engineered aesthetic that allows the dial to remain the focal point.</p>
+<p>
+The case is machined from 316L stainless steel and finished in a uniform bead blast. The matte surface removes glare and visual noise, creating a restrained, cold-engineered aesthetic that allows the dial to remain the focal point.
+</p>
 
-<p>A flat sapphire crystal sits flush above the case. Distortion-free and scratch resistant, it preserves the geometry of the luminous ring with absolute clarity.</p>
+<p>
+A flat sapphire crystal sits flush above the case. Distortion-free and scratch resistant, it preserves the geometry of the luminous ring with absolute clarity.
+</p>
 
-<p>The strap is premium FKM rubber. Denser and more resilient than standard silicone, FKM resists UV, moisture, and temperature variation while maintaining structural integrity and comfort on the wrist.</p>
+<p>
+The strap is premium FKM rubber. Denser and more resilient than standard silicone, FKM resists UV, moisture, and temperature variation while maintaining structural integrity and comfort on the wrist.
+</p>
 
-<p>The engraved caseback completes the construction — precise, permanent, and intentional.</p>
+<p>
+The engraved caseback completes the construction — precise, permanent, and intentional.
+</p>
 
-<p>Every material and finish has been selected to support the concept without distraction.</p>
-
-<p>Event Horizon is deliberate.<br>
-Built to be worn daily.<br>
-Built to endure.</p>
-
-</div>
+<p>
+Every material and finish has been selected to support the concept without distraction.
+Event Horizon is deliberate.
+Built to be worn daily.
+Built to endure.
+</p>
 
 <a href="specifications.html" class="xera-back">← BACK</a>
 
@@ -190,7 +190,11 @@ Built to endure.</p>
 © 2026 XERA. All designs, artwork and concepts are original and protected.
 </div>
 
+</div>
+
 <script>
+
+/* MENU */
 const menuTrigger = document.getElementById('menuTrigger');
 const menuPanel = document.getElementById('menuPanel');
 
@@ -199,13 +203,13 @@ menuTrigger.addEventListener('click', function() {
     menuTrigger.classList.toggle('active');
 });
 
-/* FADE IN AFTER DELAY */
-
-window.addEventListener("load", function() {
+/* FADE IN (with extra 1 second delay) */
+window.addEventListener('load', function() {
     setTimeout(function() {
-        document.getElementById("content").classList.add("visible");
-    }, 2200);  // 2 second delay
+        document.getElementById('mainContent').classList.add('visible');
+    }, 1800); // 800ms original + extra 1000ms
 });
+
 </script>
 
 </body>
