@@ -138,6 +138,27 @@ body {
 }
 
 /* =========================
+   FALL DEEPER (BOTTOM RIGHT)
+========================= */
+
+.xera-deeper {
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #cc0000;
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+    z-index: 10000;
+}
+
+.xera-deeper.visible {
+    opacity: 1;
+}
+
+/* =========================
    FOOTER
 ========================= */
 
@@ -190,6 +211,8 @@ body {
 
 <a href="index.html?skip=true" class="xera-back">← BACK</a>
 
+<a href="deeper.html" class="xera-deeper" id="deeperButton">FALL DEEPER</a>
+
 <div class="xera-footer">
 © 2026 XERA. All designs, artwork and concepts are original and protected.
 </div>
@@ -206,6 +229,7 @@ menuTrigger.addEventListener('click', function() {
 /* TYPEWRITER */
 
 const lines = document.querySelectorAll('.spec-line');
+const deeperButton = document.getElementById('deeperButton');
 let lineIndex = 0;
 
 function typeLine(element, text, callback) {
@@ -231,6 +255,10 @@ function startTyping() {
             lineIndex++;
             startTyping();
         });
+    } else {
+        setTimeout(function() {
+            deeperButton.classList.add('visible');
+        }, 2000);
     }
 }
 
