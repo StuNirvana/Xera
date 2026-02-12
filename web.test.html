@@ -104,16 +104,12 @@ body {
     margin-bottom: 30px;
 }
 
-/* Red accent line */
-
 .xera-accent {
     width: 120px;
     height: 2px;
     background: #cc0000;
     margin: 0 auto 50px auto;
 }
-
-/* Typing lines */
 
 .launch-line {
     font-size: 15px;
@@ -128,13 +124,63 @@ body {
     opacity: 1;
 }
 
-/* Red call to action */
-
 .xera-cta {
     margin-top: 40px;
     font-size: 16px;
     letter-spacing: 3px;
     color: #cc0000;
+}
+
+/* =========================
+   MAILERLITE STYLE OVERRIDE
+========================= */
+
+.ml-embedded {
+    margin-top: 80px;
+}
+
+.ml-embedded form {
+    background: transparent !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+}
+
+.ml-embedded h2,
+.ml-embedded p {
+    display: none !important;
+}
+
+.ml-embedded input[type="email"] {
+    width: 100%;
+    max-width: 420px;
+    background: #000 !important;
+    border: 1px solid #333 !important;
+    color: #fff !important;
+    padding: 14px;
+    letter-spacing: 2px;
+    font-size: 14px;
+    margin: 20px auto;
+    display: block;
+}
+
+.ml-embedded input[type="email"]::placeholder {
+    color: #666;
+}
+
+.ml-embedded button {
+    background: transparent !important;
+    border: 1px solid #cc0000 !important;
+    color: #cc0000 !important;
+    padding: 14px 28px !important;
+    letter-spacing: 3px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ml-embedded button:hover {
+    background: #cc0000 !important;
+    color: #000 !important;
 }
 
 /* =========================
@@ -184,11 +230,11 @@ body {
 
 <!-- MailerLite Universal -->
 <script>
-    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-    ml('account', '2110553');
+(function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+.push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+ml('account', '2110553');
 </script>
 <!-- End MailerLite Universal -->
 
@@ -220,9 +266,8 @@ body {
         Be ready at the edge.
     </div>
 
-    <!-- MailerLite Embedded Form -->
+    <!-- MAILERLITE FORM -->
     <div class="ml-embedded" data-form="5RAEYg"></div>
-    <!-- End MailerLite Embedded Form -->
 
 </div>
 
@@ -240,8 +285,6 @@ menuTrigger.addEventListener('click', function() {
     menuPanel.classList.toggle('open');
     menuTrigger.classList.toggle('active');
 });
-
-/* TYPEWRITER */
 
 const lines = document.querySelectorAll('.launch-line');
 let lineIndex = 0;
