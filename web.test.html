@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XERA Watches</title>
+<title>XERA – Join Launch</title>
 
 <style>
 body {
@@ -15,28 +15,30 @@ body {
     overflow-x: hidden;
 }
 
-.page-padding {
-    padding-bottom: 160px;
-}
+/* =========================
+   BRAND
+========================= */
 
-/* BRAND */
 .xera-brand {
     position: fixed;
     top: 20px;
     left: 20px;
-    z-index: 10001;
+    z-index: 10000;
     letter-spacing: 3px;
     font-size: 14px;
     color: #fff;
     text-decoration: none;
 }
 
-/* MENU */
+/* =========================
+   MENU
+========================= */
+
 .xera-menu-trigger {
     position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 10001;
+    z-index: 10000;
     cursor: pointer;
     letter-spacing: 3px;
     font-size: 14px;
@@ -54,7 +56,7 @@ body {
     width: 170px;
     text-align: right;
     display: none;
-    z-index: 10001;
+    z-index: 9999;
 }
 
 .xera-menu-panel a {
@@ -75,134 +77,103 @@ body {
     color: #cc0000 !important;
 }
 
+.xera-menu-panel a.current {
+    color: #555;
+    pointer-events: none;
+    cursor: default;
+}
+
 .xera-menu-panel.open {
     display: block;
 }
 
-/* LOGO INTRO */
-.logo-screen {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    background: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 2s ease;
-    z-index: 10000;
-}
+/* =========================
+   MAIN CONTENT
+========================= */
 
-.logo-screen img {
-    max-width: 320px;
-    width: 80%;
-    height: auto;
-}
-
-.logo-screen.fade-out {
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* HERO */
-.hero {
+.xera-main {
     text-align: center;
-    padding-top: 140px;
-    opacity: 0;
-    transition: opacity 1.4s ease;
+    padding-top: 160px;
+    max-width: 700px;
+    margin: auto;
 }
 
-.hero.visible {
-    opacity: 1;
-}
-
-.hero h1 {
-    font-size: 32px;
-    letter-spacing: 8px;
+.xera-main h1 {
+    font-size: 26px;
+    letter-spacing: 7px;
     margin-bottom: 30px;
 }
 
-.hero img {
-    max-width: 85%;
-    height: auto;
+/* Red accent line */
+
+.xera-accent {
+    width: 120px;
+    height: 2px;
+    background: #cc0000;
+    margin: 0 auto 50px auto;
 }
 
-/* SCROLL CHEVRON */
-.scroll-chevron {
-    position: fixed;
-    bottom: 60px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 18px;
-    color: #999;
+/* Typing lines */
+
+.launch-line {
+    font-size: 15px;
+    letter-spacing: 2px;
+    margin: 16px 0;
+    min-height: 24px;
     opacity: 0;
-    transition: opacity 0.6s ease;
-    z-index: 9999;
-    pointer-events: none;
+    transition: opacity 0.3s ease;
 }
 
-/* DAY / NIGHT */
-.day-night-section {
-    margin: 140px auto 120px auto;
-    width: 92%;
-    max-width: 900px;
-    position: relative;
-}
-
-.day-night-section img {
-    width: 100%;
-    display: block;
-}
-
-.day-night-section img.fade {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 5s ease-in-out;
-}
-
-.day-night-section img.fade.active {
+.launch-line.visible {
     opacity: 1;
 }
 
-/* CASEBACK */
-.caseback-section {
-    text-align: center;
-    margin: 120px 0;
+/* Red call to action */
+
+.xera-cta {
+    margin-top: 40px;
+    font-size: 16px;
+    letter-spacing: 3px;
+    color: #cc0000;
 }
 
-.caseback-section img {
-    width: 63%;
-    max-width: 700px;
-    height: auto;
+/* =========================
+   BACK
+========================= */
+
+.xera-back {
+    position: fixed;
+    bottom: 40px;
+    left: 20px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #777;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    z-index: 10000;
 }
 
-/* BOOKEND */
-.logo-bookend {
-    text-align: center;
-    margin: 120px 0 40px 0;
+.xera-back:hover {
+    color: #fff;
 }
 
-.logo-bookend img {
-    width: 55%;
-    max-width: 220px;
-    height: auto;
-    opacity: 0;
-    transition: opacity 18s cubic-bezier(0.22, 1, 0.36, 1);
-}
+/* =========================
+   FOOTER
+========================= */
 
-/* FOOTER */
-footer {
+.xera-footer {
     position: fixed;
     bottom: 10px;
-    left: 0;
     width: 100%;
     text-align: center;
-    font-size: 12px;
+    font-size: 11px;
     color: #777;
-    z-index: 10002;
-    pointer-events: none;
+    z-index: 10000;
 }
+
+/* =========================
+   PULSE
+========================= */
 
 @keyframes xeraPulse {
     0% { opacity: 0.5; }
@@ -210,11 +181,22 @@ footer {
     100% { opacity: 0.5; }
 }
 </style>
+
+<!-- MailerLite Universal -->
+<script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '2110553');
+</script>
+<!-- End MailerLite Universal -->
+
 </head>
 
 <body>
 
-<a href="index.html?skip=true" class="xera-brand">XERA</a>
+<a href="index.html" class="xera-brand">XERA</a>
 
 <div class="xera-menu-trigger" id="menuTrigger">MENU</div>
 
@@ -222,117 +204,77 @@ footer {
     <a href="specifications.html">SPECIFICATIONS</a>
     <a href="story.html">STORY</a>
     <a href="contact.html">CONTACT</a>
-    <a href="join-launch.html" class="join-launch">JOIN LAUNCH</a>
+    <a href="join-launch.html" class="join-launch current">JOIN LAUNCH</a>
 </div>
 
-<div class="logo-screen" id="logoScreen">
-    <img src="xera-logo.jpg" alt="XERA Logo">
-</div>
+<div class="xera-main">
+    <h1>JOIN LAUNCH</h1>
 
-<div class="scroll-chevron" id="scrollChevron">⌄</div>
+    <div class="xera-accent"></div>
 
-<div class="page-padding">
+    <div class="launch-line" data-text="XERA will launch in limited batches."></div>
+    <div class="launch-line" data-text="Early access will be offered before public release."></div>
+    <div class="launch-line" data-text="Details and registration information will be published soon."></div>
 
-    <div class="hero" id="heroSection">
-        <h1>EVENT HORIZON</h1>
-        <img src="xera-event-horizon.jpg" alt="Event Horizon Watch">
+    <div class="xera-cta">
+        Be ready at the edge.
     </div>
 
-    <div class="day-night-section">
-        <img src="watch-day.jpg" alt="Watch Day">
-        <img src="watch-night.jpg" class="fade" id="nightImage" alt="Watch Night">
-    </div>
-
-    <div class="caseback-section">
-        <img src="caseback-image.jpg" alt="XERA Event Horizon Caseback">
-    </div>
-
-    <div class="logo-bookend" id="bookendTrigger">
-        <img src="xera-logo.jpg" alt="XERA Logo Bookend" id="bookendLogo">
-    </div>
+    <!-- MailerLite Embedded Form -->
+    <div class="ml-embedded" data-form="5RAEYg"></div>
+    <!-- End MailerLite Embedded Form -->
 
 </div>
 
-<footer>
+<a href="index.html?skip=true" class="xera-back">← BACK</a>
+
+<div class="xera-footer">
 © 2026 XERA. All designs, artwork and concepts are original and protected.
-</footer>
+</div>
 
 <script>
-
-/* MENU */
 const menuTrigger = document.getElementById('menuTrigger');
 const menuPanel = document.getElementById('menuPanel');
+
 menuTrigger.addEventListener('click', function() {
     menuPanel.classList.toggle('open');
     menuTrigger.classList.toggle('active');
 });
 
-/* INTRO */
-const logoScreen = document.getElementById("logoScreen");
-const hero = document.getElementById("heroSection");
-const scrollChevron = document.getElementById("scrollChevron");
-const params = new URLSearchParams(window.location.search);
-const skipIntro = params.get("skip") === "true";
+/* TYPEWRITER */
 
-function showChevronAfterHero() {
-    setTimeout(function() {
-        if (window.scrollY < 120) {
-            scrollChevron.style.opacity = "1";
+const lines = document.querySelectorAll('.launch-line');
+let lineIndex = 0;
+
+function typeLine(element, text, callback) {
+    element.classList.add('visible');
+    let i = 0;
+    function typing() {
+        if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(typing, 55);
+        } else {
+            setTimeout(callback, 500);
         }
-    }, 3000);
-}
-
-if (skipIntro) {
-    logoScreen.style.display = "none";
-    hero.classList.add("visible");
-    showChevronAfterHero();
-} else {
-    setTimeout(function() {
-        logoScreen.classList.add("fade-out");
-
-        setTimeout(function() {
-            hero.classList.add("visible");
-            showChevronAfterHero();
-        }, 2500); // 2s fade + 0.5 buffer
-
-    }, 1500); // logo hold
-}
-
-/* DAY/NIGHT */
-const nightImage = document.getElementById("nightImage");
-let showingNight = false;
-function switchImage() {
-    nightImage.classList.toggle("active");
-}
-setInterval(switchImage, 7000);
-
-/* CHEVRON DISAPPEAR */
-window.addEventListener("scroll", function() {
-    if (window.scrollY > 120) {
-        scrollChevron.style.opacity = "0";
     }
+    typing();
+}
+
+function startTyping() {
+    if (lineIndex < lines.length) {
+        const line = lines[lineIndex];
+        const text = line.getAttribute('data-text');
+        typeLine(line, text, function() {
+            lineIndex++;
+            startTyping();
+        });
+    }
+}
+
+window.addEventListener('load', function() {
+    setTimeout(startTyping, 800);
 });
-
-/* BOOKEND */
-const bookendLogo = document.getElementById("bookendLogo");
-const bookendTrigger = document.getElementById("bookendTrigger");
-let revealed = false;
-
-function checkBookendFade() {
-    if (revealed) return;
-    const rect = bookendTrigger.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 1.1) {
-        revealed = true;
-        setTimeout(() => {
-            bookendLogo.style.opacity = "1";
-        }, 3000);
-        window.removeEventListener("scroll", checkBookendFade);
-    }
-}
-
-window.addEventListener("scroll", checkBookendFade);
-window.addEventListener("load", checkBookendFade);
-
 </script>
 
 </body>
