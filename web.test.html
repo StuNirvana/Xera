@@ -15,9 +15,7 @@ body {
     overflow-x: hidden;
 }
 
-/* =========================
-   BRAND
-========================= */
+/* BRAND */
 
 .xera-brand {
     position: fixed;
@@ -30,9 +28,7 @@ body {
     text-decoration: none;
 }
 
-/* =========================
-   MENU
-========================= */
+/* MENU */
 
 .xera-menu-trigger {
     position: fixed;
@@ -80,24 +76,19 @@ body {
 .xera-menu-panel a.current {
     color: #555;
     pointer-events: none;
-    cursor: default;
 }
 
 .xera-menu-panel.open {
     display: block;
 }
 
-/* =========================
-   MAIN CONTENT
-========================= */
+/* MAIN */
 
 .xera-main {
     text-align: center;
     padding-top: 160px;
     max-width: 700px;
     margin: auto;
-    padding-left: 16px;
-    padding-right: 16px;
 }
 
 .xera-main h1 {
@@ -106,16 +97,12 @@ body {
     margin-bottom: 30px;
 }
 
-/* Red accent line */
-
 .xera-accent {
     width: 120px;
     height: 2px;
     background: #cc0000;
     margin: 0 auto 50px auto;
 }
-
-/* Typing lines */
 
 .launch-line {
     font-size: 15px;
@@ -130,8 +117,6 @@ body {
     opacity: 1;
 }
 
-/* Red call to action */
-
 .xera-cta {
     margin-top: 40px;
     font-size: 16px;
@@ -139,137 +124,55 @@ body {
     color: #cc0000;
 }
 
-/* =========================
-   MAILERLITE EMBED WRAPPER
-========================= */
+/* EMAIL BUTTON */
 
-.xera-ml-wrap {
-    margin: 80px auto 120px auto;
-    max-width: 520px;
-    padding: 0 16px;
-}
-
-/* =========================
-   MAILERLITE STYLE OVERRIDE
-   (force it into XERA aesthetic)
-========================= */
-
-.ml-embedded,
-.ml-embedded * {
-    background: transparent !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-}
-
-.ml-embedded {
-    margin: 0 auto !important;
-}
-
-/* Kill their default headings/paragraphs if they appear */
-.ml-embedded h1,
-.ml-embedded h2,
-.ml-embedded h3,
-.ml-embedded p {
-    display: none !important;
-}
-
-/* Some MailerLite forms wrap content in extra containers */
-.ml-embedded > div,
-.ml-embedded form,
-.ml-embedded .ml-form-embedContainer,
-.ml-embedded .ml-form-embedWrapper,
-.ml-embedded .ml-form-embedBody,
-.ml-embedded .ml-form-embedContent,
-.ml-embedded .ml-form-embedSubmit,
-.ml-embedded .ml-form-formContent,
-.ml-embedded .ml-form-successBody,
-.ml-embedded .ml-form-successContent {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-
-/* Inputs */
-.ml-embedded input[type="email"],
-.ml-embedded input[type="text"],
-.ml-embedded input[type="tel"] {
-    width: 100% !important;
-    max-width: 420px !important;
-    background: #000 !important;
-    border: 1px solid #333 !important;
-    color: #fff !important;
-    padding: 14px !important;
-    letter-spacing: 2px !important;
-    font-size: 14px !important;
-    margin: 20px auto !important;
-    display: block !important;
-    outline: none !important;
-}
-
-.ml-embedded input::placeholder {
-    color: #555 !important;
-}
-
-/* Button */
-.ml-embedded button,
-.ml-embedded input[type="submit"] {
-    background: transparent !important;
-    border: 1px solid #cc0000 !important;
-    color: #cc0000 !important;
-    padding: 14px 28px !important;
-    letter-spacing: 3px !important;
-    font-size: 13px !important;
-    cursor: pointer !important;
-    transition: all 0.3s ease !important;
-    display: inline-block !important;
-    width: auto !important;
-}
-
-.ml-embedded button:hover,
-.ml-embedded input[type="submit"]:hover {
-    background: #cc0000 !important;
-    color: #000 !important;
-}
-
-/* Success message (when they subscribe) */
-.ml-embedded .ml-form-successBody,
-.ml-embedded .ml-form-successContent,
-.ml-embedded .ml-form-successContent * {
-    background: transparent !important;
-    color: #fff !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-
-.ml-embedded .ml-form-successContent {
-    letter-spacing: 2px !important;
-    font-size: 14px !important;
-    line-height: 1.6 !important;
-}
-
-/* =========================
-   BACK
-========================= */
-
-.xera-back {
-    position: fixed;
-    bottom: 40px;
-    left: 20px;
-    font-size: 11px;
+.launch-button {
+    margin-top: 60px;
+    display: inline-block;
+    padding: 14px 40px;
+    border: 1px solid #cc0000;
+    color: #cc0000;
     letter-spacing: 3px;
-    color: #777;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    z-index: 10000;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.xera-back:hover {
+.launch-button:hover {
+    background: #cc0000;
+    color: #000;
+}
+
+/* OVERLAY */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    display: none;
+    z-index: 20000;
+}
+
+.overlay iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.overlay-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 14px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.overlay-close:hover {
     color: #fff;
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 
 .xera-footer {
     position: fixed;
@@ -278,47 +181,16 @@ body {
     text-align: center;
     font-size: 11px;
     color: #777;
-    z-index: 10000;
 }
 
-/* =========================
-   PULSE
-========================= */
+/* PULSE */
 
 @keyframes xeraPulse {
     0% { opacity: 0.5; }
     50% { opacity: 1; }
     100% { opacity: 0.5; }
 }
-
-/* =========================
-   MOBILE TWEAKS
-========================= */
-@media (max-width: 420px) {
-    .xera-main h1 {
-        font-size: 22px;
-        letter-spacing: 6px;
-    }
-    .launch-line {
-        font-size: 14px;
-        letter-spacing: 1.6px;
-    }
-    .xera-cta {
-        font-size: 15px;
-    }
-}
 </style>
-
-<!-- MailerLite Universal -->
-<script>
-    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-    ml('account', '2110553');
-</script>
-<!-- End MailerLite Universal -->
-
 </head>
 
 <body>
@@ -336,13 +208,7 @@ body {
 
 <div class="xera-main">
     <h1>JOIN LAUNCH</h1>
-
     <div class="xera-accent"></div>
-
-    <!-- ==========================================
-         EDIT TEXT BELOW ONLY
-         You may change text inside data-text=""
-         ========================================== -->
 
     <div class="launch-line" data-text="XERA will launch in limited batches."></div>
     <div class="launch-line" data-text="Early access will be offered before public release."></div>
@@ -352,22 +218,24 @@ body {
         Be ready at the edge.
     </div>
 
-    <!-- ========================================== -->
-
-    <!-- MailerLite embed -->
-    <div class="xera-ml-wrap">
-        <div class="ml-embedded" data-form="5RAEYg"></div>
+    <div class="launch-button" onclick="openOverlay()">
+        ENTER EMAIL
     </div>
-
 </div>
 
-<a href="index.html?skip=true" class="xera-back">← BACK</a>
+<div class="overlay" id="overlay">
+    <div class="overlay-close" onclick="closeOverlay()">CLOSE</div>
+    <iframe src="https://preview.mailerlite.io/forms/2110553/17923261398726311/share"></iframe>
+</div>
 
 <div class="xera-footer">
 © 2026 XERA. All designs, artwork and concepts are original and protected.
 </div>
 
 <script>
+
+/* MENU */
+
 const menuTrigger = document.getElementById('menuTrigger');
 const menuPanel = document.getElementById('menuPanel');
 
@@ -410,6 +278,17 @@ function startTyping() {
 window.addEventListener('load', function() {
     setTimeout(startTyping, 800);
 });
+
+/* OVERLAY */
+
+function openOverlay() {
+    document.getElementById('overlay').style.display = 'block';
+}
+
+function closeOverlay() {
+    document.getElementById('overlay').style.display = 'none';
+}
+
 </script>
 
 </body>
