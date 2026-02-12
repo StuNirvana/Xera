@@ -6,6 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>XERA – Join Launch</title>
 
+<!-- MailerLite Universal (REQUIRED ONCE PER PAGE) -->
+<script>
+(function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+.push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+ml('account', '2110553');
+</script>
+
 <style>
 body {
     margin: 0;
@@ -16,7 +25,6 @@ body {
 }
 
 /* BRAND */
-
 .xera-brand {
     position: fixed;
     top: 20px;
@@ -29,7 +37,6 @@ body {
 }
 
 /* MENU */
-
 .xera-menu-trigger {
     position: fixed;
     top: 20px;
@@ -83,7 +90,6 @@ body {
 }
 
 /* MAIN */
-
 .xera-main {
     text-align: center;
     padding-top: 160px;
@@ -124,8 +130,7 @@ body {
     color: #cc0000;
 }
 
-/* EMAIL BUTTON */
-
+/* BUTTON */
 .launch-button {
     margin-top: 60px;
     display: inline-block;
@@ -143,19 +148,14 @@ body {
 }
 
 /* OVERLAY */
-
 .overlay {
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.95);
     display: none;
     z-index: 20000;
-}
-
-.overlay iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
+    padding-top: 120px;
+    text-align: center;
 }
 
 .overlay-close {
@@ -172,8 +172,31 @@ body {
     color: #fff;
 }
 
-/* FOOTER */
+/* FORCE MAILERLITE FORM STYLING */
+.ml-embedded {
+    max-width: 400px;
+    margin: auto;
+}
 
+.ml-embedded input {
+    width: 100% !important;
+    padding: 12px !important;
+    background: #111 !important;
+    border: 1px solid #cc0000 !important;
+    color: #fff !important;
+}
+
+.ml-embedded button {
+    width: 100% !important;
+    margin-top: 15px !important;
+    padding: 12px !important;
+    background: #cc0000 !important;
+    border: none !important;
+    color: #000 !important;
+    letter-spacing: 2px !important;
+}
+
+/* FOOTER */
 .xera-footer {
     position: fixed;
     bottom: 10px;
@@ -184,7 +207,6 @@ body {
 }
 
 /* PULSE */
-
 @keyframes xeraPulse {
     0% { opacity: 0.5; }
     50% { opacity: 1; }
@@ -214,18 +236,15 @@ body {
     <div class="launch-line" data-text="Early access will be offered before public release."></div>
     <div class="launch-line" data-text="Details and registration information will be published soon."></div>
 
-    <div class="xera-cta">
-        Be ready at the edge.
-    </div>
+    <div class="xera-cta">Be ready at the edge.</div>
 
-    <div class="launch-button" onclick="openOverlay()">
-        ENTER EMAIL
-    </div>
+    <div class="launch-button" onclick="openOverlay()">ENTER EMAIL</div>
 </div>
 
+<!-- OVERLAY -->
 <div class="overlay" id="overlay">
     <div class="overlay-close" onclick="closeOverlay()">CLOSE</div>
-    <iframe src="https://preview.mailerlite.io/forms/2110553/17923261398726311/share"></iframe>
+    <div class="ml-embedded" data-form="5RAEYg"></div>
 </div>
 
 <div class="xera-footer">
@@ -235,7 +254,6 @@ body {
 <script>
 
 /* MENU */
-
 const menuTrigger = document.getElementById('menuTrigger');
 const menuPanel = document.getElementById('menuPanel');
 
@@ -245,7 +263,6 @@ menuTrigger.addEventListener('click', function() {
 });
 
 /* TYPEWRITER */
-
 const lines = document.querySelectorAll('.launch-line');
 let lineIndex = 0;
 
@@ -280,7 +297,6 @@ window.addEventListener('load', function() {
 });
 
 /* OVERLAY */
-
 function openOverlay() {
     document.getElementById('overlay').style.display = 'block';
 }
