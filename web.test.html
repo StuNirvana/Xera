@@ -196,6 +196,23 @@ body {
     letter-spacing: 2px !important;
 }
 
+/* BACK BUTTON (BOTTOM LEFT) */
+.xera-back {
+    position: fixed;
+    bottom: 10px;
+    left: 20px;
+    z-index: 10000;
+    letter-spacing: 3px;
+    font-size: 12px;
+    color: #777;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.xera-back:hover {
+    color: #fff;
+}
+
 /* FOOTER */
 .xera-footer {
     position: fixed;
@@ -232,9 +249,10 @@ body {
     <h1>JOIN LAUNCH</h1>
     <div class="xera-accent"></div>
 
-    <div class="launch-line" data-text="XERA will launch in limited batches."></div>
-    <div class="launch-line" data-text="Early access will be offered before public release."></div>
-    <div class="launch-line" data-text="Details and registration information will be published soon."></div>
+    <div class="launch-line" data-text="XERA will launch in limited production batches."></div>
+    <div class="launch-line" data-text="Early subscribers will receive first access and preferential launch pricing before public release."></div>
+    <div class="launch-line" data-text="Allocation will be limited."></div>
+    <div class="launch-line" data-text="Private launch details will be shared by email."></div>
 
     <div class="xera-cta">Be ready at the edge.</div>
 
@@ -246,6 +264,8 @@ body {
     <div class="overlay-close" onclick="closeOverlay()">CLOSE</div>
     <div class="ml-embedded" data-form="5RAEYg"></div>
 </div>
+
+<a href="index.html" class="xera-back">BACK</a>
 
 <div class="xera-footer">
 © 2026 XERA. All designs, artwork and concepts are original and protected.
