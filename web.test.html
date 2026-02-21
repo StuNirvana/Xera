@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>XERA – Join Launch</title>
 
-<!-- MailerLite Universal (REQUIRED ONCE PER PAGE) -->
+<!-- MailerLite Universal -->
 <script>
 (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
 .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
@@ -172,7 +172,7 @@ body {
     color: #fff;
 }
 
-/* FORCE MAILERLITE FORM STYLING */
+/* MAILERLITE FORM */
 .ml-embedded {
     max-width: 400px;
     margin: auto;
@@ -196,10 +196,10 @@ body {
     letter-spacing: 2px !important;
 }
 
-/* BACK BUTTON (BOTTOM LEFT) */
+/* BACK BUTTON (FIXED ABOVE FOOTER) */
 .xera-back {
     position: fixed;
-    bottom: 10px;
+    bottom: 40px; /* lifted so it no longer overlaps footer */
     left: 20px;
     z-index: 10000;
     letter-spacing: 3px;
@@ -272,8 +272,6 @@ body {
 </div>
 
 <script>
-
-/* MENU */
 const menuTrigger = document.getElementById('menuTrigger');
 const menuPanel = document.getElementById('menuPanel');
 
@@ -282,7 +280,6 @@ menuTrigger.addEventListener('click', function() {
     menuTrigger.classList.toggle('active');
 });
 
-/* TYPEWRITER */
 const lines = document.querySelectorAll('.launch-line');
 let lineIndex = 0;
 
@@ -316,7 +313,6 @@ window.addEventListener('load', function() {
     setTimeout(startTyping, 800);
 });
 
-/* OVERLAY */
 function openOverlay() {
     document.getElementById('overlay').style.display = 'block';
 }
@@ -324,7 +320,6 @@ function openOverlay() {
 function closeOverlay() {
     document.getElementById('overlay').style.display = 'none';
 }
-
 </script>
 
 </body>
