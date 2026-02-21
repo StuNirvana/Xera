@@ -1,10 +1,20 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>XERA – Join Launch</title>
+
+<!-- MailerLite Universal -->
+<script>
+(function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+.push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+ml('account', '2110553');
+</script>
 
 <style>
 body {
@@ -15,10 +25,7 @@ body {
     overflow-x: hidden;
 }
 
-/* =========================
-   BRAND
-========================= */
-
+/* BRAND */
 .xera-brand {
     position: fixed;
     top: 20px;
@@ -30,10 +37,7 @@ body {
     text-decoration: none;
 }
 
-/* =========================
-   MENU
-========================= */
-
+/* MENU */
 .xera-menu-trigger {
     position: fixed;
     top: 20px;
@@ -80,20 +84,16 @@ body {
 .xera-menu-panel a.current {
     color: #555;
     pointer-events: none;
-    cursor: default;
 }
 
 .xera-menu-panel.open {
     display: block;
 }
 
-/* =========================
-   MAIN CONTENT
-========================= */
-
+/* MAIN */
 .xera-main {
     text-align: center;
-    padding-top: 160px;
+    padding-top: 130px;
     max-width: 700px;
     margin: auto;
 }
@@ -104,16 +104,12 @@ body {
     margin-bottom: 30px;
 }
 
-/* Red accent line */
-
 .xera-accent {
     width: 120px;
     height: 2px;
     background: #cc0000;
     margin: 0 auto 50px auto;
 }
-
-/* Typing lines */
 
 .launch-line {
     font-size: 15px;
@@ -128,8 +124,6 @@ body {
     opacity: 1;
 }
 
-/* Red call to action */
-
 .xera-cta {
     margin-top: 40px;
     font-size: 16px;
@@ -137,30 +131,90 @@ body {
     color: #cc0000;
 }
 
-/* =========================
-   BACK
-========================= */
+/* BUTTON */
+.launch-button {
+    margin-top: 60px;
+    display: inline-block;
+    padding: 14px 40px;
+    border: 1px solid #cc0000;
+    color: #cc0000;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
 
+.launch-button:hover {
+    background: #cc0000;
+    color: #000;
+}
+
+/* OVERLAY */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    display: none;
+    z-index: 20000;
+    padding-top: 120px;
+    text-align: center;
+}
+
+.overlay-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 14px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.overlay-close:hover {
+    color: #fff;
+}
+
+/* MAILERLITE FORM */
+.ml-embedded {
+    max-width: 400px;
+    margin: auto;
+}
+
+.ml-embedded input {
+    width: 100% !important;
+    padding: 12px !important;
+    background: #111 !important;
+    border: 1px solid #cc0000 !important;
+    color: #fff !important;
+}
+
+.ml-embedded button {
+    width: 100% !important;
+    margin-top: 15px !important;
+    padding: 12px !important;
+    background: #cc0000 !important;
+    border: none !important;
+    color: #000 !important;
+    letter-spacing: 2px !important;
+}
+
+/* BACK BUTTON (FIXED ABOVE FOOTER) */
 .xera-back {
     position: fixed;
-    bottom: 40px;
+    bottom: 40px; /* lifted so it no longer overlaps footer */
     left: 20px;
-    font-size: 11px;
+    z-index: 10000;
     letter-spacing: 3px;
+    font-size: 12px;
     color: #777;
     text-decoration: none;
     transition: color 0.3s ease;
-    z-index: 10000;
 }
 
 .xera-back:hover {
     color: #fff;
 }
 
-/* =========================
-   FOOTER
-========================= */
-
+/* FOOTER */
 .xera-footer {
     position: fixed;
     bottom: 10px;
@@ -168,13 +222,9 @@ body {
     text-align: center;
     font-size: 11px;
     color: #777;
-    z-index: 10000;
 }
 
-/* =========================
-   PULSE
-========================= */
-
+/* PULSE */
 @keyframes xeraPulse {
     0% { opacity: 0.5; }
     50% { opacity: 1; }
@@ -198,27 +248,25 @@ body {
 
 <div class="xera-main">
     <h1>JOIN LAUNCH</h1>
-
     <div class="xera-accent"></div>
 
-    <!-- ==========================================
-         EDIT TEXT BELOW ONLY
-         You may change text inside data-text=""
-         ========================================== -->
+    <div class="launch-line" data-text="XERA will launch in limited production batches."></div>
+    <div class="launch-line" data-text="Early subscribers will receive first access and preferential launch pricing before public release."></div>
+    <div class="launch-line" data-text="Allocation will be limited."></div>
+    <div class="launch-line" data-text="Private launch details will be shared by email."></div>
 
-    <div class="launch-line" data-text="XERA will launch in limited batches."></div>
-    <div class="launch-line" data-text="Early access will be offered before public release."></div>
-    <div class="launch-line" data-text="Details and registration information will be published soon."></div>
+    <div class="xera-cta">Be ready at the edge.</div>
 
-    <div class="xera-cta">
-        Be ready at the edge.
-    </div>
-
-    <!-- ========================================== -->
-
+    <div class="launch-button" onclick="openOverlay()">ENTER EMAIL</div>
 </div>
 
-<a href="index.html?skip=true" class="xera-back">← BACK</a>
+<!-- OVERLAY -->
+<div class="overlay" id="overlay">
+    <div class="overlay-close" onclick="closeOverlay()">CLOSE</div>
+    <div class="ml-embedded" data-form="5RAEYg"></div>
+</div>
+
+<a href="index.html" class="xera-back">BACK</a>
 
 <div class="xera-footer">
 © 2026 XERA. All designs, artwork and concepts are original and protected.
@@ -232,8 +280,6 @@ menuTrigger.addEventListener('click', function() {
     menuPanel.classList.toggle('open');
     menuTrigger.classList.toggle('active');
 });
-
-/* TYPEWRITER */
 
 const lines = document.querySelectorAll('.launch-line');
 let lineIndex = 0;
@@ -267,6 +313,14 @@ function startTyping() {
 window.addEventListener('load', function() {
     setTimeout(startTyping, 800);
 });
+
+function openOverlay() {
+    document.getElementById('overlay').style.display = 'block';
+}
+
+function closeOverlay() {
+    document.getElementById('overlay').style.display = 'none';
+}
 </script>
 
 </body>
