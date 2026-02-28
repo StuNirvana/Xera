@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -197,10 +196,10 @@ body {
     letter-spacing: 2px !important;
 }
 
-/* BACK BUTTON (FIXED ABOVE FOOTER) */
+/* BACK BUTTON */
 .xera-back {
     position: fixed;
-    bottom: 40px; /* lifted so it no longer overlaps footer */
+    bottom: 40px;
     left: 20px;
     z-index: 10000;
     letter-spacing: 3px;
@@ -247,23 +246,29 @@ body {
 </div>
 
 <div class="xera-main">
-    <h1>JOIN LAUNCH</h1>
-    <div class="xera-accent"></div>
 
-    <div class="launch-line" data-text="XERA will launch in limited production batches."></div>
-    <div class="launch-line" data-text="Early subscribers will receive first access and preferential launch pricing before public release."></div>
-    <div class="launch-line" data-text="Allocation will be limited."></div>
-    <div class="launch-line" data-text="Private launch details will be shared by email."></div>
+<h1>JOIN LAUNCH</h1>
+<div class="xera-accent"></div>
 
-    <div class="xera-cta">Be ready at the edge.</div>
+<div class="launch-line" data-text="XERA will launch in limited production batches."></div>
 
-    <div class="launch-button" onclick="openOverlay()">ENTER EMAIL</div>
+<div class="launch-line" data-text="Early subscribers will receive first access and preferential launch pricing before public release."></div>
+
+<div class="launch-line" data-text="Allocation will be limited."></div>
+
+<div class="launch-line" data-text="Private launch details will be shared by email."></div>
+
+<div class="launch-line" data-text="Expected launch price approximately £229."></div>
+
+<div class="xera-cta">Be ready at the edge.</div>
+
+<div class="launch-button" onclick="openOverlay()">ENTER EMAIL</div>
+
 </div>
 
-<!-- OVERLAY -->
 <div class="overlay" id="overlay">
-    <div class="overlay-close" onclick="closeOverlay()">CLOSE</div>
-    <div class="ml-embedded" data-form="5RAEYg"></div>
+<div class="overlay-close" onclick="closeOverlay()">CLOSE</div>
+<div class="ml-embedded" data-form="5RAEYg"></div>
 </div>
 
 <a href="index.html" class="xera-back">BACK</a>
@@ -273,54 +278,58 @@ body {
 </div>
 
 <script>
+
 const menuTrigger = document.getElementById('menuTrigger');
 const menuPanel = document.getElementById('menuPanel');
 
 menuTrigger.addEventListener('click', function() {
-    menuPanel.classList.toggle('open');
-    menuTrigger.classList.toggle('active');
+menuPanel.classList.toggle('open');
+menuTrigger.classList.toggle('active');
 });
 
 const lines = document.querySelectorAll('.launch-line');
 let lineIndex = 0;
 
 function typeLine(element, text, callback) {
-    element.classList.add('visible');
-    let i = 0;
-    function typing() {
-        if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            setTimeout(typing, 55);
-        } else {
-            setTimeout(callback, 500);
-        }
-    }
-    typing();
+element.classList.add('visible');
+let i = 0;
+function typing() {
+if (i < text.length) {
+element.textContent += text.charAt(i);
+i++;
+setTimeout(typing, 55);
+}
+else {
+setTimeout(callback, 500);
+}
+}
+typing();
 }
 
 function startTyping() {
-    if (lineIndex < lines.length) {
-        const line = lines[lineIndex];
-        const text = line.getAttribute('data-text');
-        typeLine(line, text, function() {
-            lineIndex++;
-            startTyping();
-        });
-    }
+if (lineIndex < lines.length) {
+const line = lines[lineIndex];
+const text = line.getAttribute('data-text');
+
+typeLine(line, text, function() {
+lineIndex++;
+startTyping();
+});
+}
 }
 
 window.addEventListener('load', function() {
-    setTimeout(startTyping, 800);
+setTimeout(startTyping, 800);
 });
 
 function openOverlay() {
-    document.getElementById('overlay').style.display = 'block';
+document.getElementById('overlay').style.display = 'block';
 }
 
 function closeOverlay() {
-    document.getElementById('overlay').style.display = 'none';
+document.getElementById('overlay').style.display = 'none';
 }
+
 </script>
 
 </body>
