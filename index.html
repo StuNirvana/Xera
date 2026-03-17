@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -244,4 +243,96 @@ footer {
     </div>
 
     <div class="caseback-section">
-        <img src
+        <img src="caseback-image.jpg" alt="XERA Event Horizon Caseback">
+    </div>
+
+    <div class="logo-bookend" id="bookendTrigger">
+        <img src="xera-logo.jpg" alt="XERA Logo Bookend" id="bookendLogo">
+    </div>
+
+</div>
+
+<footer>
+© 2026 XERA. All designs, artwork and concepts are original and protected.
+</footer>
+
+<script>
+const menuTrigger = document.getElementById('menuTrigger');
+const menuPanel = document.getElementById('menuPanel');
+
+menuTrigger.addEventListener('click', function() {
+    menuPanel.classList.toggle('open');
+    menuTrigger.classList.toggle('active');
+});
+
+const logoScreen = document.getElementById("logoScreen");
+const hero = document.getElementById("heroSection");
+const scrollChevron = document.getElementById("scrollChevron");
+
+const params = new URLSearchParams(window.location.search);
+const skipIntro = params.get("skip") === "true";
+
+function showChevronAfterHero() {
+    setTimeout(function() {
+        if (window.scrollY < 120) {
+            scrollChevron.style.opacity = "1";
+        }
+    }, 3000);
+}
+
+if (skipIntro) {
+    logoScreen.style.display = "none";
+    hero.classList.add("visible");
+    showChevronAfterHero();
+} else {
+    setTimeout(function() {
+        logoScreen.classList.add("fade-out");
+
+        setTimeout(function() {
+            hero.classList.add("visible");
+            showChevronAfterHero();
+        }, 2500);
+
+    }, 1500);
+}
+
+const nightImage = document.getElementById("nightImage");
+
+function switchImage() {
+    nightImage.classList.toggle("active");
+}
+
+setInterval(switchImage, 7000);
+
+window.addEventListener("scroll", function() {
+    if (window.scrollY > 120) {
+        scrollChevron.style.opacity = "0";
+    }
+});
+
+const bookendLogo = document.getElementById("bookendLogo");
+const bookendTrigger = document.getElementById("bookendTrigger");
+let revealed = false;
+
+function checkBookendFade() {
+    if (revealed) return;
+
+    const rect = bookendTrigger.getBoundingClientRect();
+
+    if (rect.top < window.innerHeight * 1.1) {
+        revealed = true;
+
+        setTimeout(() => {
+            bookendLogo.style.opacity = "1";
+        }, 3000);
+
+        window.removeEventListener("scroll", checkBookendFade);
+    }
+}
+
+window.addEventListener("scroll", checkBookendFade);
+window.addEventListener("load", checkBookendFade);
+</script>
+
+</body>
+</html>
