@@ -1,4 +1,4 @@
-
+HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -179,6 +179,28 @@ body {
     transition: opacity 18s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* SOCIAL ICONS */
+.social-links {
+    text-align: center;
+    margin: 40px 0 80px 0;
+}
+
+.social-links a {
+    display: inline-block;
+    margin: 0 14px;
+}
+
+.social-links img {
+    width: 32px;
+    height: auto;
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+}
+
+.social-links img:hover {
+    opacity: 1;
+}
+
 /* FOOTER */
 footer {
     position: fixed;
@@ -238,6 +260,20 @@ footer {
 
     <div class="logo-bookend" id="bookendTrigger">
         <img src="xera-logo.jpg" alt="XERA Logo Bookend" id="bookendLogo">
+    </div>
+
+    <div class="social-links">
+        <a href="https://instagram.com/xerawatches" target="_blank">
+            <img src="Instalogo.png" alt="Instagram">
+        </a>
+
+        <a href="https://www.facebook.com/share/g/1EREwNb8Mz/" target="_blank">
+            <img src="FBlogo.png" alt="Facebook">
+        </a>
+
+        <a href="https://x.com/xerawatches" target="_blank">
+            <img src="Xlogo.png" alt="X">
+        </a>
     </div>
 
 </div>
@@ -318,4 +354,3 @@ window.addEventListener("load", checkBookendFade);
 
 </body>
 </html>
-
