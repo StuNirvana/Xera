@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -147,21 +148,9 @@ body {
     position: relative;
 }
 
-.day-night-section img {
+.day-night-section video {
     width: 100%;
     display: block;
-}
-
-.day-night-section img.fade {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 5s ease-in-out;
-}
-
-.day-night-section img.fade.active {
-    opacity: 1;
 }
 
 /* CASEBACK */
@@ -238,8 +227,9 @@ footer {
     </div>
 
     <div class="day-night-section">
-        <img src="watch-day.jpg" alt="Watch Day">
-        <img src="watch-night.jpg" class="fade" id="nightImage" alt="Watch Night">
+        <video autoplay muted loop playsinline>
+            <source src="lumewristroll.mp4" type="video/mp4">
+        </video>
     </div>
 
     <div class="caseback-section">
@@ -296,14 +286,6 @@ if (skipIntro) {
     }, 1500);
 }
 
-const nightImage = document.getElementById("nightImage");
-
-function switchImage() {
-    nightImage.classList.toggle("active");
-}
-
-setInterval(switchImage, 7000);
-
 window.addEventListener("scroll", function() {
     if (window.scrollY > 120) {
         scrollChevron.style.opacity = "0";
@@ -336,3 +318,4 @@ window.addEventListener("load", checkBookendFade);
 
 </body>
 </html>
+
