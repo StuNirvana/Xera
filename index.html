@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +18,6 @@ body {
     padding-bottom: 160px;
 }
 
-/* BRAND */
 .xera-brand {
     position: fixed;
     top: 20px;
@@ -31,7 +29,6 @@ body {
     text-decoration: none;
 }
 
-/* MENU */
 .xera-menu-trigger {
     position: fixed;
     top: 20px;
@@ -64,7 +61,6 @@ body {
     font-size: 13px;
     letter-spacing: 4px;
     color: #bbb;
-    transition: color 0.3s ease;
 }
 
 .xera-menu-panel a:hover {
@@ -72,14 +68,13 @@ body {
 }
 
 .xera-menu-panel a.join-launch {
-    color: #cc0000 !important;
+    color: #23e0c0 !important;
 }
 
 .xera-menu-panel.open {
     display: block;
 }
 
-/* LOGO INTRO */
 .logo-screen {
     position: fixed;
     width: 100%;
@@ -103,10 +98,9 @@ body {
     pointer-events: none;
 }
 
-/* HERO */
 .hero {
     text-align: center;
-    padding-top: 140px;
+    padding-top: 110px;
     opacity: 0;
     transition: opacity 1.4s ease;
 }
@@ -118,15 +112,42 @@ body {
 .hero h1 {
     font-size: 32px;
     letter-spacing: 8px;
-    margin-bottom: 30px;
+    margin-bottom: 14px;
+}
+
+.launch-date {
+    color: #23e0c0;
+    letter-spacing: 5px;
+    font-size: 16px;
+    margin-bottom: 24px;
 }
 
 .hero img {
-    max-width: 85%;
+    max-width: 92%;
+    width: 760px;
     height: auto;
 }
 
-/* SCROLL CHEVRON */
+.kickstarter-button {
+    display: inline-block;
+    margin-top: 28px;
+    padding: 18px 34px;
+    border: 2px solid #23e0c0;
+    color: #000;
+    background: #23e0c0;
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.kickstarter-button:hover {
+    background: #fff;
+    border-color: #fff;
+    color: #000;
+}
+
 .scroll-chevron {
     position: fixed;
     bottom: 60px;
@@ -140,12 +161,10 @@ body {
     pointer-events: none;
 }
 
-/* DAY / NIGHT */
 .day-night-section {
     margin: 140px auto 120px auto;
     width: 92%;
     max-width: 900px;
-    position: relative;
 }
 
 .day-night-section video {
@@ -153,7 +172,6 @@ body {
     display: block;
 }
 
-/* CASEBACK */
 .caseback-section {
     text-align: center;
     margin: 120px 0;
@@ -165,7 +183,6 @@ body {
     height: auto;
 }
 
-/* BOOKEND */
 .logo-bookend {
     text-align: center;
     margin: 120px 0 40px 0;
@@ -179,7 +196,6 @@ body {
     transition: opacity 18s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* SOCIAL ICONS */
 .social-links {
     text-align: center;
     margin: 40px 0 80px 0;
@@ -194,14 +210,12 @@ body {
     width: 32px;
     height: auto;
     opacity: 0.85;
-    transition: opacity 0.3s ease;
 }
 
 .social-links img:hover {
     opacity: 1;
 }
 
-/* FOOTER */
 footer {
     position: fixed;
     bottom: 10px;
@@ -232,7 +246,7 @@ footer {
     <a href="specifications.html">SPECIFICATIONS</a>
     <a href="story.html">STORY</a>
     <a href="contact.html">CONTACT</a>
-    <a href="join-launch.html" class="join-launch">JOIN LAUNCH</a>
+    <a href="https://www.kickstarter.com/projects/xerawatches/xera-event-horizon-a-black-hole-inspired-watch" target="_blank" class="join-launch">KICKSTARTER</a>
 </div>
 
 <div class="logo-screen" id="logoScreen">
@@ -245,7 +259,12 @@ footer {
 
     <div class="hero" id="heroSection">
         <h1>EVENT HORIZON</h1>
-        <img src="Hero2.jpg" alt="Event Horizon Watch">
+        <div class="launch-date">KICKSTARTER LAUNCH · 18 JUNE 2026 · 7PM BST</div>
+        <img src="kickstarter-launch.jpg" alt="XERA Event Horizon Kickstarter Launch">
+        <br>
+        <a href="https://www.kickstarter.com/projects/xerawatches/xera-event-horizon-a-black-hole-inspired-watch" target="_blank" class="kickstarter-button">
+            View Kickstarter Page
+        </a>
     </div>
 
     <div class="day-night-section">
