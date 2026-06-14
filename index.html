@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,7 +71,7 @@ body {
     color: #fff;
 }
 
-.xera-menu-panel a.kickstarter-link {
+.xera-menu-panel a.join-launch {
     color: #cc0000 !important;
 }
 
@@ -123,77 +124,6 @@ body {
 .hero img {
     max-width: 85%;
     height: auto;
-}
-
-/* KICKSTARTER LAUNCH BLOCK */
-.kickstarter-section {
-    text-align: center;
-    margin: 90px auto 120px auto;
-    padding: 0 20px;
-    max-width: 760px;
-}
-
-.kickstarter-section h2 {
-    font-size: 24px;
-    letter-spacing: 6px;
-    margin-bottom: 22px;
-    color: #cc0000;
-}
-
-.launch-date {
-    font-size: 14px;
-    letter-spacing: 3px;
-    color: #bbb;
-    margin-bottom: 32px;
-}
-
-.countdown {
-    display: flex;
-    justify-content: center;
-    gap: 18px;
-    flex-wrap: wrap;
-    margin-bottom: 38px;
-}
-
-.countdown-box {
-    min-width: 82px;
-}
-
-.countdown-number {
-    font-size: 28px;
-    letter-spacing: 3px;
-    color: #fff;
-}
-
-.countdown-label {
-    font-size: 10px;
-    letter-spacing: 3px;
-    color: #777;
-    margin-top: 6px;
-}
-
-.price-lines {
-    font-size: 14px;
-    letter-spacing: 2px;
-    color: #ddd;
-    line-height: 2;
-    margin-bottom: 42px;
-}
-
-.kickstarter-button {
-    display: inline-block;
-    padding: 15px 34px;
-    border: 1px solid #cc0000;
-    color: #cc0000;
-    text-decoration: none;
-    letter-spacing: 3px;
-    font-size: 13px;
-    transition: all 0.3s ease;
-}
-
-.kickstarter-button:hover {
-    background: #cc0000;
-    color: #000;
 }
 
 /* SCROLL CHEVRON */
@@ -302,7 +232,7 @@ footer {
     <a href="specifications.html">SPECIFICATIONS</a>
     <a href="story.html">STORY</a>
     <a href="contact.html">CONTACT</a>
-    <a href="https://www.kickstarter.com/projects/xerawatches/xera-event-horizon-a-black-hole-inspired-watch" class="kickstarter-link" target="_blank">KICKSTARTER</a>
+    <a href="join-launch.html" class="join-launch">JOIN LAUNCH</a>
 </div>
 
 <div class="logo-screen" id="logoScreen">
@@ -318,18 +248,109 @@ footer {
         <img src="Hero2.jpg" alt="Event Horizon Watch">
     </div>
 
-    <div class="kickstarter-section">
-        <h2 id="launchHeading">KICKSTARTER LAUNCH</h2>
+    <div class="day-night-section">
+        <video autoplay muted loop playsinline>
+            <source src="lumewristroll.mp4" type="video/mp4">
+        </video>
+    </div>
 
-        <div class="launch-date">
-            18 JUNE 2026 · 7:00 PM BST
-        </div>
+    <div class="caseback-section">
+        <img src="newcaseback2.jpg" alt="XERA Event Horizon Caseback">
+    </div>
 
-        <div class="countdown" id="countdown">
-            <div class="countdown-box">
-                <div class="countdown-number" id="days">00</div>
-                <div class="countdown-label">DAYS</div>
-            </div>
-            <div class="countdown-box">
-                <div class="countdown-number" id="hours">00</div>
-                <div
+    <div class="logo-bookend" id="bookendTrigger">
+        <img src="xera-logo.jpg" alt="XERA Logo Bookend" id="bookendLogo">
+    </div>
+
+    <div class="social-links">
+        <a href="https://instagram.com/xerawatches" target="_blank">
+            <img src="Instalogo.png" alt="Instagram">
+        </a>
+
+        <a href="https://www.facebook.com/share/g/1EREwNb8Mz/" target="_blank">
+            <img src="FBlogo.png" alt="Facebook">
+        </a>
+
+        <a href="https://x.com/xerawatches" target="_blank">
+            <img src="Xlogo.png" alt="X">
+        </a>
+    </div>
+
+</div>
+
+<footer>
+© 2026 XERA. All designs, artwork and concepts are original and protected.
+</footer>
+
+<script>
+const menuTrigger = document.getElementById('menuTrigger');
+const menuPanel = document.getElementById('menuPanel');
+
+menuTrigger.addEventListener('click', function() {
+    menuPanel.classList.toggle('open');
+    menuTrigger.classList.toggle('active');
+});
+
+const logoScreen = document.getElementById("logoScreen");
+const hero = document.getElementById("heroSection");
+const scrollChevron = document.getElementById("scrollChevron");
+
+const params = new URLSearchParams(window.location.search);
+const skipIntro = params.get("skip") === "true";
+
+function showChevronAfterHero() {
+    setTimeout(function() {
+        if (window.scrollY < 120) {
+            scrollChevron.style.opacity = "1";
+        }
+    }, 3000);
+}
+
+if (skipIntro) {
+    logoScreen.style.display = "none";
+    hero.classList.add("visible");
+    showChevronAfterHero();
+} else {
+    setTimeout(function() {
+        logoScreen.classList.add("fade-out");
+
+        setTimeout(function() {
+            hero.classList.add("visible");
+            showChevronAfterHero();
+        }, 2500);
+
+    }, 1500);
+}
+
+window.addEventListener("scroll", function() {
+    if (window.scrollY > 120) {
+        scrollChevron.style.opacity = "0";
+    }
+});
+
+const bookendLogo = document.getElementById("bookendLogo");
+const bookendTrigger = document.getElementById("bookendTrigger");
+let revealed = false;
+
+function checkBookendFade() {
+    if (revealed) return;
+
+    const rect = bookendTrigger.getBoundingClientRect();
+
+    if (rect.top < window.innerHeight * 1.1) {
+        revealed = true;
+
+        setTimeout(() => {
+            bookendLogo.style.opacity = "1";
+        }, 3000);
+
+        window.removeEventListener("scroll", checkBookendFade);
+    }
+}
+
+window.addEventListener("scroll", checkBookendFade);
+window.addEventListener("load", checkBookendFade);
+</script>
+
+</body>
+</html>
