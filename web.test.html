@@ -1,19 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XERA – Join Launch</title>
-
-<!-- MailerLite Universal -->
-<script>
-(function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-.push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-ml('account', '2110553');
-</script>
+<title>XERA Watches</title>
 
 <style>
 body {
@@ -24,24 +14,26 @@ body {
     overflow-x: hidden;
 }
 
-/* BRAND */
+.page-padding {
+    padding-bottom: 160px;
+}
+
 .xera-brand {
     position: fixed;
     top: 20px;
     left: 20px;
-    z-index: 10000;
+    z-index: 10001;
     letter-spacing: 3px;
     font-size: 14px;
     color: #fff;
     text-decoration: none;
 }
 
-/* MENU */
 .xera-menu-trigger {
     position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 10000;
+    z-index: 10001;
     cursor: pointer;
     letter-spacing: 3px;
     font-size: 14px;
@@ -59,7 +51,7 @@ body {
     width: 170px;
     text-align: right;
     display: none;
-    z-index: 9999;
+    z-index: 10001;
 }
 
 .xera-menu-panel a {
@@ -69,7 +61,6 @@ body {
     font-size: 13px;
     letter-spacing: 4px;
     color: #bbb;
-    transition: color 0.3s ease;
 }
 
 .xera-menu-panel a:hover {
@@ -77,153 +68,166 @@ body {
 }
 
 .xera-menu-panel a.join-launch {
-    color: #cc0000 !important;
-}
-
-.xera-menu-panel a.current {
-    color: #555;
-    pointer-events: none;
+    color: #23e0c0 !important;
 }
 
 .xera-menu-panel.open {
     display: block;
 }
 
-/* MAIN */
-.xera-main {
-    text-align: center;
-    padding-top: 130px;
-    max-width: 700px;
-    margin: auto;
+.logo-screen {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 2s ease;
+    z-index: 10000;
 }
 
-.xera-main h1 {
-    font-size: 26px;
-    letter-spacing: 7px;
-    margin-bottom: 30px;
+.logo-screen img {
+    max-width: 320px;
+    width: 80%;
+    height: auto;
 }
 
-.xera-accent {
-    width: 120px;
-    height: 2px;
-    background: #cc0000;
-    margin: 0 auto 50px auto;
-}
-
-.launch-line {
-    font-size: 15px;
-    letter-spacing: 2px;
-    margin: 16px 0;
-    min-height: 24px;
+.logo-screen.fade-out {
     opacity: 0;
-    transition: opacity 0.3s ease;
+    pointer-events: none;
 }
 
-.launch-line.visible {
+.hero {
+    text-align: center;
+    padding-top: 110px;
+    opacity: 0;
+    transition: opacity 1.4s ease;
+}
+
+.hero.visible {
     opacity: 1;
 }
 
-.xera-cta {
-    margin-top: 40px;
+.hero h1 {
+    font-size: 32px;
+    letter-spacing: 8px;
+    margin-bottom: 14px;
+}
+
+.launch-date {
+    color: #23e0c0;
+    letter-spacing: 5px;
     font-size: 16px;
-    letter-spacing: 3px;
-    color: #cc0000;
+    margin-bottom: 24px;
 }
 
-/* BUTTON */
-.launch-button {
-    margin-top: 60px;
+.hero img {
+    max-width: 92%;
+    width: 760px;
+    height: auto;
+}
+
+.kickstarter-button {
     display: inline-block;
-    padding: 14px 40px;
-    border: 1px solid #cc0000;
-    color: #cc0000;
+    margin-top: 28px;
+    padding: 18px 34px;
+    border: 2px solid #23e0c0;
+    color: #000;
+    background: #23e0c0;
+    text-decoration: none;
     letter-spacing: 3px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
-.launch-button:hover {
-    background: #cc0000;
+.kickstarter-button:hover {
+    background: #fff;
+    border-color: #fff;
     color: #000;
 }
 
-/* OVERLAY */
-.overlay {
+.scroll-chevron {
     position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.95);
-    display: none;
-    z-index: 20000;
-    padding-top: 120px;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    color: #999;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.day-night-section {
+    margin: 140px auto 120px auto;
+    width: 92%;
+    max-width: 900px;
+}
+
+.day-night-section video {
+    width: 100%;
+    display: block;
+}
+
+.caseback-section {
     text-align: center;
+    margin: 120px 0;
 }
 
-.overlay-close {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    font-size: 14px;
-    letter-spacing: 3px;
-    cursor: pointer;
-    color: #aaa;
+.caseback-section img {
+    width: 63%;
+    max-width: 700px;
+    height: auto;
 }
 
-.overlay-close:hover {
-    color: #fff;
+.logo-bookend {
+    text-align: center;
+    margin: 120px 0 40px 0;
 }
 
-/* MAILERLITE FORM */
-.ml-embedded {
-    max-width: 400px;
-    margin: auto;
+.logo-bookend img {
+    width: 55%;
+    max-width: 220px;
+    height: auto;
+    opacity: 0;
+    transition: opacity 18s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.ml-embedded input {
-    width: 100% !important;
-    padding: 12px !important;
-    background: #111 !important;
-    border: 1px solid #cc0000 !important;
-    color: #fff !important;
+.social-links {
+    text-align: center;
+    margin: 40px 0 80px 0;
 }
 
-.ml-embedded button {
-    width: 100% !important;
-    margin-top: 15px !important;
-    padding: 12px !important;
-    background: #cc0000 !important;
-    border: none !important;
-    color: #000 !important;
-    letter-spacing: 2px !important;
+.social-links a {
+    display: inline-block;
+    margin: 0 14px;
 }
 
-/* BACK BUTTON (FIXED ABOVE FOOTER) */
-.xera-back {
-    position: fixed;
-    bottom: 40px; /* lifted so it no longer overlaps footer */
-    left: 20px;
-    z-index: 10000;
-    letter-spacing: 3px;
-    font-size: 12px;
-    color: #777;
-    text-decoration: none;
-    transition: color 0.3s ease;
+.social-links img {
+    width: 32px;
+    height: auto;
+    opacity: 0.85;
 }
 
-.xera-back:hover {
-    color: #fff;
+.social-links img:hover {
+    opacity: 1;
 }
 
-/* FOOTER */
-.xera-footer {
+footer {
     position: fixed;
     bottom: 10px;
+    left: 0;
     width: 100%;
     text-align: center;
-    font-size: 11px;
+    font-size: 12px;
     color: #777;
+    z-index: 10002;
+    pointer-events: none;
 }
 
-/* PULSE */
 @keyframes xeraPulse {
     0% { opacity: 0.5; }
     50% { opacity: 1; }
@@ -234,7 +238,7 @@ body {
 
 <body>
 
-<a href="index.html" class="xera-brand">XERA</a>
+<a href="index.html?skip=true" class="xera-brand">XERA</a>
 
 <div class="xera-menu-trigger" id="menuTrigger">MENU</div>
 
@@ -242,34 +246,60 @@ body {
     <a href="specifications.html">SPECIFICATIONS</a>
     <a href="story.html">STORY</a>
     <a href="contact.html">CONTACT</a>
-    <a href="join-launch.html" class="join-launch current">JOIN LAUNCH</a>
+    <a href="https://www.kickstarter.com/projects/xerawatches/xera-event-horizon-a-black-hole-inspired-watch" target="_blank" class="join-launch">KICKSTARTER</a>
 </div>
 
-<div class="xera-main">
-    <h1>JOIN LAUNCH</h1>
-    <div class="xera-accent"></div>
-
-    <div class="launch-line" data-text="XERA will launch in limited production batches."></div>
-    <div class="launch-line" data-text="Early subscribers will receive first access and preferential launch pricing before public release."></div>
-    <div class="launch-line" data-text="Allocation will be limited."></div>
-    <div class="launch-line" data-text="Private launch details will be shared by email."></div>
-
-    <div class="xera-cta">Be ready at the edge.</div>
-
-    <div class="launch-button" onclick="openOverlay()">ENTER EMAIL</div>
+<div class="logo-screen" id="logoScreen">
+    <img src="xera-logo.jpg" alt="XERA Logo">
 </div>
 
-<!-- OVERLAY -->
-<div class="overlay" id="overlay">
-    <div class="overlay-close" onclick="closeOverlay()">CLOSE</div>
-    <div class="ml-embedded" data-form="5RAEYg"></div>
+<div class="scroll-chevron" id="scrollChevron">⌄</div>
+
+<div class="page-padding">
+
+    <div class="hero" id="heroSection">
+        <h1>EVENT HORIZON</h1>
+        <div class="launch-date">KICKSTARTER LAUNCH · 18 JUNE 2026 · 7PM BST</div>
+        <img src="kickstarter-launch.jpg" alt="XERA Event Horizon Kickstarter Launch">
+        <br>
+        <a href="https://www.kickstarter.com/projects/xerawatches/xera-event-horizon-a-black-hole-inspired-watch" target="_blank" class="kickstarter-button">
+            View Kickstarter Page
+        </a>
+    </div>
+
+    <div class="day-night-section">
+        <video autoplay muted loop playsinline>
+            <source src="lumewristroll.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="caseback-section">
+        <img src="newcaseback2.jpg" alt="XERA Event Horizon Caseback">
+    </div>
+
+    <div class="logo-bookend" id="bookendTrigger">
+        <img src="xera-logo.jpg" alt="XERA Logo Bookend" id="bookendLogo">
+    </div>
+
+    <div class="social-links">
+        <a href="https://instagram.com/xerawatches" target="_blank">
+            <img src="Instalogo.png" alt="Instagram">
+        </a>
+
+        <a href="https://www.facebook.com/share/g/1EREwNb8Mz/" target="_blank">
+            <img src="FBlogo.png" alt="Facebook">
+        </a>
+
+        <a href="https://x.com/xerawatches" target="_blank">
+            <img src="Xlogo.png" alt="X">
+        </a>
+    </div>
+
 </div>
 
-<a href="index.html" class="xera-back">BACK</a>
-
-<div class="xera-footer">
+<footer>
 © 2026 XERA. All designs, artwork and concepts are original and protected.
-</div>
+</footer>
 
 <script>
 const menuTrigger = document.getElementById('menuTrigger');
@@ -280,46 +310,65 @@ menuTrigger.addEventListener('click', function() {
     menuTrigger.classList.toggle('active');
 });
 
-const lines = document.querySelectorAll('.launch-line');
-let lineIndex = 0;
+const logoScreen = document.getElementById("logoScreen");
+const hero = document.getElementById("heroSection");
+const scrollChevron = document.getElementById("scrollChevron");
 
-function typeLine(element, text, callback) {
-    element.classList.add('visible');
-    let i = 0;
-    function typing() {
-        if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            setTimeout(typing, 55);
-        } else {
-            setTimeout(callback, 500);
+const params = new URLSearchParams(window.location.search);
+const skipIntro = params.get("skip") === "true";
+
+function showChevronAfterHero() {
+    setTimeout(function() {
+        if (window.scrollY < 120) {
+            scrollChevron.style.opacity = "1";
         }
-    }
-    typing();
+    }, 3000);
 }
 
-function startTyping() {
-    if (lineIndex < lines.length) {
-        const line = lines[lineIndex];
-        const text = line.getAttribute('data-text');
-        typeLine(line, text, function() {
-            lineIndex++;
-            startTyping();
-        });
-    }
+if (skipIntro) {
+    logoScreen.style.display = "none";
+    hero.classList.add("visible");
+    showChevronAfterHero();
+} else {
+    setTimeout(function() {
+        logoScreen.classList.add("fade-out");
+
+        setTimeout(function() {
+            hero.classList.add("visible");
+            showChevronAfterHero();
+        }, 2500);
+
+    }, 1500);
 }
 
-window.addEventListener('load', function() {
-    setTimeout(startTyping, 800);
+window.addEventListener("scroll", function() {
+    if (window.scrollY > 120) {
+        scrollChevron.style.opacity = "0";
+    }
 });
 
-function openOverlay() {
-    document.getElementById('overlay').style.display = 'block';
+const bookendLogo = document.getElementById("bookendLogo");
+const bookendTrigger = document.getElementById("bookendTrigger");
+let revealed = false;
+
+function checkBookendFade() {
+    if (revealed) return;
+
+    const rect = bookendTrigger.getBoundingClientRect();
+
+    if (rect.top < window.innerHeight * 1.1) {
+        revealed = true;
+
+        setTimeout(() => {
+            bookendLogo.style.opacity = "1";
+        }, 3000);
+
+        window.removeEventListener("scroll", checkBookendFade);
+    }
 }
 
-function closeOverlay() {
-    document.getElementById('overlay').style.display = 'none';
-}
+window.addEventListener("scroll", checkBookendFade);
+window.addEventListener("load", checkBookendFade);
 </script>
 
 </body>
